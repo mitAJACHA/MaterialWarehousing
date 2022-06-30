@@ -16,9 +16,14 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class BoardController {
 	
-	// 전체 목록 /list(get)	-> /board/list.jsp
+	// 전체 목록 /main(get)	-> /main.jsp
 	@GetMapping("main")
 	public void main() {
 		log.info("main 요청");
+	}
+	
+	@GetMapping("orderStatus")
+	public void orderStatus() {
+		log.info("orderStatus 요청");
 	}
 }
