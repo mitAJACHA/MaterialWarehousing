@@ -19,14 +19,37 @@
     <link rel="stylesheet" type="text/css" href="/resources/assets/css/main.css">
     <!-- Responsive Style -->
     <link rel="stylesheet" type="text/css" href="/resources/assets/css/responsive.css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+	
+	 <script>
+	 var thisfilefullname = document.URL.substring(document.URL.lastIndexOf('/') + 1, document.URL.length);
+    console.log(thisfilefullname);
+    console.log(document.URL);
+    var ob = document.getElementById("nav-input");
+    
+    switch (thisfilefullname) {
+    case "orderStatus":
+   	 ob.classList.toggle("open");
+   	 var ob2 = document.getElementById("orderStatus");
+   	 ob2.classList.add("active");
+   	 break;
+    case "warehousing":
+   	 ob.classList.toggle("open");
+   	 var ob2 = document.getElementById("orderStatus");
+   	 ob2.classList.add("active");
+   	 break;
+    case "closeTransaction":
+   	 ob.classList.toggle("open");
+   	 var ob2 = document.getElementById("orderStatus");
+   	 ob.classList.add("active");
+   	 break;
+    default:
+	 ob.classList.toggle("open");
+   	 var ob2 = document.getElementById("orderStatus");
+     ob.classList.add("active");
+    }
+    </script>
+    
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
     <div class="app header-default side-nav-dark">
@@ -53,7 +76,7 @@
               <li class="side-nav-header">
                 <span>Navigation</span>
               </li>
-              <li class="nav-item dropdown open">
+              <li class="nav-item dropdown" id="nav-plan">
                 <a href="#" class="dropdown-toggle">
                   <span class="icon-holder">
                     <i class="lni-dashboard"></i>
@@ -64,12 +87,12 @@
                   </span>
                 </a>
                 <ul class="dropdown-menu sub-down">
-                  <li class="active">
+                  <li id="register">
                     <a href="index.html">등록</a>
                   </li>
                 </ul>
               </li>
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown" id="nav-order">
                 <a class="dropdown-toggle" href="#">
                     <span class="icon-holder">
                       <i class="lni-cloud"></i>
@@ -95,7 +118,7 @@
                   
                 </ul>
               </li>
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown" id="nav-input">
                 <a class="dropdown-toggle" href="#">
                   <span class="icon-holder">
                     <i class="lni-layers"></i>
@@ -106,18 +129,18 @@
                   </span>
                 </a>
                 <ul class="dropdown-menu sub-down">
-                  <li>
+                  <li id="orderStatus">
                     <a href="orderStatus">현황관리</a>
                   </li>
-                  <li>
+                  <li id="warehousing">
                     <a href="badge.html">입고처리</a>
                   </li>
-                  <li>
+                  <li id="closeTransaction">
                     <a href="buttons.html">거래마감</a>
                   </li>
                 </ul>
               </li>
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown" id="nav-output">
                 <a class="dropdown-toggle" href="#">
                   <span class="icon-holder">
                     <i class="lni-timer"></i>
@@ -181,6 +204,10 @@
             </ul>
           </div>
         </div>
-       </div>
       </div>
+     </div>
         <!-- Side Nav END -->
+        
+    
+
+     
