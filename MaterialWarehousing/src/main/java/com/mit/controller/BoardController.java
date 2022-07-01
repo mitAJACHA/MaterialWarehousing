@@ -31,4 +31,8 @@ public class BoardController {
 	public void wareHandling() {
 		log.info("wareHandling 요청");
 	}
+	@GetMapping("transactionClose")
+	public void transactionClose() {
+		log.info("transactionClose 요청");
+	}
 }

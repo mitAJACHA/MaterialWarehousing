@@ -98,18 +98,13 @@
                   </span>
                 </a>
                 <ul class="dropdown-menu sub-down">
-                  <li class="active">
+                  <li class>
                     <a href="orderStatus">현황관리</a>
                   </li>
-
                   <li>
                     <a href="wareHandling">입고처리</a>
-
-                  <li id="warehousing">
-                    <a href="badge.html">입고처리</a>
-
                   </li>
-                  <li id="closeTransaction">
+                  <li class="active">
                     <a href="buttons.html">거래마감</a>
                   </li>
                 </ul>
@@ -189,7 +184,7 @@
 				<!-- Breadcrumb Start -->
 				<div class="breadcrumb-wrapper row">
 					<div class="col-12 col-lg-3 col-md-6">
-						<h4 class="page-title">발주현황</h4>
+						<h4 class="page-title">거래마감</h4>
 					</div>
 					<div class="col-12 col-lg-9 col-md-6">
 						<ol class="breadcrumb float-right">

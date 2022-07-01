@@ -58,6 +58,7 @@
                   <li class="active">
                     <a href="index.html">등록</a>
                   </li>
+                  
                 </ul>
               </li>
               <li class="nav-item dropdown">
@@ -104,7 +105,7 @@
                     <a href="badge.html">입고처리</a>
                   </li>
                   <li id="closeTransaction">
-                    <a href="buttons.html">거래마감</a>
+                    <a href="transactionClose">거래마감</a>
                   </li>
                 </ul>
               </li>
