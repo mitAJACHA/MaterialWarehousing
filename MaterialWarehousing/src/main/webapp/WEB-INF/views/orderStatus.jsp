@@ -184,7 +184,7 @@
 				<!-- Breadcrumb Start -->
 				<div class="breadcrumb-wrapper row">
 					<div class="col-12 col-lg-3 col-md-6">
-						<h4 class="page-title">Dashboard</h4>
+						<h4 class="page-title">발주현황</h4>
 					</div>
 					<div class="col-12 col-lg-9 col-md-6">
 						<ol class="breadcrumb float-right">
@@ -196,9 +196,36 @@
 				<!-- Breadcrumb End -->
 			</div>
 			<div class="container-fluid">
-				<!-- Title Count Start -->
+			
 				<div class="row">
-					<div class="col-lg-8 col-md-12 col-xs-12">
+					<div class="col-lg-12 col-md-12 col-xs-12">
+						<div class="card">
+							<div class="table-overflow">
+								<table class="table table-lg">
+									<tr>
+										<th>회사명</th>
+										<td><input type="text"></td>
+										<th>품목명</th>
+										<td><input type="text"></td>
+									</tr>
+									<tr>
+										<th>일자</th>
+										<td><input type="text">~<input type="text"></td>
+										<td>
+											<input type="radio" name="chk_info" value="recentMonth">최근 한달 &nbsp;&nbsp;
+											<input type="radio" name="chk_info" value="recentWeek">최근 일주일 &nbsp;&nbsp;&nbsp;&nbsp;
+											<a href="#" class="badge badge-success">Search</a>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+				<!-- 발주현황 내역 -->
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-xs-12">
 						<div class="card">
 							<div class="card-header">
 								<h4 class="card-title">Best Performing Clients</h4>
@@ -215,12 +242,18 @@
 								<table class="table table-lg">
 									<thead>
 										<tr>
-											<td class="text-dark text-semibold">Company Name</td>
-											<td class="text-dark text-semibold">Product</td>
-											<td class="text-dark text-semibold">Source</td>
-											<td class="text-dark text-semibold">Status</td>
-											<td class="text-dark text-semibold">Billed</td>
-											<td class="text-dark text-semibold">Paid</td>
+											<th class="text-dark text-semibold">발주번호</th>
+											<th class="text-dark text-semibold">발주일자</th>
+											<th class="text-dark text-semibold">납기일자</th>
+											<th class="text-dark text-semibold">마감일자</th>
+											<th class="text-dark text-semibold">품목명</th>
+											<th class="text-dark text-semibold">수량</th>
+											<th class="text-dark text-semibold">단가</th>
+											<th class="text-dark text-semibold">협력회사명</th>
+											<th class="text-dark text-semibold">사업자등록번호</th>
+											<th class="text-dark text-semibold">담당자</th>
+											<th class="text-dark text-semibold">상태</th>
+											<th class="text-dark text-semibold">비고</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -242,6 +275,12 @@
 											<td><a href="#" class="badge badge-danger">Processing</a></td>
 											<td>$423.00</td>
 											<td>$168.00</td>
+											<td><a href="#" class="badge badge-danger">Processing</a></td>
+											<td><a href="#" class="badge badge-danger">Processing</a></td>
+											<td><a href="#" class="badge badge-danger">Processing</a></td>
+											<td><a href="#" class="badge badge-danger">Processing</a></td>
+											<td><a href="#" class="badge badge-danger">Processing</a></td>
+											<td><a href="#" class="badge badge-danger">Processing</a></td>
 										</tr>
 										<tr>
 											<td>
@@ -261,6 +300,12 @@
 											<td><a href="#" class="badge badge-success">Done</a></td>
 											<td>$665.67</td>
 											<td>$665.67</td>
+											<td><a href="#" class="badge badge-success">Done</a></td>
+											<td><a href="#" class="badge badge-success">Done</a></td>
+											<td><a href="#" class="badge badge-success">Done</a></td>
+											<td><a href="#" class="badge badge-success">Done</a></td>
+											<td><a href="#" class="badge badge-success">Done</a></td>
+											<td><a href="#" class="badge badge-success">Done</a></td>
 										</tr>
 										<tr>
 											<td>
@@ -280,6 +325,12 @@
 											<td><a href="#" class="badge badge-info">On-hold</a></td>
 											<td>$576.00</td>
 											<td>$476.00</td>
+											<td><a href="#" class="badge badge-info">On-hold</a></td>
+											<td><a href="#" class="badge badge-info">On-hold</a></td>
+											<td><a href="#" class="badge badge-info">On-hold</a></td>
+											<td><a href="#" class="badge badge-info">On-hold</a></td>
+											<td><a href="#" class="badge badge-info">On-hold</a></td>
+											<td><a href="#" class="badge badge-info">On-hold</a></td>
 										</tr>
 										<tr>
 											<td>
@@ -299,6 +350,12 @@
 											<td><a href="#" class="badge badge-success">Done</a></td>
 											<td>$234.00</td>
 											<td>$234.00</td>
+											<td><a href="#" class="badge badge-success">Done</a></td>
+											<td><a href="#" class="badge badge-success">Done</a></td>
+											<td><a href="#" class="badge badge-success">Done</a></td>
+											<td><a href="#" class="badge badge-success">Done</a></td>
+											<td><a href="#" class="badge badge-success">Done</a></td>
+											<td><a href="#" class="badge badge-success">Done</a></td>
 										</tr>
 									</tbody>
 								</table>
