@@ -98,25 +98,14 @@
                   </span>
                 </a>
                 <ul class="dropdown-menu sub-down">
-                  <li class="active">
+                  <li class>
                     <a href="orderStatus">현황관리</a>
                   </li>
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'main' of https://github.com/mitAJACHA/MaterialWarehousing.git
                   <li>
                     <a href="wareHandling">입고처리</a>
-<<<<<<< HEAD
-=======
-
-                  <li id="warehousing">
-                    <a href="badge.html">입고처리</a>
-
->>>>>>> branch 'main' of https://github.com/mitAJACHA/MaterialWarehousing.git
                   </li>
-                  <li>
-                    <a href="transactionClose">거래마감</a>
+                  <li class="active">
+                    <a href="buttons.html">거래마감</a>
                   </li>
                 </ul>
               </li>
@@ -195,7 +184,7 @@
 				<!-- Breadcrumb Start -->
 				<div class="breadcrumb-wrapper row">
 					<div class="col-12 col-lg-3 col-md-6">
-						<h4 class="page-title">발주현황</h4>
+						<h4 class="page-title">거래마감</h4>
 					</div>
 					<div class="col-12 col-lg-9 col-md-6">
 						<ol class="breadcrumb float-right">
@@ -214,14 +203,19 @@
 							<div class="table-overflow">
 								<table class="table table-lg">
 									<tr>
-										<th>회사명&nbsp;&nbsp;<input type="text"></th>
-										<th>품목명&nbsp;&nbsp;<input type="text"></th>
-										<th>일자&nbsp;&nbsp;<input type="text">&nbsp;~&nbsp;<input type="text"></th>
-										<th>
-											<input type="radio" name="chk_info" value="recentMonth">&nbsp;최근 한달 &nbsp;&nbsp;
-											<input type="radio" name="chk_info" value="recentWeek">&nbsp;최근 일주일 &nbsp;&nbsp;&nbsp;&nbsp;
-											<button type="button" class="btn btn-outline-success btn-rounded">Search</button>
-										</th>
+										<th>회사명</th>
+										<td><input type="text"></td>
+										<th>품목명</th>
+										<td><input type="text"></td>
+									</tr>
+									<tr>
+										<th>일자</th>
+										<td><input type="text">~<input type="text"></td>
+										<td>
+											<input type="radio" name="chk_info" value="recentMonth">최근 한달 &nbsp;&nbsp;
+											<input type="radio" name="chk_info" value="recentWeek">최근 일주일 &nbsp;&nbsp;&nbsp;&nbsp;
+											<a href="#" class="badge badge-success">Search</a>
+										</td>
 									</tr>
 								</table>
 							</div>
