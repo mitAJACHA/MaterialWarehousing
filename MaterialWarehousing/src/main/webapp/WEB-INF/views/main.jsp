@@ -55,10 +55,14 @@
                   </span>
                 </a>
                 <ul class="dropdown-menu sub-down">
-                  <li class="active">
-                    <a href="index.html">등록</a>
+                  <li>
+                    <a href="index.html">품목등록</a>
                   </li>
-                  
+                </ul>
+                <ul class="dropdown-menu sub-down">
+                  <li>
+                    <a href="index.html">업체등록</a>
+                  </li>
                 </ul>
               </li>
               <li class="nav-item dropdown">
