@@ -12,10 +12,7 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
-<<<<<<< HEAD
 git test
-=======
 <a href="orderStatus.jsp">클릭</a>
->>>>>>> branch 'main' of https://github.com/mitAJACHA/MaterialWarehousing.git
 </body>
 </html>
