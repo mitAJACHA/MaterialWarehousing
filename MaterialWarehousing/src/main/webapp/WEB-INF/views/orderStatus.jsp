@@ -101,19 +101,8 @@
                   <li class="active">
                     <a href="orderStatus">현황관리</a>
                   </li>
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'main' of https://github.com/mitAJACHA/MaterialWarehousing.git
                   <li>
                     <a href="wareHandling">입고처리</a>
-<<<<<<< HEAD
-=======
-
-                  <li id="warehousing">
-                    <a href="badge.html">입고처리</a>
-
->>>>>>> branch 'main' of https://github.com/mitAJACHA/MaterialWarehousing.git
                   </li>
                   <li>
                     <a href="transactionClose">거래마감</a>
