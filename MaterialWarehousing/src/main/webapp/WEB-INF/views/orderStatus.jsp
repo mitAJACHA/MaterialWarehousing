@@ -196,28 +196,41 @@
 				<!-- Breadcrumb End -->
 			</div>
 			<div class="container-fluid">
-			
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-xs-12">
 						<div class="card">
 							<div class="table-overflow">
-								<table class="table table-lg">
-									<tr>
-										<th>회사명&nbsp;&nbsp;<input type="text"></th>
-										<th>품목명&nbsp;&nbsp;<input type="text"></th>
-										<th>일자&nbsp;&nbsp;<input type="text">&nbsp;~&nbsp;<input type="text"></th>
-										<th>
-											<input type="radio" name="chk_info" value="recentMonth">&nbsp;최근 한달 &nbsp;&nbsp;
-											<input type="radio" name="chk_info" value="recentWeek">&nbsp;최근 일주일 &nbsp;&nbsp;&nbsp;&nbsp;
-											<button type="button" class="btn btn-outline-success btn-rounded">Search</button>
-										</th>
-									</tr>
-								</table>
+								<form action="search" method="post" style="margin-bottom: 0px">
+									<table class="table table-lg">
+										<tr>
+											<th>회사명&nbsp;&nbsp;<input type="text" id="form-control"></th>
+											<th>품목명&nbsp;&nbsp;<input type="text" id="form-control"></th>
+											<th>일자&nbsp;&nbsp; <input type="date" id="form-control"
+												name="startDate">&nbsp; ~ &nbsp;<input type="date"
+												id="form-control" name="endDate"></th>
+											<th>
+												<div
+													class="custom-control custom-radio radio custom-control-inline">
+													<input type="radio" class="custom-control-input"
+														name="gender" id="male" checked=""> <label
+														class="custom-control-label" for="male">최근 일주일</label>
+												</div>
+												<div
+													class="custom-control custom-radio radio custom-control-inline">
+													<input type="radio" class="custom-control-input"
+														name="gender" id="gender" checked=""> <label
+														class="custom-control-label" for="gender">최근 한달</label>
+												</div>
+												<button type="button"
+													class="btn btn-outline-success btn-rounded">Search</button>
+											</th>
+										</tr>
+									</table>
+								</form>
 							</div>
 						</div>
 					</div>
 				</div>
-			
 				<!-- 발주현황 내역 -->
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-xs-12">
