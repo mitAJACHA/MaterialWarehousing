@@ -110,7 +110,7 @@
                     <a href="orderStatus">현황관리</a>
                   </li>
                   <li>
-                    <a href="badge.html">입고처리</a>
+                    <a href="wareHandling">입고처리</a>
                   </li>
                   <li>
                     <a href="buttons.html">거래마감</a>

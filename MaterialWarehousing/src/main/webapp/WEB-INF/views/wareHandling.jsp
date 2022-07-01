@@ -392,12 +392,12 @@
               <!-- Breadcrumb Start -->
               <div class="breadcrumb-wrapper row">
                 <div class="col-12 col-lg-3 col-md-6">
-                  <h4 class="page-title">Dashboard</h4>
+                  <h3 class="page-title"><strong>입고처리</strong></h3>
                 </div>
                 <div class="col-12 col-lg-9 col-md-6">
                   <ol class="breadcrumb float-right">
-                    <li><a href="index.html">Home</a></li>
-                    <li class="active">/ Dashboard</li>
+                    <li><a href="index.html">조달관리 시스템</a></li>
+                    <li class="active">/ 입고처리</li>
                   </ol>
                 </div>
               </div>
