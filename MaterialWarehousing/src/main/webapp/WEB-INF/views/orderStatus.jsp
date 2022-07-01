@@ -101,16 +101,11 @@
                   <li class="active">
                     <a href="orderStatus">현황관리</a>
                   </li>
-<<<<<<< HEAD
                   <li>
                     <a href="wareHandling">입고처리</a>
-=======
-                  <li id="warehousing">
-                    <a href="badge.html">입고처리</a>
->>>>>>> branch 'main' of file:///C:\Users\최정은\git\MaterialWarehousing
                   </li>
-                  <li id="closeTransaction">
-                    <a href="buttons.html">거래마감</a>
+                  <li>
+                    <a href="transactionClose">거래마감</a>
                   </li>
                 </ul>
               </li>
@@ -208,19 +203,14 @@
 							<div class="table-overflow">
 								<table class="table table-lg">
 									<tr>
-										<th>회사명</th>
-										<td><input type="text"></td>
-										<th>품목명</th>
-										<td><input type="text"></td>
-									</tr>
-									<tr>
-										<th>일자</th>
-										<td><input type="text">~<input type="text"></td>
-										<td>
-											<input type="radio" name="chk_info" value="recentMonth">최근 한달 &nbsp;&nbsp;
-											<input type="radio" name="chk_info" value="recentWeek">최근 일주일 &nbsp;&nbsp;&nbsp;&nbsp;
-											<a href="#" class="badge badge-success">Search</a>
-										</td>
+										<th>회사명&nbsp;&nbsp;<input type="text"></th>
+										<th>품목명&nbsp;&nbsp;<input type="text"></th>
+										<th>일자&nbsp;&nbsp;<input type="text">&nbsp;~&nbsp;<input type="text"></th>
+										<th>
+											<input type="radio" name="chk_info" value="recentMonth">&nbsp;최근 한달 &nbsp;&nbsp;
+											<input type="radio" name="chk_info" value="recentWeek">&nbsp;최근 일주일 &nbsp;&nbsp;&nbsp;&nbsp;
+											<button type="button" class="btn btn-outline-success btn-rounded">Search</button>
+										</th>
 									</tr>
 								</table>
 							</div>
