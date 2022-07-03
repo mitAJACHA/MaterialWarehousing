@@ -61,7 +61,7 @@
                   </li>
                 </ul>
                 <ul class="dropdown-menu sub-down">
-                  <li class="active">
+                <li>
                     <a href="companyList">업체조회/등록</a>
                   </li>
                 </ul>
