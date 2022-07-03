@@ -212,13 +212,13 @@
 												<div
 													class="custom-control custom-radio radio custom-control-inline">
 													<input type="radio" class="custom-control-input"
-														name="gender" id="male" checked=""> <label
+														name="recentDate" id="recentDate" checked=""> <label
 														class="custom-control-label" for="male">최근 일주일</label>
 												</div>
 												<div
 													class="custom-control custom-radio radio custom-control-inline">
 													<input type="radio" class="custom-control-input"
-														name="gender" id="gender" checked=""> <label
+														name="recentDate" id="recentDate" checked=""> <label
 														class="custom-control-label" for="gender">최근 한달</label>
 												</div>
 												<button type="button"
