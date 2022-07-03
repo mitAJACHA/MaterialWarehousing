@@ -75,6 +75,14 @@
 		    <version>1.16</version>
 		</dependency>
 		
+		<!-- oracle database -->
+		<dependency>
+	    	<groupId>com.oracle.database.jdbc</groupId>
+	    	<artifactId>ojdbc8</artifactId>
+	    	<version>21.1.0.0</version>
+		</dependency>
+		
+		
 		<!-- json 라이브러리 -->
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 		<dependency>
