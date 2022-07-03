@@ -55,14 +55,9 @@
                     <i class="lni-chevron-right"></i>
                   </span>
                 </a>
-                  <ul class="dropdown-menu sub-down">
-                  <li>
-                    <a href="index.html">품목등록</a>
-                  </li>
-                </ul>
                 <ul class="dropdown-menu sub-down">
                   <li>
-                    <a href="companyRegister">업체등록</a>
+                    <a href="index.html">등록</a>
                   </li>
                 </ul>
               </li>
@@ -103,14 +98,14 @@
                   </span>
                 </a>
                 <ul class="dropdown-menu sub-down">
-                  <li class>
+                  <li>
                     <a href="orderStatus">현황관리</a>
                   </li>
                   <li>
                     <a href="wareHandling">입고처리</a>
                   </li>
                   <li class="active">
-                    <a href="buttons.html">거래마감</a>
+                    <a href="transactionClose">거래마감</a>
                   </li>
                 </ul>
               </li>
@@ -201,33 +196,41 @@
 				<!-- Breadcrumb End -->
 			</div>
 			<div class="container-fluid">
-			
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-xs-12">
 						<div class="card">
 							<div class="table-overflow">
-								<table class="table table-lg">
-									<tr>
-										<th>회사명</th>
-										<td><input type="text"></td>
-										<th>품목명</th>
-										<td><input type="text"></td>
-									</tr>
-									<tr>
-										<th>일자</th>
-										<td><input type="text">~<input type="text"></td>
-										<td>
-											<input type="radio" name="chk_info" value="recentMonth">최근 한달 &nbsp;&nbsp;
-											<input type="radio" name="chk_info" value="recentWeek">최근 일주일 &nbsp;&nbsp;&nbsp;&nbsp;
-											<a href="#" class="badge badge-success">Search</a>
-										</td>
-									</tr>
-								</table>
+								<form action="search" method="post" style="margin-bottom: 0px">
+									<table class="table table-lg">
+										<tr>
+											<th>회사명&nbsp;&nbsp;<input type="text" id="form-control"></th>
+											<th>품목명&nbsp;&nbsp;<input type="text" id="form-control"></th>
+											<th>일자&nbsp;&nbsp; <input type="date" id="form-control"
+												name="startDate">&nbsp; ~ &nbsp;<input type="date"
+												id="form-control" name="endDate"></th>
+											<th>
+												<div
+													class="custom-control custom-radio radio custom-control-inline">
+													<input type="radio" class="custom-control-input"
+														name="recentDate" id="recentDate" checked=""> <label
+														class="custom-control-label" for="male">최근 일주일</label>
+												</div>
+												<div
+													class="custom-control custom-radio radio custom-control-inline">
+													<input type="radio" class="custom-control-input"
+														name="recentDate" id="recentDate" checked=""> <label
+														class="custom-control-label" for="gender">최근 한달</label>
+												</div>
+												<button type="button"
+													class="btn btn-outline-success btn-rounded">Search</button>
+											</th>
+										</tr>
+									</table>
+								</form>
 							</div>
 						</div>
 					</div>
 				</div>
-			
 				<!-- 발주현황 내역 -->
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-xs-12">
@@ -247,18 +250,15 @@
 								<table class="table table-lg">
 									<thead>
 										<tr>
-											<th class="text-dark text-semibold">발주번호</th>
-											<th class="text-dark text-semibold">발주일자</th>
-											<th class="text-dark text-semibold">납기일자</th>
+											<th class="text-dark text-semibold">계약번호</th>
 											<th class="text-dark text-semibold">마감일자</th>
+											<th class="text-dark text-semibold">품목코드</th>
 											<th class="text-dark text-semibold">품목명</th>
-											<th class="text-dark text-semibold">수량</th>
-											<th class="text-dark text-semibold">단가</th>
 											<th class="text-dark text-semibold">협력회사명</th>
-											<th class="text-dark text-semibold">사업자등록번호</th>
-											<th class="text-dark text-semibold">담당자</th>
-											<th class="text-dark text-semibold">상태</th>
-											<th class="text-dark text-semibold">비고</th>
+											<th class="text-dark text-semibold">거래명세서</th>
+											<th class="text-dark text-semibold">담당자명/이메일</th>
+											<th class="text-dark text-semibold">이메일  발송  체크</th>
+										
 										</tr>
 									</thead>
 									<tbody>
@@ -282,10 +282,8 @@
 											<td>$168.00</td>
 											<td><a href="#" class="badge badge-danger">Processing</a></td>
 											<td><a href="#" class="badge badge-danger">Processing</a></td>
-											<td><a href="#" class="badge badge-danger">Processing</a></td>
-											<td><a href="#" class="badge badge-danger">Processing</a></td>
-											<td><a href="#" class="badge badge-danger">Processing</a></td>
-											<td><a href="#" class="badge badge-danger">Processing</a></td>
+										
+										
 										</tr>
 										<tr>
 											<td>
@@ -307,10 +305,8 @@
 											<td>$665.67</td>
 											<td><a href="#" class="badge badge-success">Done</a></td>
 											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
+										
+											
 										</tr>
 										<tr>
 											<td>
@@ -332,10 +328,8 @@
 											<td>$476.00</td>
 											<td><a href="#" class="badge badge-info">On-hold</a></td>
 											<td><a href="#" class="badge badge-info">On-hold</a></td>
-											<td><a href="#" class="badge badge-info">On-hold</a></td>
-											<td><a href="#" class="badge badge-info">On-hold</a></td>
-											<td><a href="#" class="badge badge-info">On-hold</a></td>
-											<td><a href="#" class="badge badge-info">On-hold</a></td>
+											
+											
 										</tr>
 										<tr>
 											<td>
@@ -357,10 +351,8 @@
 											<td>$234.00</td>
 											<td><a href="#" class="badge badge-success">Done</a></td>
 											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
+										
+											
 										</tr>
 									</tbody>
 								</table>
