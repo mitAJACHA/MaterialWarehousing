@@ -57,7 +57,12 @@
                 </a>
                 <ul class="dropdown-menu sub-down">
                   <li>
-                    <a href="index.html">등록</a>
+                    <a href="index.html">품목조회/등록</a>
+                  </li>
+                </ul>
+                <ul class="dropdown-menu sub-down">
+                  <li>
+                    <a href="companyList">업체조회/등록</a>
                   </li>
                 </ul>
               </li>
