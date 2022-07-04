@@ -6,14 +6,16 @@ import lombok.Data;
 
 @Data
 public class OrderStatusVO {
-	private int orderNum;
-	private Date orderDate;
-	private Date deliveryDate;
-	private Date deadlineDate;
+	private int order_num;
+	private Date order_date;
+	private Date delivery_date;
+	private Date deadline_date;
 	private String item;
 	private int quantity;
 	private int cost;
 	private String partner;
-	private int corporateNum;
-	private String personInCharge;
+	private int corporate_num;
+	private String person_in_charge;
+	private String status;
+	private String returnny;
 }
