@@ -19,6 +19,8 @@
     <link rel="stylesheet" type="text/css" href="/resources/assets/css/main.css">
     <!-- Responsive Style -->
     <link rel="stylesheet" type="text/css" href="/resources/assets/css/responsive.css">
+    
+
 </head>
 <body>
     <div class="app header-default side-nav-dark">
@@ -284,7 +286,7 @@
 											<td>Onsite</td>
 											<td><a href="#" class="badge badge-danger">Processing</a></td>
 											<td>$423.00</td>
-											<td>$168.00</td>
+											<td><a href="javascript:popupOpen();">보기</a></td>
 											<td><a href="#" class="badge badge-danger">Processing</a></td>
 											<td><a href="#" class="badge badge-danger">Processing</a></td>
 										
@@ -403,7 +405,18 @@
     <script src="/resources/assets/plugins/morris/morris.min.js"></script>
     <script src="/resources/assets/plugins/raphael/raphael-min.js"></script>
     <script src="/resources/assets/js/dashborad1.js"></script>
-    
-    
-  </body>
+    <script type="text/javascript">
+    function popupOpen(){		
+    	  var _width = '700';
+    	    var _height = '200';
+    	 
+    	    // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
+    	    var _left = Math.ceil(( window.screen.width - _width )/2);
+    	    var _top = Math.ceil(( window.screen.height - _height )/2); 
+    	 
+    	    window.open('/statement', 'popup-test', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
+    	 
+    	}
+</script>
+    </body>
 </html>
