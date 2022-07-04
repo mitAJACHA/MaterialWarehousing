@@ -98,15 +98,14 @@
                   </span>
                 </a>
                 <ul class="dropdown-menu sub-down">
-                  <li class="active">
+                  <li>
                     <a href="orderStatus">현황관리</a>
                   </li>
-                  <li>
-                  <li id="wareHandling">
+                  <li class="active">
                     <a href="wareHandling">입고처리</a>
                   </li>
-                  <li id="closeTransaction">
-                    <a href="buttons.html">거래마감</a>
+                  <li>
+                    <a href="transactionClose">거래마감</a>
                   </li>
                 </ul>
               </li>
@@ -177,16 +176,17 @@
       </div>
      </div>
     <!-- Side Nav END -->
+
 	<!-- Page Container START -->
 	<div class="page-container">
 		<!-- Content Wrapper START -->
 		<div class="main-content">
 			<div class="container-fluid">
 				<!-- Breadcrumb Start -->
-              <!-- Breadcrumb Start -->
               <div class="breadcrumb-wrapper row">
                 <div class="col-12 col-lg-3 col-md-6">
                   <h3 class="page-title"><strong>입고처리</strong></h3>
+                  <h5>입고처리페이지입니다</h6>
                 </div>
                 <div class="col-12 col-lg-9 col-md-6">
                   <ol class="breadcrumb float-right">
@@ -197,12 +197,48 @@
               </div>
               <!-- Breadcrumb End -->
             </div>
-
             <div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-xs-12">
+						<div class="card">
+							<div class="table-overflow">
+								<table class="table table-lg">
+									<tr>
+										<th>회사명&nbsp;&nbsp;<input class="form-control" type="text"></th>
+										<th>품목명&nbsp;&nbsp;<input class="form-control" type="text"></th>
+										<th>일자&nbsp;&nbsp;<input class="form-control" type="date"></th>
+										<th> &nbsp;&nbsp;<input class="form-control" type="date"></th>
+										<th>
+								<div class="custom-control custom-radio radio custom-control-inline">
+                                  <input type="radio" class="custom-control-input" name="chk_info" value="recentWeek" checked="">
+                                  <label class="custom-control-label" for="recentWeek">최근 일주일</label></div>
+                                  <div class="custom-control custom-radio radio custom-control-inline">
+                                  <input type="radio" class="custom-control-input" name="chk_info" value="recentMonth" checked="">
+                                  <label class="custom-control-label" for="recentMonth">최근 한달</label></div>
+											<button type="button" class="btn btn-outline-success btn-rounded">Search</button>
+										</th>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
               <!-- 입고처리테이블 -->
               <div class="row">
 					<div class="col-lg-12 col-md-12 col-xs-12">
 						<div class="card">
+						<div class="card-header">
+								<h4 class="card-title">입고처리</h4>
+								<div class="selected float-right">
+									<select class="custom-select">
+										<option selected="selected" value="0">10개</option>
+										<option value="1">30개</option>
+										<option value="2">50개</option>
+										<option value="3">100개</option>
+									</select>
+								</div>
+							</div>
           				    <div class="table-overflow">
 								<table class="table table-lg">
 									<thead>
@@ -221,94 +257,76 @@
 										<tr>
 											<td>
 												<div class="list-media">
-													<div class="list-item">
-														<div class="media-img">
-															<a class="btn btn-circle btn-info text-white">TM</a>
-														</div>
-														<div class="info">
-															<span class="title text-semibold">Tesla Motors</span>
-														</div>
-													</div>
+													<span class="title text-semibold">1</span>
 												</div>
 											</td>
-											<td>CRM Software</td>
-											<td>Onsite</td>
-											<td><a href="#" class="badge badge-danger">Processing</a></td>
-											<td>$423.00</td>
-											<td>$168.00</td>
-											<td><a href="#" class="badge badge-danger">Processing</a></td>
-											<td><a href="#" class="badge badge-danger">Processing</a></td>
+											<td>예시일자1</td>
+											<td>예시자재1</td>
+											<td>예시회사1</td>
+											<td><a href="#" class="badge badge-success">검수완료</a></td>
+											<td>100/100</td>
+											<td><a href="#" class="badge badge-success">입고처리</a></td>
+											<td>예시일자2</td>
 										</tr>
 										<tr>
 											<td>
 												<div class="list-media">
-													<div class="list-item">
-														<div class="media-img">
-															<a class="btn btn-circle btn-danger text-white">SM</a>
-														</div>
-														<div class="info">
-															<span class="title text-semibold">Samsung</span>
-														</div>
-													</div>
+													<span class="title text-semibold">2</span>
 												</div>
 											</td>
-											<td>GIS Software</td>
-											<td>Marketplace</td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td>$665.67</td>
-											<td>$665.67</td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
+											<td>예시일자3</td>
+											<td>예시자재2</td>
+											<td>예시회사2</td>
+											<td><a href="#" class="badge badge-success">검수완료</a></td>
+											<td>70/100</td>
+											<td><a href="#" class="badge badge-danger">반품처리</a></td>
+											<td>예시일자4</td>
 										</tr>
 										<tr>
 											<td>
 												<div class="list-media">
-													<div class="list-item">
-														<div class="media-img">
-															<a class="btn btn-circle btn-success text-white">DR</a>
-														</div>
-														<div class="info">
-															<span class="title text-semibold">Dropbox Inc.</span>
-														</div>
-													</div>
+													<span class="title text-semibold">3</span>
 												</div>
 											</td>
-											<td>Accounting Software</td>
-											<td>Others</td>
-											<td><a href="#" class="badge badge-info">On-hold</a></td>
-											<td>$576.00</td>
-											<td>$476.00</td>
-											<td><a href="#" class="badge badge-info">On-hold</a></td>
-											<td><a href="#" class="badge badge-info">On-hold</a></td>
+											<td>예시일자5</td>
+											<td>예시자재3</td>
+											<td>예시회사3</td>
+											<td><a href="#" class="badge badge-warning">2차검수중</a></td>
+											<td>0/100</td>
+											<td> </td>
+											<td>예시일자6</td>
 										</tr>
 										<tr>
 											<td>
 												<div class="list-media">
-													<div class="list-item">
-														<div class="media-img">
-															<a class="btn btn-circle btn-primary text-white">UD</a>
-														</div>
-														<div class="info">
-															<span class="title text-semibold">UIdeck</span>
-														</div>
-													</div>
+													<span class="title text-semibold">4</span>
 												</div>
 											</td>
-											<td>Sales Dashboard</td>
-											<td>Marketplace</td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td>$234.00</td>
-											<td>$234.00</td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
+											<td>예시일자7</td>
+											<td>예시자재3</td>
+											<td>예시회사3</td>
+											<td><a href="#" class="badge badge-warning">입고대기</a></td>
+											<td>0/100</td>
+											<td> </td>
+											<td>예시일자8</td>
 										</tr>
 									</tbody>
 								</table>
 							</div>
 			            </div>
-			            </div>
-			            </div>
+			        </div>
+			  </div>
+		  </div>
+		  </div>
+		
           <!-- Content Wrapper END -->
+          
+          <!-- 팝업 레이어 -->
+          <div id="popup" style="position:absolute;  visibility:hidden;">    
+          <h4>팝업레이어<a href="#" class="close" onClick="javascript:popupOpen()">X</a> </h4>        
+          <ul class="popCont">
+          <li><strong>이름</strong><span id='name'>홍길동</span></li></ul></div>
+          <!-- //팝업 레이어 -->
 
           <!-- Footer START -->
           <footer class="content-footer">
@@ -326,8 +344,6 @@
 
         </div>
         <!-- Page Container END -->
-      </div>
-    </div>
 
     <!-- Preloader -->
     <div id="preloader">
@@ -346,6 +362,27 @@
     <script src="/resources/assets/plugins/morris/morris.min.js"></script>
     <script src="/resources/assets/plugins/raphael/raphael-min.js"></script>
     <script src="/resources/assets/js/dashborad1.js"></script>
+    
+    <!-- modal창 스크립트 -->
+    <script>
+    <!-- 레이어 팝업 오픈 이벤트 -->
+
+    function popupOpen(){
+     
+        if(document.all.popup.style.visibility=="hidden") {
+
+            document.all.popup.style.visibility="visible";
+            return false;
+        }else{
+            document.all.popup.style.visibility="hidden";
+            return false;   
+        }
+    var $layerPopupObj = $('#popup'); 
+    var left = ( $(window).scrollLeft() + ($(window).width() - $layerPopupObj.width()) / 2 ); 
+    var top = ( $(window).scrollTop() + ($(window).height() - $layerPopupObj.height()) / 2 ); 
+    $layerPopupObj.css({'left':left,'top':top, 'position':'absolute'}); $('body').css('position','relative').append($layerPopupObj);
+    }
+    </script>
 
   </body>
 </html>
