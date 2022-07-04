@@ -12,6 +12,7 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
+git test
 <a href="orderStatus.jsp">클릭</a>
 </body>
 </html>
