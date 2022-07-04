@@ -36,9 +36,15 @@ public class BoardController {
 	public void transactionClose() {
 		log.info("transactionClose 요청");
 	}
-	// 업체조회/등록 
+	// 업체조회/등록  -> 조회
 	@GetMapping("companyList")
 	public void companyList() {
 		log.info("companyList 요청");
 	}
+	// 품목조회/등록  -> 조회
+		@GetMapping("productList")
+		public void productList() {
+			log.info("productList 요청");
+		}
+	
 }
