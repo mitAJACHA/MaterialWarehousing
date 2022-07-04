@@ -20,13 +20,7 @@
     <!-- Responsive Style -->
     <link rel="stylesheet" type="text/css" href="/resources/assets/css/responsive.css">
 </head>
-<style>
-input {
-  width:250px;
-  
 
-}
-</style>
 <body>
     <div class="app header-default side-nav-dark">
       <div class="layout">
@@ -64,7 +58,7 @@ input {
                 </a>
                   <ul class="dropdown-menu sub-down">
                   <li>
-                    <a href="index.html">품목조회/등록</a>
+                    <a href="productList">품목조회/등록</a>
                   </li>
                 </ul>
                 <ul class="dropdown-menu sub-down">
@@ -222,8 +216,6 @@ input {
 											
 											<th><button type="button" class="btn btn-outline-success btn-rounded">Search</button>&nbsp;&nbsp;
 											<button class="btn btn-common btn-rounded">Register</button></th>
-											
-			
 									</tr>
 								</table>
 							</div>
@@ -252,7 +244,6 @@ input {
 											<th class="text-dark text-semibold">품목구분</th>
 											<th class="text-dark text-semibold">약칭</th>
 											<th class="text-dark text-semibold">품목설명</th>
-										
 										</tr>
 									</thead>
 									<tbody>

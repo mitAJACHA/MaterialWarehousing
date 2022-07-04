@@ -20,6 +20,7 @@
     <!-- Responsive Style -->
     <link rel="stylesheet" type="text/css" href="/resources/assets/css/responsive.css">
 </head>
+
 <body>
     <div class="app header-default side-nav-dark">
       <div class="layout">
@@ -45,7 +46,7 @@
               <li class="side-nav-header">
                 <span>Navigation</span>
               </li>
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown open">
                 <a href="#" class="dropdown-toggle">
                   <span class="icon-holder">
                     <i class="lni-dashboard"></i>
@@ -55,13 +56,13 @@
                     <i class="lni-chevron-right"></i>
                   </span>
                 </a>
-                 <ul class="dropdown-menu sub-down">
-                  <li>
+                  <ul class="dropdown-menu sub-down">
+                  <li class="active">
                     <a href="productList">품목조회/등록</a>
                   </li>
                 </ul>
                 <ul class="dropdown-menu sub-down">
-                <li>
+                  <li>
                     <a href="companyList">업체조회/등록</a>
                   </li>
                 </ul>
@@ -92,7 +93,7 @@
                   
                 </ul>
               </li>
-              <li class="nav-item dropdown open">
+              <li class="nav-item dropdown ">
                 <a class="dropdown-toggle" href="#">
                   <span class="icon-holder">
                     <i class="lni-layers"></i>
@@ -103,13 +104,13 @@
                   </span>
                 </a>
                 <ul class="dropdown-menu sub-down">
-                  <li>
+                  <li >
                     <a href="orderStatus">현황관리</a>
                   </li>
                   <li>
                     <a href="wareHandling">입고처리</a>
                   </li>
-                  <li class="active">
+                  <li>
                     <a href="transactionClose">거래마감</a>
                   </li>
                 </ul>
@@ -189,7 +190,7 @@
 				<!-- Breadcrumb Start -->
 				<div class="breadcrumb-wrapper row">
 					<div class="col-12 col-lg-3 col-md-6">
-						<h4 class="page-title">거래마감</h4>
+						<h4 class="page-title">품목조회/등록</h4>
 					</div>
 					<div class="col-12 col-lg-9 col-md-6">
 						<ol class="breadcrumb float-right">
@@ -201,68 +202,51 @@
 				<!-- Breadcrumb End -->
 			</div>
 			<div class="container-fluid">
+			
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-xs-12">
 						<div class="card">
 							<div class="table-overflow">
-								<form action="search" method="post" style="margin-bottom: 0px">
-									<table class="table table-lg">
-										<tr>
-											<th>회사명&nbsp;&nbsp;<input type="text" id="form-control"></th>
-											<th>품목명&nbsp;&nbsp;<input type="text" id="form-control"></th>
-											<th>일자&nbsp;&nbsp; <input type="date" id="form-control"
-												name="startDate">&nbsp; ~ &nbsp;<input type="date"
-												id="form-control" name="endDate"></th>
-											<th>
-												<div
-													class="custom-control custom-radio radio custom-control-inline">
-													<input type="radio" class="custom-control-input"
-														name="recentDate" id="recentDate" checked=""> <label
-														class="custom-control-label" for="male">최근 일주일</label>
-												</div>
-												<div
-													class="custom-control custom-radio radio custom-control-inline">
-													<input type="radio" class="custom-control-input"
-														name="recentDate" id="recentDate" checked=""> <label
-														class="custom-control-label" for="gender">최근 한달</label>
-												</div>
-												<button type="button"
-													class="btn btn-outline-success btn-rounded">Search</button>
-											</th>
-										</tr>
-									</table>
-								</form>
+								<table class="table table-lg">
+									<tr>
+                         				<th>품목코드<input type="text" class="form-control" id="exampleInputUsername1"></th>
+                         				<th>도면번호<input type="text" class="form-control" id="exampleInputUsername1"></th>
+                         				<th>품목명<input type="text" class="form-control" id="exampleInputUsername1"></th>
+                         				<th>공용여부<input type="text" class="form-control" id="exampleInputUsername1"></th>
+                         				<th>약칭<input type="text" class="form-control" id="exampleInputUsername1"></th>
+                         				<th>품목구분<input type="text" class="form-control" id="exampleInputUsername1"></th>
+										
+											
+											<th><button type="button" class="btn btn-outline-success btn-rounded">Search</button>&nbsp;&nbsp;
+											<button class="btn btn-common btn-rounded">Register</button></th>
+									</tr>
+								</table>
 							</div>
 						</div>
 					</div>
 				</div>
+			
 				<!-- 발주현황 내역 -->
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-xs-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">Best Performing Clients</h4>
-								<div class="selected float-right">
-									<select class="custom-select">
-										<option selected="selected" value="0">Monthly</option>
-										<option value="1">Daily</option>
-										<option value="2">Weekly</option>
-										<option value="3">Yearly</option>
-									</select>
-								</div>
+							<span class="icon-holder">
+                    		<i class="lni-list"></i>
+                  			</span>
+								<h4 class="card-title">목록</h4>
+                               
 							</div>
 							<div class="table-overflow">
 								<table class="table table-lg">
 									<thead>
 										<tr>
-											<th class="text-dark text-semibold">계약번호</th>
-											<th class="text-dark text-semibold">마감일자</th>
+											<th class="text-dark text-semibold">순번</th>
 											<th class="text-dark text-semibold">품목코드</th>
 											<th class="text-dark text-semibold">품목명</th>
-											<th class="text-dark text-semibold">협력회사명</th>
-											<th class="text-dark text-semibold">거래명세서</th>
-											<th class="text-dark text-semibold">담당자명/이메일</th>
-											<th class="text-dark text-semibold">이메일  발송  체크</th>
+											<th class="text-dark text-semibold">품목구분</th>
+											<th class="text-dark text-semibold">약칭</th>
+											<th class="text-dark text-semibold">품목설명</th>
 										
 										</tr>
 									</thead>
@@ -274,9 +258,7 @@
 														<div class="media-img">
 															<a class="btn btn-circle btn-info text-white">TM</a>
 														</div>
-														<div class="info">
-															<span class="title text-semibold">Tesla Motors</span>
-														</div>
+													
 													</div>
 												</div>
 											</td>
@@ -285,9 +267,6 @@
 											<td><a href="#" class="badge badge-danger">Processing</a></td>
 											<td>$423.00</td>
 											<td>$168.00</td>
-											<td><a href="#" class="badge badge-danger">Processing</a></td>
-											<td><a href="#" class="badge badge-danger">Processing</a></td>
-										
 										
 										</tr>
 										<tr>
@@ -297,9 +276,7 @@
 														<div class="media-img">
 															<a class="btn btn-circle btn-danger text-white">SM</a>
 														</div>
-														<div class="info">
-															<span class="title text-semibold">Samsung</span>
-														</div>
+														
 													</div>
 												</div>
 											</td>
@@ -308,9 +285,6 @@
 											<td><a href="#" class="badge badge-success">Done</a></td>
 											<td>$665.67</td>
 											<td>$665.67</td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-										
 											
 										</tr>
 										<tr>
@@ -320,9 +294,7 @@
 														<div class="media-img">
 															<a class="btn btn-circle btn-success text-white">DR</a>
 														</div>
-														<div class="info">
-															<span class="title text-semibold">Dropbox Inc.</span>
-														</div>
+														
 													</div>
 												</div>
 											</td>
@@ -331,9 +303,6 @@
 											<td><a href="#" class="badge badge-info">On-hold</a></td>
 											<td>$576.00</td>
 											<td>$476.00</td>
-											<td><a href="#" class="badge badge-info">On-hold</a></td>
-											<td><a href="#" class="badge badge-info">On-hold</a></td>
-											
 											
 										</tr>
 										<tr>
@@ -343,9 +312,7 @@
 														<div class="media-img">
 															<a class="btn btn-circle btn-primary text-white">UD</a>
 														</div>
-														<div class="info">
-															<span class="title text-semibold">UIdeck</span>
-														</div>
+														
 													</div>
 												</div>
 											</td>
@@ -354,9 +321,6 @@
 											<td><a href="#" class="badge badge-success">Done</a></td>
 											<td>$234.00</td>
 											<td>$234.00</td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-										
 											
 										</tr>
 									</tbody>
