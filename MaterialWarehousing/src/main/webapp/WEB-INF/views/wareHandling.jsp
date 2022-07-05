@@ -19,6 +19,8 @@
     <link rel="stylesheet" type="text/css" href="/resources/assets/css/main.css">
     <!-- Responsive Style -->
     <link rel="stylesheet" type="text/css" href="/resources/assets/css/responsive.css">
+    <!-- toastr css 라이브러리 -->  
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
     
     
 </head>
@@ -226,6 +228,7 @@
 					</div>
 				</div>
 
+
               <!-- 입고처리테이블 -->
               <div class="row">
 					<div class="col-lg-12 col-md-12 col-xs-12">
@@ -233,7 +236,7 @@
 						<div class="card-header">
 								<h4 class="card-title"><strong>입고처리</strong></h4>
 								<div class="selected float-right">
-									<select class="custom-select">
+									<select class="custom-select">	<!-- 한페이지에 몇개의 목록을 띄울 것인지 -->
 										<option selected="selected" value="0">10개</option>
 										<option value="1">30개</option>
 										<option value="2">50개</option>
@@ -357,6 +360,8 @@
     <script src="/resources/assets/js/bootstrap.min.js"></script>
     <script src="/resources/assets/js/jquery.app.js"></script>
     <script src="/resources/assets/js/main.js"></script>
+    <!-- toastr js 라이브러리 -->  
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <!--Morris Chart-->
     <script src="/resources/assets/plugins/morris/morris.min.js"></script>
@@ -366,57 +371,123 @@
 	
 	<script>
     /*입고처리 버튼 클릭*/
-    $('#endwhing').click(function(){
+    $('#endwhing').click(function(){	//id가 endwhing인 버튼을 클릭하면
         $('#handlingmodal').modal();   //id가 "handlingmodal"인 모달창을 열어준다. 
-        $('.modal-title').text("입고처리");    //modal 의 header 부분에 "입고처리"라는 값을 넣어준다. 
+        $('#handlingend').click(function(){		//id가 handlingend인 버튼을 클릭하면
+    		$('#alerthandling').modal();	//id가 alerthandling인 모달창을 열어준다
+    		$('#handlingmodal').modal('hide');	//id가 handlingmodal인 모달창은 닫는다
+			$('#modalcancel2').click(function(){	//alerthandling에서 취소하기 버튼을 누르면
+	    		$('#alerthandling').modal('hide');	//닫힌다
+			})
+			$('#endhandling').click(function(){	//입고마감에서 예를 누르면
+				$('#alerthandling').modal('hide');	//입고마감 창이 사라지고
+				toastr.options.escapeHtml = true;	// 토스트창이 뜨는데 자동으로 사라진다
+				toastr.options.closeButton = true;	//그래도 버튼을 눌러서 없앨 수 있다
+				toastr.options.progressBar = true;	//사라지는 시간을 볼 수 있다
+				toastr.options.preventDuplicates = true;
+			    toastr.options.newestOnTop = false;
+				toastr.info('마감되었습니다', '입고처리', {timeOut: 2000});	//2초동안 토스트창이 뜬다
+			})
+        })
+    	$('#modalcancel').click(function(){	//handlingmodal에서 취소하기 버튼의 id인 modalcancel을 누르면
+    		$('#handlingmodal').modal('hide');	//모달창이 닫힌다
+    	})
     });
 	</script>
 	
 	<script>
     /*반품처리 버튼 클릭*/
-    $('#returning').click(function(){
+    $('#returning').click(function(){	//id가 returning인 버튼을 클릭하면
         $('#returningmodal').modal();   //id가 "returningmodal"인 모달창을 열어준다. 
-        $('.modal-title').text("반품처리");    //modal 의 header 부분에 "반품처리"라는 값을 넣어준다. 
+        $('#modalcancel3').click(function(){
+        	$('#returningmodal').modal('hide');
+        })
+        $('#endreturn').click(function(){	//반품처리에서 예를 누르면
+        	$('#returningmodal').modal('hide');	//반품처리 모달이 사라지고
+        	toastr.options.escapeHtml = true;	//토스트가 자동으로 사라진다
+			toastr.options.closeButton = true;	//그래도 버튼을 눌러서 없앨 수 있다
+			toastr.options.progressBar = true;	//사라지는 시간을 볼 수 있다
+		    toastr.options.newestOnTop = false;
+			toastr.options.preventDuplicates = true;
+			toastr.info('마감되었습니다', '반품처리', {timeOut: 2000});
+        })
     });
 	</script>
 	
-	<!-- Modal -->
+	
+	<!-- Modal1 입고처리 클릭시 등장 -->
 	<div class="modal fade" id="handlingmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	        <h5 class="modal-title" id="staticBackdropLabel">입고처리</h5>
 	      </div>
 	      <div class="modal-body">
-	        ...
+	      	<form class="wareupdate">
+	      	  <div class="container-fluid">
+				 <div class="table-overflow" style="text-align:center">
+					<table class="table table-lg table-hover" style="margin-left: auto; margin-right: auto;">
+						<tr>
+						<th>품목</th>
+						<th>재고</th>
+						</tr>
+						<tr>
+						<td>예시자재</td>
+						<td>예시수량</td>
+						</tr>
+					</table>
+				</div>
+	        	<span><center><h4>입고수량</h4></center><input type="number" class="form-control mb-2 mr-sm-2" id="whquantity" min="0" step="10" value="50"></span>       	
+	      		</div>
+	      	</form>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소하기</button>
-	        <button type="button" class="btn btn-primary">입고마감</button>
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modalcancel">취소하기</button>
+	        <button type="button" class="btn btn-primary" id="handlingend">입고마감</button>
 	      </div>
 	    </div>
 	  </div>
 	</div>   
 	
-	<!-- Modal2 -->
-	<div class="modal fade" id="returningmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<!-- Modal2 입고처리에서 입고마감 클릭시 등장 -->
+	<div class="modal fade" id="alerthandling" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	        <h5 class="modal-title" id="staticBackdropLabel">입고마감</h5>
 	      </div>
 	      <div class="modal-body">
-	        ...
+	        	예시자재1 품목<br>
+	        	30개를 <br>
+	        	입고마감하시겠습니까?
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소하기</button>
-	        <button type="button" class="btn btn-primary">반품하기</button>
+	        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="endhandling">예</button>
+	        <button type="button" class="btn btn-seconday" id="modalcancel2">아니오</button>
 	      </div>
 	    </div>
 	  </div>
 	</div>    
+	
+	<!-- Modal3 반품처리 클릭시 등장 -->
+	<div class="modal fade" id="returningmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="staticBackdropLabel">반품처리</h5>
+	      </div>
+	      <div class="modal-body">
+	        	예시자재2 품목 거래를
+	        	반품시겠습니까?
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modalcancel3">취소하기</button>
+	        <button type="button" class="btn btn-primary" id="endreturn">반품하기</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
 
   </body>
 </html>

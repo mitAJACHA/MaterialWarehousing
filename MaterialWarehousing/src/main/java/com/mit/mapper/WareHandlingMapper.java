@@ -5,5 +5,5 @@ import com.mit.domain.WareHandlingVO;
 
 
 public interface WareHandlingMapper {
-	public List<WareHandlingVO> whList();
+	public List<WareHandlingVO> getList();
 }
