@@ -287,7 +287,7 @@
 											<td><a href="#" class="badge badge-danger">Processing</a></td>
 											<td>$423.00</td>
 											<td><a href="javascript:popupOpen();">보기</a></td>
-											<td><a href="#" class="badge badge-danger">Processing</a></td>
+											<td><a href="write.do">이메일발송</a></td>
 											<td><a href="#" class="badge badge-danger">Processing</a></td>
 										
 										
