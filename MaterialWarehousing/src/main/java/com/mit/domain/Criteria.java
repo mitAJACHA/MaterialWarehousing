@@ -20,9 +20,4 @@ public class Criteria {
 		
 	}
 	
-	// 여러 검색조건인 문자열을 분리해서 문자열 배열로 만들기
-	public String[] getTypeArr() {
-		return type==null? new String[] {}: type.split("");
-	}
-	
 }

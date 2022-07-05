@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+ 
+ <mapper namespace="com.mit.mapper.WareHandlingMapper">
+ 	<select id="getwhList" resultType="com.mit.domain.WareHandlingVO">
+ 		<![CDATA[select order_num, order_date, partname, name, ((SELECT inspection_quantity FROM inspection) - (SELECT inspection_defect FROM inspection_result)) 정품수량, order_quantity, ware_date
+ 		FROM purchase_order, tbl_part, company, warehousing order by order_num]]>
+ 	</select>
+ 	
+ 	<update id="inspectionend0">
+ 		<![CDATA[UPDATE warehousing SET return= '0' 
+ 		WHERE (SELECT COUNT(inspection_num) FROM inspection)=(SELECT COUNT(inspection_num) FROM inspection_result) 
+ 		AND ((SELECT inspection_quantity FROM inspection) - (SELECT inspection_defect FROM inspection_result)) >= (SELECT order_quantity FROM purchase_order)]]>
+ 	</update>
+ 	
+ 	<update id="inspectionend1">
+ 		<![CDATA[UPDATE warehousing SET return= '0' 
+ 		WHERE (SELECT COUNT(inspection_num) FROM inspection)=(SELECT COUNT(inspection_num) FROM inspection_result) 
+ 		AND ((SELECT inspection_quantity FROM inspection) - (SELECT inspection_defect FROM inspection_result)) < (SELECT order_quantity FROM purchase_order)]]>
+ 	</update>
+
+ </mapper>

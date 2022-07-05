@@ -4,6 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import com.mit.domain.*;
+import com.mit.service.*;
+
+import com.mit.domain.Criteria;
 import com.mit.service.OrderStatusService;
 
 import lombok.AllArgsConstructor;
@@ -29,6 +34,7 @@ public class BoardController {
 		model.addAttribute("orderList", service.getList());
 	}
 	
+	//입고처리페이지
 	@GetMapping("wareHandling")
 	public void wareHandling() {
 		log.info("wareHandling 요청");
@@ -38,9 +44,23 @@ public class BoardController {
 	public void transactionClose() {
 		log.info("transactionClose 요청");
 	}
-	// 업체조회/등록 
+	
+	// 업체조회/등록  -> 조회
 	@GetMapping("companyList")
 	public void companyList() {
 		log.info("companyList 요청");
 	}
+	
+	// 품목조회/등록  -> 조회
+		@GetMapping("productList")
+		public void productList() {
+			log.info("productList 요청");
+	}
+		
+	// 거래명세서 
+	@GetMapping("statement")
+	public void statement() {
+		log.info("statement 요청");
+	}
+	
 }
