@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+ 
+ <mapper namespace="com.mit.mapper.WareHandlingMapper">
+ 	<select id="whList" resultType="com.mit.domain.WareHandlingVO">
+ 		<![CDATA[select order_num, order_date, partname, name, (SELECT inspection_quantity FROM inspection MINUS SELECT inspection_defect FROM inspection_result) 정품수량, order_quantity FROM purchase_order, tbl_part, company order by order_num
+ 		]]>
+ 	</select>
+
+ </mapper>

@@ -19,6 +19,8 @@
     <link rel="stylesheet" type="text/css" href="/resources/assets/css/main.css">
     <!-- Responsive Style -->
     <link rel="stylesheet" type="text/css" href="/resources/assets/css/responsive.css">
+    
+    
 </head>
 <body>
     <div class="app header-default side-nav-dark">
@@ -210,10 +212,10 @@
 										<th> &nbsp;&nbsp;<input class="form-control" type="date"></th>
 										<th>
 								<div class="custom-control custom-radio radio custom-control-inline">
-                                  <input type="radio" class="custom-control-input" name="chk_info" value="recentWeek" checked="">
+                                  <input type="radio" class="custom-control-input" name="chk_info" id="recentWeek" checked="">
                                   <label class="custom-control-label" for="recentWeek">최근 일주일</label></div>
                                   <div class="custom-control custom-radio radio custom-control-inline">
-                                  <input type="radio" class="custom-control-input" name="chk_info" value="recentMonth" checked="">
+                                  <input type="radio" class="custom-control-input" name="chk_info" id="recentMonth" checked="">
                                   <label class="custom-control-label" for="recentMonth">최근 한달</label></div>
 											<button type="button" class="btn btn-outline-success btn-rounded">Search</button>
 										</th>
@@ -229,7 +231,7 @@
 					<div class="col-lg-12 col-md-12 col-xs-12">
 						<div class="card">
 						<div class="card-header">
-								<h4 class="card-title">입고처리</h4>
+								<h4 class="card-title"><strong>입고처리</strong></h4>
 								<div class="selected float-right">
 									<select class="custom-select">
 										<option selected="selected" value="0">10개</option>
@@ -240,15 +242,16 @@
 								</div>
 							</div>
           				    <div class="table-overflow">
-								<table class="table table-lg">
-									<thead>
+								<table class="table table-lg table-hover">
+									<thead class="table-light">
 										<tr>
 											<th class="text-dark text-semibold">발주번호</th>
 											<th class="text-dark text-semibold">발주일자</th>
 											<th class="text-dark text-semibold">품목명</th>
 											<th class="text-dark text-semibold">협력회사</th>
 											<th class="text-dark text-semibold">입고검수</th>
-											<th class="text-dark text-semibold">정품/실수량</th>
+											<th class="text-dark text-semibold">정품수량</th>
+											<th class="text-dark text-semibold">필요수량</th>
 											<th class="text-dark text-semibold">수량정보입력</th>
 											<th class="text-dark text-semibold">입고일자</th>
 										</tr>
@@ -264,8 +267,9 @@
 											<td>예시자재1</td>
 											<td>예시회사1</td>
 											<td><a href="#" class="badge badge-success">검수완료</a></td>
-											<td>100/100</td>
-											<td><a href="#" class="badge badge-success">입고처리</a></td>
+											<td>100</td>
+											<td>100</td>
+											<td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#handlingmodal" id="endwhing">입고처리</button></td>
 											<td>예시일자2</td>
 										</tr>
 										<tr>
@@ -278,8 +282,9 @@
 											<td>예시자재2</td>
 											<td>예시회사2</td>
 											<td><a href="#" class="badge badge-success">검수완료</a></td>
-											<td>70/100</td>
-											<td><a href="#" class="badge badge-danger">반품처리</a></td>
+											<td>70</td>
+											<td>100</td>
+											<td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#returningmodal" id="returning">반품처리</button></td>
 											<td>예시일자4</td>
 										</tr>
 										<tr>
@@ -291,10 +296,11 @@
 											<td>예시일자5</td>
 											<td>예시자재3</td>
 											<td>예시회사3</td>
-											<td><a href="#" class="badge badge-warning">2차검수중</a></td>
-											<td>0/100</td>
+											<td><a href="#" class="badge badge-warning">검수중</a></td>
+											<td>0</td>
+											<td>100</td>
 											<td> </td>
-											<td>예시일자6</td>
+											<td> </td>
 										</tr>
 										<tr>
 											<td>
@@ -302,13 +308,14 @@
 													<span class="title text-semibold">4</span>
 												</div>
 											</td>
-											<td>예시일자7</td>
+											<td>예시일자6</td>
 											<td>예시자재3</td>
 											<td>예시회사3</td>
 											<td><a href="#" class="badge badge-warning">입고대기</a></td>
-											<td>0/100</td>
+											<td>0</td>
+											<td>100</td>
 											<td> </td>
-											<td>예시일자8</td>
+											<td> </td>
 										</tr>
 									</tbody>
 								</table>
@@ -320,13 +327,6 @@
 		  </div>
 		
           <!-- Content Wrapper END -->
-          
-          <!-- 팝업 레이어 -->
-          <div id="popup" style="position:absolute;  visibility:hidden;">    
-          <h4>팝업레이어<a href="#" class="close" onClick="javascript:popupOpen()">X</a> </h4>        
-          <ul class="popCont">
-          <li><strong>이름</strong><span id='name'>홍길동</span></li></ul></div>
-          <!-- //팝업 레이어 -->
 
           <!-- Footer START -->
           <footer class="content-footer">
@@ -363,26 +363,60 @@
     <script src="/resources/assets/plugins/raphael/raphael-min.js"></script>
     <script src="/resources/assets/js/dashborad1.js"></script>
     
-    <!-- modal창 스크립트 -->
-    <script>
-    <!-- 레이어 팝업 오픈 이벤트 -->
-
-    function popupOpen(){
-     
-        if(document.all.popup.style.visibility=="hidden") {
-
-            document.all.popup.style.visibility="visible";
-            return false;
-        }else{
-            document.all.popup.style.visibility="hidden";
-            return false;   
-        }
-    var $layerPopupObj = $('#popup'); 
-    var left = ( $(window).scrollLeft() + ($(window).width() - $layerPopupObj.width()) / 2 ); 
-    var top = ( $(window).scrollTop() + ($(window).height() - $layerPopupObj.height()) / 2 ); 
-    $layerPopupObj.css({'left':left,'top':top, 'position':'absolute'}); $('body').css('position','relative').append($layerPopupObj);
-    }
-    </script>
+	
+	<script>
+    /*입고처리 버튼 클릭*/
+    $('#endwhing').click(function(){
+        $('#handlingmodal').modal();   //id가 "handlingmodal"인 모달창을 열어준다. 
+        $('.modal-title').text("입고처리");    //modal 의 header 부분에 "입고처리"라는 값을 넣어준다. 
+    });
+	</script>
+	
+	<script>
+    /*반품처리 버튼 클릭*/
+    $('#returning').click(function(){
+        $('#returningmodal').modal();   //id가 "returningmodal"인 모달창을 열어준다. 
+        $('.modal-title').text("반품처리");    //modal 의 header 부분에 "반품처리"라는 값을 넣어준다. 
+    });
+	</script>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="handlingmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body">
+	        ...
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소하기</button>
+	        <button type="button" class="btn btn-primary">입고마감</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>   
+	
+	<!-- Modal2 -->
+	<div class="modal fade" id="returningmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body">
+	        ...
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소하기</button>
+	        <button type="button" class="btn btn-primary">반품하기</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>    
 
   </body>
 </html>
