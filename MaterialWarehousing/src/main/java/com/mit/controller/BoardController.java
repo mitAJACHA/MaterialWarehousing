@@ -1,16 +1,15 @@
 package com.mit.controller;
 
 import org.springframework.stereotype.Controller;
-
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.mit.domain.*;
 import com.mit.service.*;
 
 import com.mit.domain.Criteria;
+import com.mit.service.OrderStatusService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -21,6 +20,8 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class BoardController {
 	
+	private OrderStatusService service;
+	
 	// 전체 목록 /main(get)	-> /main.jsp
 	@GetMapping("main")
 	public void main() {
@@ -28,8 +29,9 @@ public class BoardController {
 	}
 	
 	@GetMapping("orderStatus")
-	public void orderStatus() {
+	public void orderStatus(Model model) {
 		log.info("orderStatus 요청");
+		model.addAttribute("orderList", service.getList());
 	}
 	
 	//입고처리페이지
