@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import com.mit.domain.*;
+import com.mit.service.*;
+
+import com.mit.domain.Criteria;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -14,6 +18,7 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @RequestMapping("/")
 @Log4j
+@AllArgsConstructor
 public class BoardController {
 	
 	// 전체 목록 /main(get)	-> /main.jsp
@@ -27,6 +32,7 @@ public class BoardController {
 		log.info("orderStatus 요청");
 	}
 	
+	//입고처리페이지
 	@GetMapping("wareHandling")
 	public void wareHandling() {
 		log.info("wareHandling 요청");
