@@ -213,6 +213,11 @@
 											<th>일자&nbsp;&nbsp; <input type="date" id="form-control"
 												name="startDate">&nbsp; ~ &nbsp;<input type="date"
 												id="form-control" name="endDate"></th>
+											<th>회사명&nbsp;<input type="text" class="form-control" name="companyName"></th>
+											<th>품목명&nbsp;<input type="text" class="form-control" name="partName"></th>
+											<th>일자&nbsp;&nbsp;<input class="form-control" type="date"></th>
+											<th> &nbsp;&nbsp;<input class="form-control" type="date"></th>
+
 											<th>
 												<div
 													class="custom-control custom-radio radio custom-control-inline">
@@ -241,19 +246,20 @@
 					<div class="col-lg-12 col-md-12 col-xs-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">Best Performing Clients</h4>
+								<h4 class="card-title">OrderList</h4>
 								<div class="selected float-right">
 									<select class="custom-select">
-										<option selected="selected" value="0">Monthly</option>
-										<option value="1">Daily</option>
-										<option value="2">Weekly</option>
-										<option value="3">Yearly</option>
+										<option selected="selected" value="0">10개</option>
+										<option value="1">30개</option>
+										<option value="2">50개</option>
+										<option value="3">100개</option>
+									</select>
 									</select>
 								</div>
 							</div>
 							<div class="table-overflow">
 								<table class="table table-lg">
-									<thead>
+									<thead align="center">
 										<tr>
 											<th class="text-dark text-semibold">발주번호</th>
 											<th class="text-dark text-semibold">발주일자</th>
@@ -269,108 +275,26 @@
 											<th class="text-dark text-semibold">비고</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<td>
-												<div class="list-media">
-													<div class="list-item">
-														<div class="media-img">
-															<a class="btn btn-circle btn-info text-white">TM</a>
-														</div>
-														<div class="info">
-															<span class="title text-semibold">Tesla Motors</span>
-														</div>
-													</div>
-												</div>
-											</td>
-											<td>CRM Software</td>
-											<td>Onsite</td>
-											<td><a href="#" class="badge badge-danger">Processing</a></td>
-											<td>$423.00</td>
-											<td>$168.00</td>
-											<td><a href="#" class="badge badge-danger">Processing</a></td>
-											<td><a href="#" class="badge badge-danger">Processing</a></td>
-											<td><a href="#" class="badge badge-danger">Processing</a></td>
-											<td><a href="#" class="badge badge-danger">Processing</a></td>
-											<td><a href="#" class="badge badge-danger">Processing</a></td>
-											<td><a href="#" class="badge badge-danger">Processing</a></td>
-										</tr>
-										<tr>
-											<td>
-												<div class="list-media">
-													<div class="list-item">
-														<div class="media-img">
-															<a class="btn btn-circle btn-danger text-white">SM</a>
-														</div>
-														<div class="info">
-															<span class="title text-semibold">Samsung</span>
-														</div>
-													</div>
-												</div>
-											</td>
-											<td>GIS Software</td>
-											<td>Marketplace</td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td>$665.67</td>
-											<td>$665.67</td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-										</tr>
-										<tr>
-											<td>
-												<div class="list-media">
-													<div class="list-item">
-														<div class="media-img">
-															<a class="btn btn-circle btn-success text-white">DR</a>
-														</div>
-														<div class="info">
-															<span class="title text-semibold">Dropbox Inc.</span>
-														</div>
-													</div>
-												</div>
-											</td>
-											<td>Accounting Software</td>
-											<td>Others</td>
-											<td><a href="#" class="badge badge-info">On-hold</a></td>
-											<td>$576.00</td>
-											<td>$476.00</td>
-											<td><a href="#" class="badge badge-info">On-hold</a></td>
-											<td><a href="#" class="badge badge-info">On-hold</a></td>
-											<td><a href="#" class="badge badge-info">On-hold</a></td>
-											<td><a href="#" class="badge badge-info">On-hold</a></td>
-											<td><a href="#" class="badge badge-info">On-hold</a></td>
-											<td><a href="#" class="badge badge-info">On-hold</a></td>
-										</tr>
-										<tr>
-											<td>
-												<div class="list-media">
-													<div class="list-item">
-														<div class="media-img">
-															<a class="btn btn-circle btn-primary text-white">UD</a>
-														</div>
-														<div class="info">
-															<span class="title text-semibold">UIdeck</span>
-														</div>
-													</div>
-												</div>
-											</td>
-											<td>Sales Dashboard</td>
-											<td>Marketplace</td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td>$234.00</td>
-											<td>$234.00</td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-										</tr>
-									</tbody>
+									<c:forEach var="order" items="${orderList}">
+										<tbody align="center">
+											<tr>
+												<td><c:out value="${order.order_num}" /></td>
+												<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${order.order_date }"/></td>
+												<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${order.delivery_date }"/></td>
+												<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${order.deadline_date }"/></td>
+												<td><c:out value="${order.item}" /></td>
+												<td><c:out value="${order.quantity}" /></td>
+												<td><c:out value="${order.cost}" /></td>
+												<td><c:out value="${order.partner}" /></td>
+												<td><c:out value="${order.corporate_num}" /></td>
+												<td><c:out value="${order.person_in_charge}" /></td>
+												<td><a href="#" class="badge badge-danger"><c:out value="${order.status}" /></a></td>
+												<td>
+													<a class="btn btn-circle btn-info text-white"><c:out value="${order.returnny}" /></a>
+												</td>
+											</tr>
+										</tbody>
+									</c:forEach>
 								</table>
 							</div>
 						</div>
@@ -379,7 +303,6 @@
 			</div>
 		</div>
 		<!-- Content Wrapper END -->
-	
 		<!-- Footer START -->
 		<footer class="content-footer">
 			<div class="footer">
