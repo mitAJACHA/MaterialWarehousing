@@ -14,7 +14,7 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @RequestMapping("/")
 @Log4j
-public class BoardController {
+public class BoardControllerTest {
 	
 	// 전체 목록 /main(get)	-> /main.jsp
 	@GetMapping("main")
@@ -36,23 +36,9 @@ public class BoardController {
 	public void transactionClose() {
 		log.info("transactionClose 요청");
 	}
-	
-	// 업체조회/등록  -> 조회
+	// 업체조회/등록 
 	@GetMapping("companyList")
 	public void companyList() {
 		log.info("companyList 요청");
 	}
-	
-	// 품목조회/등록  -> 조회
-		@GetMapping("productList")
-		public void productList() {
-			log.info("productList 요청");
-	}
-		
-	// 거래명세서 
-	@GetMapping("statement")
-	public void statement() {
-		log.info("statement 요청");
-	}
-	
 }
