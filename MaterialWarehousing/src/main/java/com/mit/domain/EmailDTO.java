@@ -1,5 +1,6 @@
 package com.mit.domain;
 
+
 public class EmailDTO {
     private String senderName;    //발신자 이름
     private String senderMail;    //발신자 이메일 주소
@@ -45,3 +46,4 @@ public class EmailDTO {
     }
     
 }
+

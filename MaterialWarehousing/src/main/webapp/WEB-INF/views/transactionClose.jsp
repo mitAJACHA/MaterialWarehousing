@@ -19,6 +19,8 @@
     <link rel="stylesheet" type="text/css" href="/resources/assets/css/main.css">
     <!-- Responsive Style -->
     <link rel="stylesheet" type="text/css" href="/resources/assets/css/responsive.css">
+     <!-- toastr css 라이브러리 -->  
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
     
 
 </head>
@@ -287,7 +289,7 @@
 											<td><a href="#" class="badge badge-danger">Processing</a></td>
 											<td>$423.00</td>
 											<td><a href="javascript:popupOpen();">보기</a></td>
-											<td><a href="write.do">이메일발송</a></td>
+											<td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#handlingmodal" id="endwhing">발송</button></td>
 											<td><a href="#" class="badge badge-danger">Processing</a></td>
 										
 										
@@ -417,6 +419,72 @@
     	    window.open('/statement', 'popup-test', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
     	 
     	}
+    
+
+    
+    
+ 	
 </script>
+	<script>
+    /*입고처리 버튼 클릭*/
+       $('#endwhing').click(function(){	//id가 returning인 버튼을 클릭하면
+        $('#handlingmodal').modal();   //id가 "returningmodal"인 모달창을 열어준다. 
+        $('#modalcancel').click(function(){
+        	$('#handlingmodal').modal('hide');
+        })
+        $('#handlingend').click(function(){	//반품처리에서 예를 누르면
+        	$('#handlingmodal').modal('hide');	//반품처리 모달이 사라지고
+        	toastr.options.escapeHtml = true;	// 토스트창이 뜨는데 자동으로 사라진다
+			toastr.options.closeButton = true;	//그래도 버튼을 눌러서 없앨 수 있다
+			toastr.options.progressBar = true;	//사라지는 시간을 볼 수 있다
+			toastr.options.preventDuplicates = true;
+		    toastr.options.newestOnTop = false;
+			toastr.info('마감되었습니다', '입고처리', {timeOut: 2000});	//2초동안 토스트창이 뜬다
+		})
+    });
+	</script>
+
+<!--Email Modal-->
+	<div class="modal fade" id="handlingmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="staticBackdropLabel">Email</h5>
+	      </div>
+	      <div class="modal-body">
+	      	 <form class="forms-sample" method="post" action="send.do">
+                        <div class="form-group">
+                          <label for="exampleInputName1">수신자</label>
+                          <input type="text" name="receiveMail" class="form-control" id="exampleInputName1" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputName1">발신자이름</label>
+                          <input type="text" name="senderName" class="form-control" id="exampleInputName1" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputName1">발신자  이메일</label>
+                          <input type="text" name="senderMail" class="form-control" id="exampleInputName1" placeholder="Email">
+                        </div>
+                         <div class="form-group">
+                          <label for="exampleInputName1">제목</label>
+                          <input type="text"  name="subject" class="form-control" id="exampleInputName1" placeholder="Email">
+                        </div>
+                        
+          
+                        <div class="form-group m-b-20">
+                          <label for="exampleTextarea1">내용</label>
+                          <textarea name="message" class="form-control" id="exampleTextarea1" rows="4"></textarea>
+                        </div>
+                        
+                       
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modalcancel">취소하기</button>
+	        <button type="submit" class="btn btn-primary" id="handlingend">전송</button>
+	        </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>   
     </body>
 </html>

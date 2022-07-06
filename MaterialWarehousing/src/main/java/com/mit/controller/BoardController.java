@@ -8,10 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.mit.service.OrderStatusService;
-
 import com.mit.domain.EmailDTO;
 import com.mit.service.EmailService;
+import com.mit.service.OrderStatusService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -71,11 +70,11 @@ public class BoardController {
 	 @Inject
 	 EmailService emailService; 
 	 
-	 @RequestMapping("write.do") 
-	 public String write() {
-		 return "write"; 
-	 }
-	 
+//	 @RequestMapping("write.do") 
+//	 public String write() {
+//		 return "write"; 
+//	 }
+//	 
 	 @RequestMapping("send.do") 
 	 public String send(@ModelAttribute EmailDTO dto, Model model) {
 		 try {
@@ -86,7 +85,8 @@ public class BoardController {
 	           e.printStackTrace();
 	           model.addAttribute("message", "이메일 발송 실패..."); 
 	    }
-	        return "write"; 
+	        return "transactionClose"; 
 	 }
+	
 	
 }
