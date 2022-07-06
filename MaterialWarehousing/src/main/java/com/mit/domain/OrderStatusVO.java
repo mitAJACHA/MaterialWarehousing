@@ -8,14 +8,13 @@ import lombok.Data;
 public class OrderStatusVO {
 	private int order_num;
 	private Date order_date;
-	private Date delivery_date;
-	private Date deadline_date;
-	private String item;
-	private int quantity;
-	private int cost;
-	private String partner;
-	private int corporate_num;
-	private String person_in_charge;
-	private String status;
+	private Date deliverydate;
+	private Date ware_date;
+	private String partname;
+	private int order_quantity;
+	private int unitprice;
+	private String name;
+	private int business_number;
+	private String empl_name;
 	private String returnny;
 }

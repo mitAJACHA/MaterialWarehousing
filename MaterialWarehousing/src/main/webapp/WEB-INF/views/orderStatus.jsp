@@ -189,7 +189,8 @@
 				<!-- Breadcrumb Start -->
 				<div class="breadcrumb-wrapper row">
 					<div class="col-12 col-lg-3 col-md-6">
-						<h4 class="page-title">발주현황</h4>
+						<h3 class="page-title"><strong>발주현황</strong></h3>
+                  		<h5>발주현황페이지입니다</h6>
 					</div>
 					<div class="col-12 col-lg-9 col-md-6">
 						<ol class="breadcrumb float-right">
@@ -274,15 +275,15 @@
 											<tr>
 												<td><c:out value="${order.order_num}" /></td>
 												<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${order.order_date }"/></td>
-												<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${order.delivery_date }"/></td>
-												<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${order.deadline_date }"/></td>
-												<td><c:out value="${order.item}" /></td>
-												<td><c:out value="${order.quantity}" /></td>
-												<td><c:out value="${order.cost}" /></td>
-												<td><c:out value="${order.partner}" /></td>
-												<td><c:out value="${order.corporate_num}" /></td>
-												<td><c:out value="${order.person_in_charge}" /></td>
-												<td><a href="#" class="badge badge-danger"><c:out value="${order.status}" /></a></td>
+												<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${order.deliverydate }"/></td>
+												<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${order.ware_date }"/></td>
+												<td><c:out value="${order.partname}" /></td>
+												<td><c:out value="${order.order_quantity}" /></td>
+												<td><c:out value="${order.unitprice}" /></td>
+												<td><c:out value="${order.name}" /></td>
+												<td><c:out value="${order.business_number}" /></td>
+												<td><c:out value="${order.empl_name}" /></td>
+												<td><a href="#" class="badge badge-danger">입고마감</a></td>
 												<td>
 													<a class="btn btn-circle btn-info text-white"><c:out value="${order.returnny}" /></a>
 												</td>
