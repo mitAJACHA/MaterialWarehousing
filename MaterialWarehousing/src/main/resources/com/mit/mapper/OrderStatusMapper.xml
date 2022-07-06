@@ -4,7 +4,22 @@
 <mapper namespace="com.mit.mapper.OrderStatusMapper">
 	
 	<select id="getList" resultType="com.mit.domain.OrderStatusVO">
-			select * from orders
+		<![CDATA[
+		SELECT 
+			o.order_num order_num, 
+			o.order_date order_date, 
+			s.deliverydate deliverydate,
+			w.ware_date ware_date, 
+			p.partname partname, 
+			o.order_quantity order_quantity, 
+			c.unitprice unitprice, 
+			company.name name, 
+			company.business_number business_number, 
+			e.empl_name empl_name, 
+			w.return returnny
+		FROM purchase_order o, tbl_support s, tbl_part p, tbl_contract c, tbl_company company, employee e, warehousing w
+		WHERE o.support_num = s.supportno and o.empl_num = e.empl_num and o.contract_num = c.contractno and c.partcode = p.partcode and w.order_num = o.order_num
+		]]>
 	</select>
 	
 </mapper>
