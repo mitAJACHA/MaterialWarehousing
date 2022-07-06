@@ -419,7 +419,7 @@
 				<!-- modal 내용 끝-->				
 				</div>
 				<div class="modal-footer">
-					<a class="btn btn-common mr-3" id="modalY" href="#">등록</a>
+					<button class="btn btn-common mr-3" id="modalY" type="submit" href="register">등록</a>
 					<button class="btn" type="button" data-dismiss="modal">취소</button>
 				</div>
 			</div>
