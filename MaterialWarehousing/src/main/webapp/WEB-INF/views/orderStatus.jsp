@@ -208,20 +208,31 @@
 								<form action="search" method="post" style="margin-bottom: 0px">
 									<table class="table table-lg">
 										<tr>
+											<th>회사명&nbsp;&nbsp;<input type="text" id="form-control"></th>
+											<th>품목명&nbsp;&nbsp;<input type="text" id="form-control"></th>
+											<th>일자&nbsp;&nbsp; <input type="date" id="form-control"
+												name="startDate">&nbsp; ~ &nbsp;<input type="date"
+												id="form-control" name="endDate"></th>
 											<th>회사명&nbsp;<input type="text" class="form-control" name="companyName"></th>
 											<th>품목명&nbsp;<input type="text" class="form-control" name="partName"></th>
 											<th>일자&nbsp;&nbsp;<input class="form-control" type="date"></th>
 											<th> &nbsp;&nbsp;<input class="form-control" type="date"></th>
+
 											<th>
-												<div class="custom-control custom-radio radio custom-control-inline">
-				                                  <input type="radio" class="custom-control-input" name="gender" id="male" value="week">
-				                                  <label class="custom-control-label" for="male">최근 일주일</label>
-				                                </div>
-												<div class="custom-control custom-radio radio custom-control-inline">
-				                                  <input type="radio" class="custom-control-input" name="gender" id="gender" value="month">
-				                                  <label class="custom-control-label" for="gender">최근 한달</label>
-				                                </div>
-												<button type="submit" class="btn btn-outline-success btn-rounded">Search</button>
+												<div
+													class="custom-control custom-radio radio custom-control-inline">
+													<input type="radio" class="custom-control-input"
+														name="recentDate" id="recentDate" checked=""> <label
+														class="custom-control-label" for="male">최근 일주일</label>
+												</div>
+												<div
+													class="custom-control custom-radio radio custom-control-inline">
+													<input type="radio" class="custom-control-input"
+														name="recentDate" id="recentDate" checked=""> <label
+														class="custom-control-label" for="gender">최근 한달</label>
+												</div>
+												<button type="button"
+													class="btn btn-outline-success btn-rounded">Search</button>
 											</th>
 										</tr>
 									</table>

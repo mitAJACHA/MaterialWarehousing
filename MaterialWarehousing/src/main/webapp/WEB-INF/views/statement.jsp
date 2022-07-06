@@ -22,6 +22,7 @@
     #table2{
     width="300" height="60";
     }
+    h1 { text-align: center; }
     </style>
 </head>
 <body>
@@ -29,55 +30,52 @@
               <div class="row">
                 <div class="col-12 col-xl-6 m-b-10">
                   <div class="card">
-                    <div class="card-header border-bottom" >
-                      <h4 class="card-title" align="center">거래명세서</h4>
-                    </div>
+                   
                    <div class="card-header border-bottom">
+					<h1>거래명세서</h1>
                       <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                     
-					        <tr>
-					          <td>품목명</td>
-					          <td></td>
-					          <td>담당자</td>
-					          <td></td>
-					        </tr>
-					        <tr>
-					          <td>계약번호</td>
-					          <td></td>
-					          <td>협력회사 담당자</td>
-					          <td></td>
-					        </tr>
-					         <tr>
-					          <td>발주회사</td>
-					          <td></td>
-					          <td>협력회사</td>
-					          <td></td>
-					        </tr>
-					         <tr>
-					          <td>사업자등록번호</td>
-					          <td></td>
-					          <td>거래수단</td>
-					          <td></td>
-					        </tr>
-					         <tr>
-					          <td>발주일시</td>
-					          <td></td>
-					          <td>조달납기일</td>
-					          <td></td>
-					        </tr>
-					         <tr>
-					          <td>입고일</td>
-					          <td></td>
-					          <td>거래마감일</td>
-					          <td></td>
-					        </tr>
-					         <tr>
-					          <td>담당자 전화번호</td>
-					          <td></td>
-					          <td>이메일</td>
-					          <td></td>
-					        </tr>
-					        
+
+					  <tr>
+				    <td rowspan="4">공<br>급<br>받<br>는<br>자</td>
+				    <td>상호명</td>
+				    <td>AJACHA</td>
+				    <td rowspan="4">공<br>급<br>자</td>
+				    <td>상호명</td>
+				    <td>상호명</td>
+				    </tr>
+				   <tr>
+				    <td>품목명</td>
+				    <td>aaa</td>
+				    <td>사업자번호</td>
+				    <td>123456</td>
+				    </tr>
+				    
+				    <tr>
+				    <td>발주번호</td>
+				    <td>aaa</td>
+				    <td>담당자</td>
+				    <td>ㅁㅁㅁ</td>
+				    </tr>
+				    <tr>
+				    
+				    <td>담당자</td>
+				    <td>aaa</td>
+				    <td>이메일</td>
+				    <td>ㅁㅁㅁㅁㅁ</td>
+				    </tr>
+				    
+				    <tr>
+				    <td colspan="2">입고일</td>
+				    <td>2022/02/01</td>
+				    <td colspan="2">발주일</td>
+				    <td>2022/02/01</td>
+				    </tr>
+				     <tr>
+				    <td colspan="2">조기납기일</td>
+				    <td>2022/02/01</td>
+				    <td colspan="2">거래마감일</td>
+				    <td>2022/02/01</td>
+				    </tr>
 					     
                     
                     </div>
