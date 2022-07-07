@@ -217,13 +217,13 @@
 												<div
 													class="custom-control custom-radio radio custom-control-inline">
 													<input type="radio" class="custom-control-input"
-														name="recentDate" id="recentDate" checked=""> <label
+														name="recentDate"  id="male" checked=""> <label
 														class="custom-control-label" for="male">최근 일주일</label>
 												</div>
 												<div
 													class="custom-control custom-radio radio custom-control-inline">
 													<input type="radio" class="custom-control-input"
-														name="recentDate" id="recentDate" checked=""> <label
+														name="recentDate" id="gender" checked=""> <label
 														class="custom-control-label" for="gender">최근 한달</label>
 												</div>
 												<button type="button"
@@ -248,7 +248,6 @@
 										<option value="1">30개</option>
 										<option value="2">50개</option>
 										<option value="3">100개</option>
-									</select>
 									</select>
 								</div>
 							</div>
