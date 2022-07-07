@@ -6,4 +6,5 @@ import com.mit.domain.OrderStatusVO;
 
 public interface OrderStatusService {
 	public List<OrderStatusVO> getList();
+
 }
