@@ -278,7 +278,7 @@
 												<td><c:out value="${close.partcode}" /></td>
 												<td><c:out value="${close.partname}" /></td>
 												<td><c:out value="${close.name}" /></td>
-												<td><a href="javascript:popupOpen();">보기</a></td>
+												<td><button class="btn btn-warning" onclick="location.href='/statement?order_num=${close.order_num}'">보기</button></td>
 												<td><c:out value="${close.empl_name}" />/
 												<c:out value="${close.empl_email}" /></td>
 											<td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#handlingmodal" id="endwhing">발송</button></td>
@@ -333,19 +333,7 @@
     <script src="/resources/assets/plugins/morris/morris.min.js"></script>
     <script src="/resources/assets/plugins/raphael/raphael-min.js"></script>
     <script src="/resources/assets/js/dashborad1.js"></script>
-    <script type="text/javascript">
-    function popupOpen(){		
-    	  var _width = '700';
-    	    var _height = '200';
-    	 
-    	    // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
-    	    var _left = Math.ceil(( window.screen.width - _width )/2);
-    	    var _top = Math.ceil(( window.screen.height - _height )/2); 
-    	 
-    	    window.open('/statement', 'popup-test', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
-    	 
-    	}
-    
+
 
     
     
