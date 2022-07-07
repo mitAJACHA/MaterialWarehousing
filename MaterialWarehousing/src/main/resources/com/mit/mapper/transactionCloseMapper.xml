@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.mit.mapper.transactionCloseMapper">
+	
+	<select id="getList" resultType="com.mit.domain.transactionCloseVO">
+		<![CDATA[
+			SELECT o.order_num order_num, w.ware_date ware_date, 
+			p.partcode partcode,p.partname partname, cp.name name,
+			e.empl_name empl_name,e.empl_email empl_email FROM tbl_part p , 
+			tbl_contract c, tbl_company cp, warehousing w, purchase_order o,
+			employee e WHERE p.partcode = c.partcode and c.code = cp.code and
+			c.contractno = o.contract_num and w.order_num = o.order_num and
+			o.empl_num = e.empl_num and w.ware_date is not null
+		]]>
+
+	</select>
+	
+</mapper>

@@ -41,39 +41,38 @@
 				    <td>AJACHA</td>
 				    <td rowspan="4">공<br>급<br>자</td>
 				    <td>상호명</td>
-				    <td>상호명</td>
+				    <td>업체1</td>
 				    </tr>
 				   <tr>
-				    <td>품목명</td>
-				    <td>aaa</td>
+				    <td>사업자번호</td>
+				    <td>112-567-342</td>
 				    <td>사업자번호</td>
 				    <td>123456</td>
 				    </tr>
 				    
 				    <tr>
-				    <td>발주번호</td>
-				    <td>aaa</td>
+				    <td>담당자</td>
+				    <td>김ㅇㅇ</td>
 				    <td>담당자</td>
 				    <td>ㅁㅁㅁ</td>
 				    </tr>
 				    <tr>
-				    
-				    <td>담당자</td>
-				    <td>aaa</td>
+				     <td>이메일</td>
+				    <td>ajacha_mit@gmail.com</td>
 				    <td>이메일</td>
 				    <td>ㅁㅁㅁㅁㅁ</td>
 				    </tr>
 				    
 				    <tr>
-				    <td colspan="2">입고일</td>
+				    <td colspan="2">발주번호</td>
 				    <td>2022/02/01</td>
-				    <td colspan="2">발주일</td>
+				    <td colspan="2">입고일</td>
 				    <td>2022/02/01</td>
 				    </tr>
 				     <tr>
-				    <td colspan="2">조기납기일</td>
+				    <td colspan="2">발주일</td>
 				    <td>2022/02/01</td>
-				    <td colspan="2">거래마감일</td>
+				    <td colspan="2">조기납일</td>
 				    <td>2022/02/01</td>
 				    </tr>
 					     
@@ -89,7 +88,7 @@
                                 <th>단가</th>
                                 <th>공급가액</th>
                                 <th>구매가액</th>
-                                <th>비고</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -100,26 +99,9 @@
                                 <td class="center">4</td>
                                 <td class="center">X</td>
                                  <td class="center">X</td>
-                                  <td class="center">X</td>
+                                  
                             </tr>
-                            <tr class="even gradeC">
-                                <td>Trident</td>
-                                <td>Internet Explorer 5.0</td>
-                                <td>Win 95+</td>
-                                <td class="center">5</td>
-                                <td class="center">C</td>
-                                <td class="center">C</td>
-                                <td class="center">C</td>
-                            </tr>
-                            <tr class="odd gradeA">
-                                <td>Trident</td>
-                                <td>Internet Explorer 5.5</td>
-                                <td>Win 95+</td>
-                                <td class="center">5.5</td>
-                                <td class="center">A</td>
-                                <td class="center">A</td>
-                                <td class="center">A</td>
-                            </tr>
+                         
                           
                         </tbody>
                     </table>

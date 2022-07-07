@@ -9,5 +9,4 @@ public interface transactionCloseMapper {
 	
 	public List<transactionCloseVO> getList();
 	
-	public List<transactionCloseVO> getListWithPaging(Criteria cri);
 }

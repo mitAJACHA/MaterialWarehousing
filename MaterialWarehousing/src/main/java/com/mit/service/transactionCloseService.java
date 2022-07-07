@@ -6,5 +6,6 @@ import com.mit.domain.Criteria;
 import com.mit.domain.transactionCloseVO;
 
 public interface transactionCloseService {
-	public List<transactionCloseVO> getList(Criteria cri);
+	public List<transactionCloseVO> getList();
+
 }

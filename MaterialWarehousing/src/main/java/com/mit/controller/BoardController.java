@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.mit.domain.EmailDTO;
 import com.mit.service.EmailService;
 import com.mit.service.OrderStatusService;
+import com.mit.service.transactionCloseService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -22,6 +23,7 @@ import lombok.extern.log4j.Log4j;
 public class BoardController {
 	
 	private OrderStatusService service;
+	private transactionCloseService service1;
 	
 	// 전체 목록 /main(get)	-> /main.jsp
 	@GetMapping("main")
@@ -42,8 +44,9 @@ public class BoardController {
 	}
 	// 거래마감  
 	@GetMapping("transactionClose")
-	public void transactionClose() {
+	public void transactionClose(Model model) {
 		log.info("transactionClose 요청");
+		model.addAttribute("CloseList", service1.getList());
 	}
 	
 	// 업체조회/등록  -> 조회
