@@ -249,7 +249,6 @@
 										<option value="2">50개</option>
 										<option value="3">100개</option>
 									</select>
-									</select>
 								</div>
 							</div>
 							<div class="table-overflow">
