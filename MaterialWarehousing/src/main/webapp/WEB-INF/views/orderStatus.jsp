@@ -273,19 +273,36 @@
 									<c:forEach var="order" items="${orderList}">
 										<tbody align="center">
 											<tr>
-												<td><c:out value="${order.order_num}" /></td>
-												<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${order.order_date }"/></td>
+												<td><c:out value="${order.order_num==0 ? '-':order.order_num}" /></td>
+												<td>
+													<c:choose>
+														<c:when test="${order.order_date==null}">-</c:when>
+														<c:when test="${order.order_date!=null}"><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${order.order_date}"/></c:when>
+													</c:choose>
+												</td>
 												<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${order.deliverydate }"/></td>
-												<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${order.ware_date }"/></td>
+												<td>
+													<c:choose>
+														<c:when test="${order.ware_date==null}">-</c:when>
+														<c:when test="${order.ware_date!=null}"><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${order.ware_date}"/></c:when>
+													</c:choose>
+												</td>
 												<td><c:out value="${order.partname}" /></td>
 												<td><c:out value="${order.order_quantity}" /></td>
 												<td><c:out value="${order.unitprice}" /></td>
 												<td><c:out value="${order.name}" /></td>
 												<td><c:out value="${order.business_number}" /></td>
-												<td><c:out value="${order.empl_name}" /></td>
-												<td><a href="#" class="badge badge-danger">입고마감</a></td>
+												<td><c:out value="${order.empl_name==null?'-':order.empl_name}" /></td>
 												<td>
-													<a class="btn btn-circle btn-info text-white"><c:out value="${order.returnny}" /></a>
+													<c:choose>
+														<c:when test="${order.status=='발주예정'}"><a href="#" class="badge badge-primary">${order.status}</a></c:when>
+														<c:when test="${order.status=='발주서발행'}"><a href="#" class="badge badge-warning">${order.status}</a></c:when>
+														<c:when test="${order.status=='조달진행중'}"><a href="#" class="badge badge-info">${order.status}</a></c:when>
+														<c:when test="${order.status=='거래마감'}"><a href="#" class="badge badge-success">${order.status}</a></c:when>
+													</c:choose>
+												</td>
+												<td>
+													<a class="btn btn-circle btn-info text-white"><c:out value="${order.returnny==null ? '-':order.returnny}" /></a>
 												</td>
 											</tr>
 										</tbody>

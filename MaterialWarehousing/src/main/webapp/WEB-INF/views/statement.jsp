@@ -34,46 +34,46 @@
                    <div class="card-header border-bottom">
 					<h1>거래명세서</h1>
                       <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-
+					<c:forEach var="state" items="${stList}">
 					  <tr>
 				    <td rowspan="4">공<br>급<br>받<br>는<br>자</td>
 				    <td>상호명</td>
 				    <td>AJACHA</td>
 				    <td rowspan="4">공<br>급<br>자</td>
 				    <td>상호명</td>
-				    <td>업체1</td>
+				    <td><c:out value="${state.name}" /></td>
 				    </tr>
 				   <tr>
 				    <td>사업자번호</td>
 				    <td>112-567-342</td>
 				    <td>사업자번호</td>
-				    <td>123456</td>
+				    <td><c:out value="${state.business_number}" /></td>
 				    </tr>
 				    
 				    <tr>
 				    <td>담당자</td>
 				    <td>김ㅇㅇ</td>
 				    <td>담당자</td>
-				    <td>ㅁㅁㅁ</td>
+				    <td><c:out value="${state.empl_name}" /></td>
 				    </tr>
 				    <tr>
 				     <td>이메일</td>
 				    <td>ajacha_mit@gmail.com</td>
 				    <td>이메일</td>
-				    <td>ㅁㅁㅁㅁㅁ</td>
+				    <td><c:out value="${state.empl_email}" /></td>
 				    </tr>
 				    
 				    <tr>
 				    <td colspan="2">발주번호</td>
-				    <td>2022/02/01</td>
+				    <td><c:out value="${state.order_num}" /></td>
 				    <td colspan="2">입고일</td>
-				    <td>2022/02/01</td>
+				    <td><fmt:formatDate pattern="yyyy-MM-dd " value="${state.ware_date }"/></td>
 				    </tr>
 				     <tr>
 				    <td colspan="2">발주일</td>
-				    <td>2022/02/01</td>
+				    <td><fmt:formatDate pattern="yyyy-MM-dd " value="${state.order_date }"/></td>
 				    <td colspan="2">조기납일</td>
-				    <td>2022/02/01</td>
+				    <td><fmt:formatDate pattern="yyyy-MM-dd " value="${state.deliverydate }"/></td>
 				    </tr>
 					     
                     
@@ -93,17 +93,18 @@
                         </thead>
                         <tbody>
                             <tr class="odd gradeX">
-                                <td>Trident</td>
-                                <td>Internet Explorer 4.0</td>
-                                <td>Win 95+</td>
-                                <td class="center">4</td>
-                                <td class="center">X</td>
+                                <td><c:out value="${state.partcode}" /></td>
+                                <td><c:out value="${state.partname}" /></td>
+                                <td><c:out value="${state.ware_quantity}" /></td>
+                                <td><c:out value="${state.unitprice}" /></td>
+                                <td><c:out value="${state.unitprice*state.ware_quantity}" /></td>
                                  <td class="center">X</td>
                                   
                             </tr>
                          
                           
                         </tbody>
+                        </c:forEach>
                     </table>
                     <table id="table2" class="table table-striped table-bordered table-hover" border="1" width="300" height="60" align="left">
                    
