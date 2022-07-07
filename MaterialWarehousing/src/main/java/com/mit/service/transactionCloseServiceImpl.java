@@ -1,0 +1,30 @@
+package com.mit.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.mit.domain.statementVO;
+import com.mit.domain.transactionCloseVO;
+import com.mit.mapper.transactionCloseMapper;
+
+import lombok.AllArgsConstructor;
+
+@Service
+@AllArgsConstructor
+public class transactionCloseServiceImpl implements transactionCloseService {
+
+	private transactionCloseMapper mapper;
+	
+	@Override
+	public List<transactionCloseVO> getList() {
+	return mapper.getList();
+	}
+	
+	@Override
+	public List<statementVO> List() {
+	return mapper.List();
+	}
+
+
+}

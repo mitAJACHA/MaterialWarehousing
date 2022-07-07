@@ -257,9 +257,9 @@
 							</div>
 							<div class="table-overflow">
 								<table class="table table-lg">
-									<thead>
+									<thead align="center">
 										<tr>
-											<th class="text-dark text-semibold">계약번호</th>
+											<th class="text-dark text-semibold">발주번호</th>
 											<th class="text-dark text-semibold">마감일자</th>
 											<th class="text-dark text-semibold">품목코드</th>
 											<th class="text-dark text-semibold">품목명</th>
@@ -270,100 +270,26 @@
 										
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<td>
-												<div class="list-media">
-													<div class="list-item">
-														<div class="media-img">
-															<a class="btn btn-circle btn-info text-white">TM</a>
-														</div>
-														<div class="info">
-															<span class="title text-semibold">Tesla Motors</span>
-														</div>
-													</div>
-												</div>
-											</td>
-											<td>CRM Software</td>
-											<td>Onsite</td>
-											<td><a href="#" class="badge badge-danger">Processing</a></td>
-											<td>$423.00</td>
-											<td><a href="javascript:popupOpen();">보기</a></td>
+									<c:forEach var="close" items="${CloseList}">
+										<tbody align="center">
+											<tr>
+											<td><c:out value="${close.order_num}" /></td>
+												<td><fmt:formatDate pattern="yyyy-MM-dd " value="${close.ware_date }"/></td>
+												<td><c:out value="${close.partcode}" /></td>
+												<td><c:out value="${close.partname}" /></td>
+												<td><c:out value="${close.name}" /></td>
+												<td><a href="javascript:popupOpen();">보기</a></td>
+												<td><c:out value="${close.empl_name}" />/
+												<c:out value="${close.empl_email}" /></td>
 											<td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#handlingmodal" id="endwhing">발송</button></td>
-											<td><a href="#" class="badge badge-danger">Processing</a></td>
+											
+											
 										
 										
 										</tr>
-										<tr>
-											<td>
-												<div class="list-media">
-													<div class="list-item">
-														<div class="media-img">
-															<a class="btn btn-circle btn-danger text-white">SM</a>
-														</div>
-														<div class="info">
-															<span class="title text-semibold">Samsung</span>
-														</div>
-													</div>
-												</div>
-											</td>
-											<td>GIS Software</td>
-											<td>Marketplace</td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td>$665.67</td>
-											<td>$665.67</td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
 										
-											
-										</tr>
-										<tr>
-											<td>
-												<div class="list-media">
-													<div class="list-item">
-														<div class="media-img">
-															<a class="btn btn-circle btn-success text-white">DR</a>
-														</div>
-														<div class="info">
-															<span class="title text-semibold">Dropbox Inc.</span>
-														</div>
-													</div>
-												</div>
-											</td>
-											<td>Accounting Software</td>
-											<td>Others</td>
-											<td><a href="#" class="badge badge-info">On-hold</a></td>
-											<td>$576.00</td>
-											<td>$476.00</td>
-											<td><a href="#" class="badge badge-info">On-hold</a></td>
-											<td><a href="#" class="badge badge-info">On-hold</a></td>
-											
-											
-										</tr>
-										<tr>
-											<td>
-												<div class="list-media">
-													<div class="list-item">
-														<div class="media-img">
-															<a class="btn btn-circle btn-primary text-white">UD</a>
-														</div>
-														<div class="info">
-															<span class="title text-semibold">UIdeck</span>
-														</div>
-													</div>
-												</div>
-											</td>
-											<td>Sales Dashboard</td>
-											<td>Marketplace</td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td>$234.00</td>
-											<td>$234.00</td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-										
-											
-										</tr>
 									</tbody>
+									</c:forEach>
 								</table>
 							</div>
 						</div>
