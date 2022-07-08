@@ -2,28 +2,26 @@
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.mit.mapper.OrderStatusMapper">
-
 	<sql id="criteria">
     	<trim prefixOverrides="AND">
-    			<trim prefix="AND">
-	    			<choose>
-	    				<when test='companyName!=null'>
-	    					AND name like'%'||#{companyName}||'%'
-	    				</when>
-	    				<when test='partName!=null'>
-	    					AND partname like'%'||#{partName}||'%'
-	    				</when>
-	    				<when test='startDate!=null and endDate ==null'>
-	    					<![CDATA[ AND order_date > TO_DATE(#{startDate}, 'YYYYMMDD')  ]]>
-	    				</when>
-	    				<when test='startDate==null and endDate !=null'>
-	    					<![CDATA[ AND order_date < TO_DATE(#{endDate}, 'YYYYMMDD') ]]>
-	    				</when>
-	    				<when test='startDate!=null and endDate !=null'>
-	    					AND order_date between TO_DATE(#{startDate}, 'YYYYMMDD') and TO_DATE(#{endDate}, 'YYYYMMDD')
-	    				</when>
-	    			</choose>
-    			</trim>
+   			<trim prefix="AND">
+   				<if test='companyName!=null'>
+   					name like'%'||#{companyName}||'%'
+   				</if>
+   				<if test='partName!=null'>
+   					AND partname like'%'||#{partName}||'%'
+   				</if>
+   				<if test='startDate!=null and endDate ==null'>
+   					<![CDATA[ AND order_date => TO_TIMESTAMP(#{startDate}, 'YYYY-MM-DD')  ]]>
+   				</if>
+   				<if test='startDate==null and endDate !=null'>
+   					<![CDATA[ AND order_date <= TO_TIMESTAMP(#{endDate}, 'YYYY-MM-DD') ]]>
+   				</if>
+   				<if test='startDate!=null and endDate !=null'>
+   					AND order_date between TO_TIMESTAMP(#{startDate}, 'YYYY-MM-DD')-1 and TO_TIMESTAMP(#{endDate}, 'YYYY-MM-DD')+1 
+   					<!-- 날짜 검색 기능 개선 (between은 양쪽 날짜가 포함되지 않아 -1, +1 함)-->
+   				</if>
+   			</trim>
     	</trim>
     </sql>
     
