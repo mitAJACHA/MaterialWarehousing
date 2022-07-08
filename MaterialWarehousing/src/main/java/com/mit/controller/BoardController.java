@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mit.domain.Criteria;
 import com.mit.domain.EmailDTO;
+import com.mit.domain.PageDTO;
 import com.mit.service.EmailService;
 import com.mit.service.OrderStatusService;
 import com.mit.service.transactionCloseService;
@@ -32,9 +34,10 @@ public class BoardController {
 	}
 	
 	@GetMapping("orderStatus")
-	public void orderStatus(Model model) {
+	public void orderStatus(Model model, Criteria cri) {
 		log.info("orderStatus 요청");
-		model.addAttribute("orderList", service.getList());
+		model.addAttribute("orderList", service.getList(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, service.count(cri)));
 	}
 	
 	//입고처리페이지

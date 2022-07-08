@@ -10,10 +10,13 @@ public class Criteria {
 	private int pageNum = 1;
 	private int amount = 10;
 	
-	// 검색에 관련된 정보 추가(검색조건 type, 검색어 keyword)
-	// ex > 제목 T, 작성자 W, 내용 C	제목과 작성자로 검색 
+	// 검색에 관련된 정보 추가(검색어 keyword)
 	private String type;
-	private String keyword;
+	private String companyName;
+	private String partName;
+	private String startDate;
+	private String endDate;
+	
 	
 	// 기본 생성자 -> 기본값 1, 10
 	public Criteria() {

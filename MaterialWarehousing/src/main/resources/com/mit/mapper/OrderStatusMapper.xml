@@ -2,58 +2,90 @@
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.mit.mapper.OrderStatusMapper">
+
+	<sql id="criteria">
+    	<trim prefixOverrides="AND">
+    			<trim prefix="AND">
+	    			<choose>
+	    				<when test='companyName!=null'>
+	    					AND name like'%'||#{companyName}||'%'
+	    				</when>
+	    				<when test='partName!=null'>
+	    					AND partname like'%'||#{partName}||'%'
+	    				</when>
+	    				<when test='startDate!=null and endDate ==null'>
+	    					<![CDATA[ AND order_date > TO_DATE(#{startDate}, 'YYYYMMDD')  ]]>
+	    				</when>
+	    				<when test='startDate==null and endDate !=null'>
+	    					<![CDATA[ AND order_date < TO_DATE(#{endDate}, 'YYYYMMDD') ]]>
+	    				</when>
+	    				<when test='startDate!=null and endDate !=null'>
+	    					AND order_date between TO_DATE(#{startDate}, 'YYYYMMDD') and TO_DATE(#{endDate}, 'YYYYMMDD')
+	    				</when>
+	    			</choose>
+    			</trim>
+    	</trim>
+    </sql>
+    
+	<sql id="tbl_orderStatus">
+		<![CDATA[
+		SELECT * FROM(
+			SELECT * FROM(
+			    SELECT ROWNUM rn,order_num, order_date, deliverydate, ware_date, partname, order_quantity, unitprice, name, business_number, empl_name, returnny,
+			    CASE WHEN order_num IS NULL THEN '발주예정'
+			        WHEN ware_date IS NULL and (order_date - sysdate)*24 < 8 THEN '발주서발행'
+			        WHEN ware_date IS NULL and (order_date - sysdate)*24 >= 8 THEN '조달진행중'
+			        WHEN not ware_date IS NULL THEN '거래마감'
+			    END AS status
+			    FROM(
+			        SELECT 
+			            NULL order_num, 
+			            NULL order_date, 
+			            s.deliverydate deliverydate, 
+			            NULL ware_date, 
+			            p.partname partname, 
+			            NULL order_quantity, 
+			            c.unitprice unitprice, 
+			            company.name name, 
+			            company.business_number, 
+			            NULL empl_name, 
+			            NULL returnny
+			        FROM tbl_support s, tbl_part p, tbl_company company, employee e, tbl_contract c, purchase_order o
+			        WHERE o.empl_num = e.empl_num AND o.contract_num = c.contractno AND c.code = company.code AND c.partcode = p.partcode AND s.supportno NOT IN (SELECT support_num FROM purchase_order) AND s.partcode = p.partcode
+			        
+			        UNION
+			        
+			        SELECT 
+			            o.order_num order_num, 
+			            o.order_date order_date, 
+			            s.deliverydate deliverydate,
+			            w.ware_date ware_date, 
+			            p.partname partname, 
+			            o.order_quantity order_quantity, 
+			            c.unitprice unitprice, 
+			            company.name name, 
+			            company.business_number business_number, 
+			            e.empl_name empl_name, 
+			            w.return returnny
+			        FROM purchase_order o, tbl_support s, tbl_part p, tbl_contract c, tbl_company company, employee e, warehousing w
+			        WHERE o.support_num = s.supportno AND o.empl_num = e.empl_num AND o.contract_num = c.contractno AND c.partcode = p.partcode AND w.order_num = o.order_num AND c.code = company.code)
+        ]]>
+		<where>
+	    	<include refid="criteria"></include>
+    	</where>
+		<![CDATA[        
+		        ORDER BY order_num DESC)
+	    	WHERE ROWNUM <= (#{pageNum} * #{amount}))
+		WHERE rn > ((#{pageNum}-1) * #{amount}) 
+		]]>
+	</sql>
 	
 	<select id="getList" resultType="com.mit.domain.OrderStatusVO">
-		<![CDATA[
-		SELECT order_num, order_date, deliverydate, ware_date, partname, order_quantity, unitprice, name, business_number, empl_name, returnny,
-		CASE WHEN order_num is null THEN '발주예정'
-		    WHEN ware_date is null and (order_date - sysdate)*24 < 8 THEN '발주서발행'
-		    WHEN ware_date is null and (order_date - sysdate)*24 >= 8 THEN '조달진행중'
-		    WHEN not ware_date is null THEN '거래마감'
-		END AS status
-		FROM(
-			SELECT * from(
-				SELECT 
-				    DISTINCT 
-				    null order_num, 
-				    null order_date, 
-				    s.deliverydate deliverydate, 
-				    null ware_date, 
-				    p.partname partname, 
-				    null order_quantity, 
-				    c.unitprice unitprice, 
-				    company.name name, 
-				    company.business_number, 
-				    null empl_name, 
-				    null returnny
-				FROM tbl_support s, tbl_part p, tbl_company company, employee e, tbl_contract c, purchase_order o
-				WHERE 
-					c.partcode = p.partcode 
-					and o.support_num != s.supportno
-				
-				union
-				
-				SELECT 
-				    o.order_num order_num, 
-				    o.order_date order_date, 
-				    s.deliverydate deliverydate,
-				    w.ware_date ware_date, 
-				    p.partname partname, 
-				    o.order_quantity order_quantity, 
-				    c.unitprice unitprice, 
-				    company.name name, 
-				    company.business_number business_number, 
-				    e.empl_name empl_name, 
-				    w.return returnny
-				FROM purchase_order o, tbl_support s, tbl_part p, tbl_contract c, tbl_company company, employee e, warehousing w
-				WHERE 
-					o.support_num = s.supportno 
-					and o.empl_num = e.empl_num 
-					and o.contract_num = c.contractno 
-					and c.partcode = p.partcode 
-					and w.order_num = o.order_num)
-				order by order_num desc)
-		]]>
+		<include refid="tbl_orderStatus"></include>
+	</select>
+	
+	<select id="count" resultType="long">
+		select count(*) from(<include refid="tbl_orderStatus"></include>)
 	</select>
 	
 </mapper>
