@@ -4,40 +4,21 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
  
  <mapper namespace="com.mit.mapper.WareHandlingMapper">
- 	<select id="getList" resultType="com.mit.domain.WareHandlingVO">
- 		<![CDATA[SELECT po.order_num, po.order_date, tp.partname, tc.name company_name, 
-				((SELECT SUM(inspection_quantity) From inspection) - (Select SUM(inspection_defect) FROM inspection_result)) real_quantity, 
-				po.order_quantity order_quantity, 
-				CASE 
-				WHEN ((select COUNT(inspection_num) FROM inspection) = (SELECT COUNT(inspection_num) FROM inspection_result)) THEN '검수완료'
-				WHEN  ((select COUNT(inspection_num) FROM inspection) != (SELECT COUNT(inspection_num) FROM inspection_result)) THEN '검수미완료'
-				END AS inspection_status,
-				CASE
-				WHEN ((SELECT SUM(inspection_quantity) From inspection) - (Select SUM(inspection_defect) FROM inspection_result)) >= po.order_quantity 
-				AND ((select COUNT(inspection_num) FROM inspection) = (SELECT COUNT(inspection_num) FROM inspection_result)) 
-				AND wh.ware_date is null THEN '입고처리'
-				WHEN ((SELECT SUM(inspection_quantity) From inspection) - (Select SUM(inspection_defect) FROM inspection_result)) < po.order_quantity 
-				AND ((select COUNT(inspection_num) FROM inspection) = (SELECT COUNT(inspection_num) FROM inspection_result)) 
-				AND wh.ware_date is null THEN '반품처리'
-				WHEN wh.ware_date is not null THEN '입고완료'
-				ELSE '입고불가'
-				END AS handleorreturn,
-				wh.ware_date ware_date
-				FROM purchase_order po, TBL_PART tp, TBL_COMPANY tc, TBL_contract ct, inspection i, INSPECTION_RESULT ir, WareHousing wh 
-				WHERE po.contract_num = ct.contractno AND tp.partcode = ct.partcode AND i.order_num = ir.order_num AND tc.code = ct.code 
-				AND wh.order_num = po.order_num AND po.order_num = i.order_num AND po.order_num = ir.order_num 
-				order by order_num DESC
-				]]>
+ 	<select id="getwhList" resultType="com.mit.domain.WareHandlingVO">
+ 		<![CDATA[select order_num, order_date, partname, name, ((SELECT inspection_quantity FROM inspection) - (SELECT inspection_defect FROM inspection_result)) 정품수량, order_quantity, ware_date
+ 		FROM purchase_order, tbl_part, company, warehousing order by order_num]]>
  	</select>
  	
- 	<select id="handleok" resultType="com.mit.domain.HandleVO">
- 		<![CDATA[INSERT INTO warehousing(ware_num, ware_date, ware_quantity, return, order_num) values(warehousing_num.nextval, sysdate, #{ware_qauntity}, 'N', #{order_num})]]>
- 	</select>
+ 	<update id="inspectionend0">
+ 		<![CDATA[UPDATE warehousing SET return= '0' 
+ 		WHERE (SELECT COUNT(inspection_num) FROM inspection)=(SELECT COUNT(inspection_num) FROM inspection_result) 
+ 		AND ((SELECT inspection_quantity FROM inspection) - (SELECT inspection_defect FROM inspection_result)) >= (SELECT order_quantity FROM purchase_order)]]>
+ 	</update>
  	
- 	<select id="handleno" resultType="com.mit.domain.HandleVO">
- 		<![CDATA[INSERT INTO warehousing(ware_num, ware_date, ware_quantity, return, order_num) values(warehousing_num.nextval, sysdate, 0, 'Y', #{order_num})]]>
- 	</select>
- 	
- 	
+ 	<update id="inspectionend1">
+ 		<![CDATA[UPDATE warehousing SET return= '0' 
+ 		WHERE (SELECT COUNT(inspection_num) FROM inspection)=(SELECT COUNT(inspection_num) FROM inspection_result) 
+ 		AND ((SELECT inspection_quantity FROM inspection) - (SELECT inspection_defect FROM inspection_result)) < (SELECT order_quantity FROM purchase_order)]]>
+ 	</update>
 
  </mapper>

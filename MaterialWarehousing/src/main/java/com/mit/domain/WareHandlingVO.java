@@ -12,7 +12,5 @@ public class WareHandlingVO {
 	private String company_name;
 	private int real_quantity;
 	private int order_quantity;
-	private String inspection_status;
-	private String handleorreturn;
 	private Date ware_date;
 }
