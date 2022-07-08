@@ -14,10 +14,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mit.domain.Criteria;
 import com.mit.domain.EmailDTO;
+
 import com.mit.domain.transactionCloseVO;
+
+import com.mit.domain.PageDTO;
+import com.mit.domain.HandleVO;
+
 import com.mit.service.EmailService;
 import com.mit.service.OrderStatusService;
+import com.mit.service.WareHandlingService;
 import com.mit.service.transactionCloseService;
 import com.mit.service.transactionCloseServiceImpl;
 
@@ -32,6 +39,7 @@ public class BoardController {
 	
 	private OrderStatusService service;
 	private transactionCloseService service1;
+	private WareHandlingService whservice;
 	
 	// 전체 목록 /main(get)	-> /main.jsp
 	@GetMapping("main")
@@ -40,16 +48,19 @@ public class BoardController {
 	}
 	
 	@GetMapping("orderStatus")
-	public void orderStatus(Model model) {
+	public void orderStatus(Model model, Criteria cri) {
 		log.info("orderStatus 요청");
-		model.addAttribute("orderList", service.getList());
+		model.addAttribute("orderList", service.getList(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, service.count(cri)));
 	}
 	
 	//입고처리페이지
 	@GetMapping("wareHandling")
-	public void wareHandling() {
+	public void wareHandling(Model model, HandleVO ho) {
 		log.info("wareHandling 요청");
+		model.addAttribute("whList", whservice.getList());
 	}
+	
 	// 거래마감  
 	@GetMapping("transactionClose")
 	public void transactionClose(Model model,RedirectAttributes rttr) {
