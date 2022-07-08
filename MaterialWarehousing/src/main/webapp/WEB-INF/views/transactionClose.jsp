@@ -246,6 +246,7 @@
 						<div class="card">
 							<div class="card-header">
 								<h4 class="card-title">Best Performing Clients</h4>
+								<td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#handlingmodal" id="emailsend">발송</button></td>
 								<div class="selected float-right">
 									<select class="custom-select">
 										<option selected="selected" value="0">Monthly</option>
@@ -259,38 +260,38 @@
 								<table class="table table-lg">
 									<thead align="center">
 										<tr>
+											<th class="text-dark text-semibold"></th>
 											<th class="text-dark text-semibold">발주번호</th>
 											<th class="text-dark text-semibold">마감일자</th>
 											<th class="text-dark text-semibold">품목코드</th>
 											<th class="text-dark text-semibold">품목명</th>
 											<th class="text-dark text-semibold">협력회사명</th>
 											<th class="text-dark text-semibold">거래명세서</th>
-											<th class="text-dark text-semibold">담당자명/이메일</th>
-											<th class="text-dark text-semibold">이메일  발송  체크</th>
+											<th class="text-dark text-semibold">담당자명</th>
+											<th class="text-dark text-semibold">이메일</th>
+											
 										
 										</tr>
 									</thead>
 									<c:forEach var="close" items="${CloseList}">
 										<tbody align="center">
 											<tr>
+											<td><input type="checkbox" id="user_CheckBox" class="rowChk" onclick="clickCheck(this)"></td>
 											<td><c:out value="${close.order_num}" /></td>
 												<td><fmt:formatDate pattern="yyyy-MM-dd " value="${close.ware_date }"/></td>
-												<td><c:out value="${close.partcode}" /></td>
-												<td><c:out value="${close.partname}" /></td>
+												<td id="code"><c:out value="${close.partcode}" /></td>
+												<td id="pname"><c:out value="${close.partname}" /></td>
 												<td><c:out value="${close.name}" /></td>
 												<td><button class="btn btn-warning" onclick="location.href='/statement?order_num=${close.order_num}'">보기</button></td>
-												<td><c:out value="${close.empl_name}" />/
-												<c:out value="${close.empl_email}" /></td>
-											<td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#handlingmodal" id="endwhing">발송</button></td>
-											
-											
-										
-										
+												<td id="name"><c:out value="${close.empl_name}" /></td>
+												<td id="email"><c:out value="${close.empl_email}" /></td>
+																				
 										</tr>
 										
 									</tbody>
 									</c:forEach>
 								</table>
+								<div id="array"></div>
 							</div>
 						</div>
 					</div>
@@ -322,6 +323,8 @@
     </div>
     <!-- End Preloader -->
     
+
+    
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="/resources/assets/js/jquery-min.js"></script>
     <script src="/resources/assets/js/popper.min.js"></script>
@@ -341,8 +344,9 @@
 </script>
 	<script>
     /*입고처리 버튼 클릭*/
-       $('#endwhing').click(function(){	//id가 returning인 버튼을 클릭하면
-        $('#handlingmodal').modal();   //id가 "returningmodal"인 모달창을 열어준다. 
+       $('#emailsend').click(function(){	//id가 returning인 버튼을 클릭하면
+        $('#handlingmodal').modal();   //id가 "returningmodal"인 모달창을 열어준다.  
+                 
         $('#modalcancel').click(function(){
         	$('#handlingmodal').modal('hide');
         })
@@ -358,6 +362,71 @@
     });
 	</script>
 
+	
+	
+	<script>
+	/*체크박스*/
+	
+	$("#emailsend").click(function(){
+		var checkbox = $("input[id=user_CheckBox]:checked");
+		var tr = checkbox.parent().parent();
+    	var td = tr.children();
+    	
+    	var code = td.eq(3).text()+", ";		
+    	var pname = td.eq(4).text()+", ";		
+    	var cname= td.eq(7).text()+", ";		
+    	var email = td.eq(8).text()+", ";		
+    	
+    	var tdArray = new Array();
+    	checkbox.each(function(i){
+    		tr=checkbox.parent().parent().eq(i);
+        	td = tr.children();
+        	code=td.eq(3).text()+" 입고 완료";		
+        	pname=td.eq(4).text()+" 입고 마감되었습니다."; 		
+        	cname=td.eq(7).text(); 		
+        	email=td.eq(8).text();	
+        	
+        	tdArray.push(code);
+        	tdArray.push(pname);
+        	tdArray.push(cname);
+        	tdArray.push(email);
+        
+        	});
+        	$('#array1').html(tdArray[0]);
+        	
+        	$('input[name=receiveMail]').attr('value',tdArray[3]);
+        	$('input[name=subject]').attr('value',tdArray[0]);
+        	$('input[name=message]').attr('value',tdArray[1]);
+        	
+        	
+        	
+        	
+        	
+	});
+	
+	function checkOnlyOne(element) {
+		  
+		  const checkboxes 
+		      = document.getElementsByName("send");
+		  
+		  checkboxes.forEach((cb) => {
+		    cb.checked = false;
+		  })
+		  
+		  element.checked = true;
+		}
+    	
+	
+
+	function clickCheck(target) {
+	    document.querySelectorAll(`input[type=checkbox]`)
+	        .forEach(el => el.checked = false);
+
+	    target.checked = true;
+	}
+
+	</script>
+
 <!--Email Modal-->
 	<div class="modal fade" id="handlingmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-dialog-centered">
@@ -366,18 +435,18 @@
 	        <h5 class="modal-title" id="staticBackdropLabel">Email</h5>
 	      </div>
 	      <div class="modal-body">
-	      	 <form class="forms-sample" method="post" action="send.do">
-                        <div class="form-group">
+	      	 <form class="forms-sample" method="post" action="send.do" >
+                        <div class="form-group" >
                           <label for="exampleInputName1">수신자</label>
-                          <input type="text" name="receiveMail" class="form-control" id="exampleInputName1" placeholder="Email">
+                          <input type="text" name="receiveMail" class="form-control" id="exampleInputName1" value="" >
                         </div>
                         <div class="form-group">
                           <label for="exampleInputName1">발신자이름</label>
-                          <input type="text" name="senderName" class="form-control" id="exampleInputName1" placeholder="Email">
+                          <input type="text" name="senderName" class="form-control" id="exampleInputName2" value="AJACHA">
                         </div>
                         <div class="form-group">
                           <label for="exampleInputName1">발신자  이메일</label>
-                          <input type="text" name="senderMail" class="form-control" id="exampleInputName1" placeholder="Email">
+                          <input type="text" name="senderMail" class="form-control" id="exampleInputName1" value="youwjd51@gmail.com">
                         </div>
                          <div class="form-group">
                           <label for="exampleInputName1">제목</label>
@@ -387,18 +456,37 @@
           
                         <div class="form-group m-b-20">
                           <label for="exampleTextarea1">내용</label>
-                          <textarea name="message" class="form-control" id="exampleTextarea1" rows="4"></textarea>
+                         <input type="text"  name="message" class="form-control" id="exampleTextarea1" rows="4">
                         </div>
                         
                        
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modalcancel">취소하기</button>
-	        <button type="submit" class="btn btn-primary" id="handlingend">전송</button>
+	        <button type="submit" class="btn btn-primary" name="send" >전송</button>
 	        </form>
 	      </div>
 	    </div>
 	  </div>
 	</div>   
+	
+	<script>
+		var link = document.location.href;
+		var para = document.location.href.split("=");
+		
+		function success(para) {
+			let result;
+			
+			for(var i = 0; i < para.length; i++) {
+				if(para[i] == 'success') {
+					alert('success');
+					var redirect = link.replaceAll("message=발송 되었습니다.", "");
+					location.href=redirect;
+				}
+			}
+			
+		}
+		success(para);
+	</script>
     </body>
 </html>
