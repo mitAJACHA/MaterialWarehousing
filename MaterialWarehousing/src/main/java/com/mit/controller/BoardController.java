@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ReflectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,6 +40,21 @@ public class BoardController {
 	@GetMapping("orderStatus")
 	public void orderStatus(Model model, Criteria cri) {
 		log.info("orderStatus 요청");
+		if (cri != null) {
+			if (cri.getCompanyName()=="") {
+				cri.setCompanyName(null);
+			}
+			if (cri.getEndDate()=="") {
+				cri.setEndDate(null);
+			}
+			if (cri.getPartName()=="") {
+				cri.setPartName(null);
+			}
+			if (cri.getStartDate()=="") {
+				cri.setStartDate(null);
+			}
+		}
+		
 		model.addAttribute("orderList", service.getList(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, service.count(cri)));
 	}
