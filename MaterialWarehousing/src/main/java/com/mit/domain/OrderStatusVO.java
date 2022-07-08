@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 public class OrderStatusVO {
+	private int rn;
 	private int order_num;
 	private Date order_date;
 	private Date deliverydate;
