@@ -68,9 +68,9 @@ public class BoardController {
 		
 	// 거래명세서 
 	@GetMapping("statement")
-	public void statement(Model model) {
+	public void statement(Model model,Long order_num) {
 		log.info("statement 요청");
-		model.addAttribute("stList", service1.List());
+		model.addAttribute("state", service1.get(order_num));
 	}
 	
 	
