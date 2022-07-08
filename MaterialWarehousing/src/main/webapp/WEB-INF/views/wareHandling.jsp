@@ -240,87 +240,59 @@
 										<option selected="selected" value="0">10개</option>
 										<option value="1">30개</option>
 										<option value="2">50개</option>
-										<option value="3">100개</option>
 									</select>
 								</div>
 							</div>
           				    <div class="table-overflow">
 								<table class="table table-lg table-hover">
-									<thead class="table-light">
+									<thead class="table-light" align="center">
 										<tr>
 											<th class="text-dark text-semibold">발주번호</th>
 											<th class="text-dark text-semibold">발주일자</th>
 											<th class="text-dark text-semibold">품목명</th>
 											<th class="text-dark text-semibold">협력회사</th>
-											<th class="text-dark text-semibold">입고검수</th>
 											<th class="text-dark text-semibold">정품수량</th>
 											<th class="text-dark text-semibold">필요수량</th>
+											<th class="text-dark text-semibold">입고검수</th>
 											<th class="text-dark text-semibold">수량정보입력</th>
 											<th class="text-dark text-semibold">입고일자</th>
 										</tr>
 									</thead>
-									<tbody>
+									<c:forEach var="handling" items="${whList}">
+									<tbody align="center">
 										<tr>
+											<td><c:out value="${handling.order_num}" /></td>
+											<td><fmt:formatDate pattern="yyyy-MM-dd " value="${handling.order_date}" /></td>
+											<td><c:out value="${handling.partname}" /></td>
+											<td><c:out value="${handling.company_name}" /></td>
 											<td>
-												<div class="list-media">
-													<span class="title text-semibold">1</span>
-												</div>
+											<c:choose>
+												<c:when test="${handling.real_quantity==null}">-</c:when>
+												<c:when test="${handling.real_quantity!=null}">${handling.real_quantity}</c:when>
+											</c:choose>
 											</td>
-											<td>예시일자1</td>
-											<td>예시자재1</td>
-											<td>예시회사1</td>
-											<td><a href="#" class="badge badge-success">검수완료</a></td>
-											<td>100</td>
-											<td>100</td>
-											<td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#handlingmodal" id="endwhing">입고처리</button></td>
-											<td>예시일자2</td>
-										</tr>
-										<tr>
+											<td><c:out value="${handling.order_quantity}" /></td>
 											<td>
-												<div class="list-media">
-													<span class="title text-semibold">2</span>
-												</div>
-											</td>
-											<td>예시일자3</td>
-											<td>예시자재2</td>
-											<td>예시회사2</td>
-											<td><a href="#" class="badge badge-success">검수완료</a></td>
-											<td>70</td>
-											<td>100</td>
-											<td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#returningmodal" id="returning">반품처리</button></td>
-											<td>예시일자4</td>
-										</tr>
-										<tr>
+											<c:choose>
+												<c:when test="${handling.inspection_status=='검수완료'}"><a href="#" class="badge badge-success">${handling.inspection_status}</a></c:when>
+												<c:when test="${handling.inspection_status=='검수미완료'}"><a href="#" class="badge badge-warning">${handling.inspection_status}</a></c:when>
+											</c:choose></td>
 											<td>
-												<div class="list-media">
-													<span class="title text-semibold">3</span>
-												</div>
-											</td>
-											<td>예시일자5</td>
-											<td>예시자재3</td>
-											<td>예시회사3</td>
-											<td><a href="#" class="badge badge-warning">검수중</a></td>
-											<td>0</td>
-											<td>100</td>
-											<td> </td>
-											<td> </td>
-										</tr>
-										<tr>
+											<c:choose>
+												<c:when test="${handling.handleorreturn=='입고처리'}"><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#handlingmodal" id="endwhing">${handling.handleorreturn}</button></c:when>
+												<c:when test="${handling.handleorreturn=='반품처리'}"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#returningmodal" id="returning">${handling.handleorreturn}</button></c:when>
+												<c:when test="${handling.handleorreturn=='입고완료'}"><button type="button" class="btn btn-primary" onclick="endend()">${handling.handleorreturn}</button></c:when>
+												<c:when test="${handling.handleorreturn=='입고불가'}"><button type="button" class="btn btn-secondary" onclick="notyet()">${handling.handleorreturn}</button></c:when>
+											</c:choose></td>
 											<td>
-												<div class="list-media">
-													<span class="title text-semibold">4</span>
-												</div>
+											<c:choose>
+												<c:when test="${handling.ware_date==null}">-</c:when>
+												<c:when test="${handling.ware_date!=null}"><fmt:formatDate pattern="yyyy-MM-dd" value="${handling.ware_date}" /></c:when>
+											</c:choose>
 											</td>
-											<td>예시일자6</td>
-											<td>예시자재3</td>
-											<td>예시회사3</td>
-											<td><a href="#" class="badge badge-warning">입고대기</a></td>
-											<td>0</td>
-											<td>100</td>
-											<td> </td>
-											<td> </td>
 										</tr>
 									</tbody>
+									</c:forEach>
 								</table>
 							</div>
 			            </div>
@@ -368,6 +340,19 @@
     <script src="/resources/assets/plugins/raphael/raphael-min.js"></script>
     <script src="/resources/assets/js/dashborad1.js"></script>
     
+	<script>
+	//경고창
+	function endend() {
+  	alert("이미 입고가 마감되었습니다");
+	}
+	</script>
+	
+	<script>
+	//경고창
+	function notyet() {
+  	alert("아직 입고하실 수 없습니다");
+	}
+	</script>
 	
 	<script>
     /*입고처리 버튼 클릭*/
@@ -427,18 +412,21 @@
 	      	  <div class="container-fluid">
 				 <div class="table-overflow" style="text-align:center">
 					<table class="table table-lg table-hover" style="margin-left: auto; margin-right: auto;">
+						</thead>
+						<c:forEach var="handling" items="${whList}">
+						<tbody align="center">
 						<tr>
 						<th>품목</th>
 						<th>재고</th>
 						</tr>
 						<tr>
-						<td>예시자재</td>
-						<td>예시수량</td>
+						<td><c:out value="${handling.partname}" /></td>
+						<td><c:out value="${handling.real_quantity}" /></td>
 						</tr>
+						</tbody>
+						</c:forEach>
 					</table>
-				</div>
-	        	<span><center><h4>입고수량</h4></center><input type="number" class="form-control mb-2 mr-sm-2" id="whquantity" min="0" step="10" value="50"></span>       	
-	      		</div>
+
 	      	</form>
 	      </div>
 	      <div class="modal-footer">
@@ -457,8 +445,8 @@
 	        <h5 class="modal-title" id="staticBackdropLabel">입고마감</h5>
 	      </div>
 	      <div class="modal-body">
-	        	예시자재1 품목<br>
-	        	30개를 <br>
+	        	"${partname}" 품목<br>
+	        	"${real_quantity}"개를 <br>
 	        	입고마감하시겠습니까?
 	      </div>
 	      <div class="modal-footer">
@@ -477,7 +465,7 @@
 	        <h5 class="modal-title" id="staticBackdropLabel">반품처리</h5>
 	      </div>
 	      <div class="modal-body">
-	        	예시자재2 품목 거래를
+	        	"${partname}" 품목 거래를
 	        	반품시겠습니까?
 	      </div>
 	      <div class="modal-footer">
