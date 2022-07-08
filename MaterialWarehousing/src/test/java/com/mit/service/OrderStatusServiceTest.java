@@ -22,6 +22,7 @@ public class OrderStatusServiceTest {
 	@Test
 	public void testGetList() {
 		Criteria cri = new Criteria();
+		cri.setPartName("예시자재2");
 		service.getList(cri);
 	}
 	
