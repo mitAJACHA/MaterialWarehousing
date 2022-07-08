@@ -7,6 +7,8 @@ import com.mit.domain.transactionCloseVO;
 
 public interface transactionCloseService {
 	public List<transactionCloseVO> getList();
-	public List<statementVO> List();
+//	public List<statementVO> List(Long order_num);
+	public transactionCloseVO get(Long order_num);
+	
 
 }

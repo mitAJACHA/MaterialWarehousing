@@ -34,7 +34,7 @@
                    <div class="card-header border-bottom">
 					<h1>거래명세서</h1>
                       <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-					<c:forEach var="state" items="${stList}">
+					
 					  <tr>
 				    <td rowspan="4">공<br>급<br>받<br>는<br>자</td>
 				    <td>상호명</td>
@@ -72,7 +72,7 @@
 				     <tr>
 				    <td colspan="2">발주일</td>
 				    <td><fmt:formatDate pattern="yyyy-MM-dd " value="${state.order_date }"/></td>
-				    <td colspan="2">조기납일</td>
+				    <td colspan="2">조기납기일</td>
 				    <td><fmt:formatDate pattern="yyyy-MM-dd " value="${state.deliverydate }"/></td>
 				    </tr>
 					     
@@ -104,7 +104,7 @@
                          
                           
                         </tbody>
-                        </c:forEach>
+                        
                     </table>
                     <table id="table2" class="table table-striped table-bordered table-hover" border="1" width="300" height="60" align="left">
                    

@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.mit.domain.Criteria;
 import com.mit.domain.EmailDTO;
 import com.mit.domain.PageDTO;
+import com.mit.domain.HandleVO;
 import com.mit.service.EmailService;
 import com.mit.service.OrderStatusService;
+import com.mit.service.WareHandlingService;
 import com.mit.service.transactionCloseService;
 
 import lombok.AllArgsConstructor;
@@ -26,6 +28,7 @@ public class BoardController {
 	
 	private OrderStatusService service;
 	private transactionCloseService service1;
+	private WareHandlingService whservice;
 	
 	// 전체 목록 /main(get)	-> /main.jsp
 	@GetMapping("main")
@@ -42,9 +45,11 @@ public class BoardController {
 	
 	//입고처리페이지
 	@GetMapping("wareHandling")
-	public void wareHandling() {
+	public void wareHandling(Model model, HandleVO ho) {
 		log.info("wareHandling 요청");
+		model.addAttribute("whList", whservice.getList());
 	}
+	
 	// 거래마감  
 	@GetMapping("transactionClose")
 	public void transactionClose(Model model) {
@@ -66,9 +71,9 @@ public class BoardController {
 		
 	// 거래명세서 
 	@GetMapping("statement")
-	public void statement(Model model) {
+	public void statement(Model model,Long order_num) {
 		log.info("statement 요청");
-		model.addAttribute("stList", service1.List());
+		model.addAttribute("state", service1.get(order_num));
 	}
 	
 	

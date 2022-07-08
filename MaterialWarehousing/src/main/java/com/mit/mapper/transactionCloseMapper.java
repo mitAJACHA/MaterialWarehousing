@@ -11,4 +11,6 @@ public interface transactionCloseMapper {
 	
 	public List<statementVO> List();
 	
+	public transactionCloseVO read(Long order_num);
+	
 }
