@@ -246,7 +246,7 @@
 				</div>
 				<!-- 발주현황 내역 -->
 				<div class="row">
-					<div class="col-lg-12 col-md-12 col-xs-12" align="center">
+					<div class="col-lg-12 col-md-12 col-xs-12">
 						<div class="card">
 							<div class="card-header">
 								<h4 class="card-title">OrderList</h4>
@@ -258,6 +258,7 @@
 										<option value="3">100개</option>
 									</select>
 								</div>
+								<button type="button" class="btn btn-link">report</button>
 							</div>
 							<div class="table-overflow">
 								<table class="table table-lg">
@@ -317,6 +318,8 @@
 								</table>
 							</div>
 						</div>
+					</div>
+					<div class="col-lg-12 col-md-12 col-xs-12" align="center">
 						<c:if test="${pageMaker.prev }">
                           	<a href="/orderStatus?pageNum=${pageMaker.startPage-1 }">&lt;&lt;</a>
                            </c:if>
@@ -337,7 +340,7 @@
                        	<c:if test="${pageMaker.next }">
                            	<a href="/orderStatus?pageNum=${pageMaker.endPage+1 }">&gt;&gt;</a>
                         </c:if>
-					</div>
+                    </div>
 				</div>
 			</div>
 		</div>
