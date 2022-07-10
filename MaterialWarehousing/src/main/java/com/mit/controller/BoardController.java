@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -76,6 +77,25 @@ public class BoardController {
 		log.info("wareHandling 요청");
 		model.addAttribute("whList", whservice.getList());
 	}
+	
+	//입고처리
+	@PostMapping("handleok")
+	public String handleok(HandleVO ho, RedirectAttributes rttr){
+		log.info("입고처리 요청");
+		whservice.handleok(ho);	//입고처리 요청
+		rttr.addFlashAttribute("ware_num", ho.getWare_num());	//입력된 입고번호 전송
+		return "redirect:wareHandling";
+	}
+		
+	//반품처리
+	@PostMapping("handleno")
+	public String handleno(HandleVO ho, RedirectAttributes rttr){
+		log.info("반품처리 요청");
+		whservice.handleno(ho);	//반품처리 요청
+		rttr.addFlashAttribute("ware_num", ho.getWare_num());	//입력된 입고번호 전송
+		return "redirect:wareHandling";
+	}
+
 	
 	// 거래마감  
 	@GetMapping("transactionClose")
