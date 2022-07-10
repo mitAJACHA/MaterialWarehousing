@@ -31,7 +31,7 @@
  	</select>
  	
  	<select id="handleok" resultType="com.mit.domain.HandleVO">
- 		<![CDATA[INSERT INTO warehousing(ware_num, ware_date, ware_quantity, return, order_num) values(warehousing_num.nextval, sysdate, #{ware_qauntity}, 'N', #{order_num})]]>
+ 		<![CDATA[INSERT INTO warehousing(ware_num, ware_date, ware_quantity, return, order_num) values(warehousing_num.nextval, sysdate, #{real_qauntity}, 'N', #{order_num})]]>
  	</select>
  	
  	<select id="handleno" resultType="com.mit.domain.HandleVO">

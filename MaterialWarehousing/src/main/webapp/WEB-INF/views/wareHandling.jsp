@@ -214,10 +214,10 @@
 										<th> &nbsp;&nbsp;<input class="form-control" type="date"></th>
 										<th>
 								<div class="custom-control custom-radio radio custom-control-inline">
-                                  <input type="radio" class="custom-control-input" name="chk_info" id="recentWeek" checked="">
+                                  <input type="radio" class="custom-control-input" name="chk_info" id="recentWeek">
                                   <label class="custom-control-label" for="recentWeek">최근 일주일</label></div>
                                   <div class="custom-control custom-radio radio custom-control-inline">
-                                  <input type="radio" class="custom-control-input" name="chk_info" id="recentMonth" checked="">
+                                  <input type="radio" class="custom-control-input" name="chk_info" id="recentMonth">
                                   <label class="custom-control-label" for="recentMonth">최근 한달</label></div>
 											<button type="button" class="btn btn-outline-success btn-rounded">Search</button>
 										</th>
@@ -413,18 +413,16 @@
 				 <div class="table-overflow" style="text-align:center">
 					<table class="table table-lg table-hover" style="margin-left: auto; margin-right: auto;">
 						</thead>
-						<c:forEach var="handling" items="${whList}">
 						<tbody align="center">
 						<tr>
 						<th>품목</th>
-						<th>재고</th>
+						<th>수량</th>
 						</tr>
 						<tr>
-						<td><c:out value="${handling.partname}" /></td>
-						<td><c:out value="${handling.real_quantity}" /></td>
+						<td><c:out value="${partname}" /></td>
+						<td><c:out value="${real_quantity}" /></td>
 						</tr>
 						</tbody>
-						</c:forEach>
 					</table>
 
 	      	</form>
