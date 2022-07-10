@@ -1,21 +1,34 @@
 package com.mit.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ReflectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mit.domain.Criteria;
 import com.mit.domain.EmailDTO;
+
+import com.mit.domain.transactionCloseVO;
+
+import com.mit.domain.PageDTO;
 import com.mit.domain.HandleVO;
+
 import com.mit.service.EmailService;
 import com.mit.service.OrderStatusService;
 import com.mit.service.WareHandlingService;
 import com.mit.service.transactionCloseService;
+import com.mit.service.transactionCloseServiceImpl;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -37,9 +50,25 @@ public class BoardController {
 	}
 	
 	@GetMapping("orderStatus")
-	public void orderStatus(Model model) {
+	public void orderStatus(Model model, Criteria cri) {
 		log.info("orderStatus 요청");
-		model.addAttribute("orderList", service.getList());
+		if (cri != null) {
+			if (cri.getCompanyName()=="") {
+				cri.setCompanyName(null);
+			}
+			if (cri.getEndDate()=="") {
+				cri.setEndDate(null);
+			}
+			if (cri.getPartName()=="") {
+				cri.setPartName(null);
+			}
+			if (cri.getStartDate()=="") {
+				cri.setStartDate(null);
+			}
+		}
+		
+		model.addAttribute("orderList", service.getList(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, service.count(cri)));
 	}
 	
 	//입고처리페이지
@@ -70,8 +99,9 @@ public class BoardController {
 	
 	// 거래마감  
 	@GetMapping("transactionClose")
-	public void transactionClose(Model model) {
+	public void transactionClose(Model model,RedirectAttributes rttr) {
 		log.info("transactionClose 요청");
+		rttr.addFlashAttribute("state", "modify");
 		model.addAttribute("CloseList", service1.getList());
 	}
 	
@@ -106,17 +136,18 @@ public class BoardController {
 //	 }
 //	 
 	 @RequestMapping("send.do") 
-	 public String send(@ModelAttribute EmailDTO dto, Model model) {
+	 public String send(@ModelAttribute EmailDTO dto, Model model, String message) {
 		 try {
 	           emailService.sendMail(dto); 
-	           model.addAttribute("message", "이메일이 발송되었습니다."); 
+	           model.addAttribute("message", "success");
 	 
 	    }catch (Exception e) {
 	           e.printStackTrace();
 	           model.addAttribute("message", "이메일 발송 실패..."); 
 	    }
-	        return "transactionClose"; 
+	        return "redirect:/transactionClose"; 
 	 }
-	
+	 
+	 
 	
 }

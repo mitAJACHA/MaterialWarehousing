@@ -11,7 +11,7 @@
 			tbl_contract c, tbl_company cp, warehousing w, purchase_order o,
 			employee e WHERE p.partcode = c.partcode and c.code = cp.code and
 			c.contractno = o.contract_num and w.order_num = o.order_num and
-			o.empl_num = e.empl_num and w.ware_date is not null
+			o.empl_num = e.empl_num and w.ware_date is not null ORDER BY order_num DESC
 		]]>
 
 	</select>
@@ -19,12 +19,12 @@
 	<select id="read" resultType="com.mit.domain.transactionCloseVO">
 		<![CDATA[
 			SELECT * FROM(select  o.order_num order_num, w.ware_date ware_date, p.partcode partcode, p.partname partname, cp.name name,
-e.empl_name empl_name,e.empl_email empl_email, s.deliverydate deliverydate , cp.business_number business_number,
-w.ware_quantity ware_quantity, o.order_date order_date, c.unitprice unitprice
-from tbl_part p , tbl_contract c, tbl_company cp, warehousing w, purchase_order o,
-employee e, tbl_support s 
-where p.partcode = c.partcode and c.code = cp.code and c.contractno = o.contract_num and o.order_num = w.order_num and
-o.empl_num = e.empl_num and c.partcode = s.partcode) WHERE order_num=#{order_num}
+				e.empl_name empl_name,e.empl_email empl_email, s.deliverydate deliverydate , cp.business_number business_number,
+				w.ware_quantity ware_quantity, o.order_date order_date, c.unitprice unitprice
+				from tbl_part p , tbl_contract c, tbl_company cp, warehousing w, purchase_order o,
+				employee e, tbl_support s 
+			WHERE p.partcode = c.partcode and c.code = cp.code and c.contractno = o.contract_num and o.order_num = w.order_num and
+				o.empl_num = e.empl_num and c.partcode = s.partcode and w.ware_date is not null) WHERE order_num=#{order_num}
 		]]>
 
 	</select>

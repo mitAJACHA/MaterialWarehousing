@@ -206,27 +206,35 @@
 					<div class="col-lg-12 col-md-12 col-xs-12">
 						<div class="card">
 							<div class="table-overflow">
-								<form action="search" method="post" style="margin-bottom: 0px">
+								<form action="orderStatus" method="get" style="margin-bottom: 0px">
 									<table class="table table-lg">
 										<tr>
-											<th>회사명&nbsp;<input type="text" class="form-control" name="companyName"></th>
-											<th>품목명&nbsp;<input type="text" class="form-control" name="partName"></th>
-											<th>일자&nbsp;&nbsp;<input class="form-control" type="date"></th>
-											<th> &nbsp;&nbsp;<input class="form-control" type="date"></th>
+											<th>회사명&nbsp;<input type="text" class="form-control" name="companyName" value="${pageMaker.cri.companyName }"></th>
+											<th>품목명&nbsp;<input type="text" class="form-control" name="partName" value="${pageMaker.cri.partName }"></th>
+											<th>일자&nbsp;&nbsp;<input class="form-control" type="date" name="startDate" value="${pageMaker.cri.startDate }"></th>
+											<th> &nbsp;&nbsp;<input class="form-control" type="date" name="endDate" value="${pageMaker.cri.endDate }"></th>
 											<th>
 												<div
 													class="custom-control custom-radio radio custom-control-inline">
 													<input type="radio" class="custom-control-input"
-														name="recentDate"  id="male" checked=""> <label
+														name="recentDate"  id="male"> <label
 														class="custom-control-label" for="male">최근 일주일</label>
 												</div>
 												<div
 													class="custom-control custom-radio radio custom-control-inline">
 													<input type="radio" class="custom-control-input"
-														name="recentDate" id="gender" checked=""> <label
+														name="recentDate" id="gender" > <label
 														class="custom-control-label" for="gender">최근 한달</label>
 												</div>
-												<button type="button"
+												<div id="displayNone" style="display: none"
+													class="custom-control custom-radio radio custom-control-inline">
+													<input type="radio" class="custom-control-input"
+														name="recentDate" id="gender" checked> <label
+														class="custom-control-label" for="gender"></label>
+												</div>
+												<input type="hidden" name='pageNum' value='${pageMaker.cri.pageNum }'/>
+	                            				<input type="hidden" name='amount' value='${pageMaker.cri.amount }'/>
+												<button type="submit"
 													class="btn btn-outline-success btn-rounded">Search</button>
 											</th>
 										</tr>
@@ -250,6 +258,7 @@
 										<option value="3">100개</option>
 									</select>
 								</div>
+								<button type="button" class="btn btn-link">report</button>
 							</div>
 							<div class="table-overflow">
 								<table class="table table-lg">
@@ -287,7 +296,7 @@
 													</c:choose>
 												</td>
 												<td><c:out value="${order.partname}" /></td>
-												<td><c:out value="${order.order_quantity}" /></td>
+												<td><c:out value="${order.order_quantity==0 ? '-' :order.order_quantity}" /></td>
 												<td><c:out value="${order.unitprice}" /></td>
 												<td><c:out value="${order.name}" /></td>
 												<td><c:out value="${order.business_number}" /></td>
@@ -310,6 +319,28 @@
 							</div>
 						</div>
 					</div>
+					<div class="col-lg-12 col-md-12 col-xs-12" align="center">
+						<c:if test="${pageMaker.prev }">
+                          	<a href="/orderStatus?pageNum=${pageMaker.startPage-1 }">&lt;&lt;</a>
+                           </c:if>
+                       	<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
+                       		&nbsp;<a href="/orderStatus?pageNum=${num }&amount=${pageMaker.cri.amount}&companyName=${pageMaker.cri.companyName}&partName=${pageMaker.cri.partName}&startDate=${pageMaker.cri.startDate}&endDate=${pageMaker.cri.endDate}">
+                       		
+                       		<c:if test="${pageMaker.cri.pageNum == num }" >
+                       		<%--현재 페이지를 ${param.pageNum } or ${pageMaker.cri.pageNum } or {criteria.pageNum}> --%>
+                       		<b>${num }</b>
+                       		</c:if>
+                       		
+                       		<c:if test="${pageMaker.cri.pageNum != num }" >
+                       		${num }
+                       		</c:if>
+                       		
+                       		</a>&nbsp;&nbsp;&nbsp;
+                       	</c:forEach>
+                       	<c:if test="${pageMaker.next }">
+                           	<a href="/orderStatus?pageNum=${pageMaker.endPage+1 }">&gt;&gt;</a>
+                        </c:if>
+                    </div>
 				</div>
 			</div>
 		</div>
@@ -348,6 +379,16 @@
     <script src="/resources/assets/plugins/morris/morris.min.js"></script>
     <script src="/resources/assets/plugins/raphael/raphael-min.js"></script>
     <script src="/resources/assets/js/dashborad1.js"></script>
+    
+	<script>
+		$('[name=recentDate]').on("change",function(){
+			$("input[type=date]").prop("disabled",true);
+		});
+		
+		$("input[type=date]").on("change",function(){
+			$('[name=recentDate]').prop("disabled",true);
+		});
+	</script>
     
     
   </body>
