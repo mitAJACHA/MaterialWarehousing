@@ -29,15 +29,15 @@
 	<sql id="tbl_tran">
 		<![CDATA[
 		
-			select order_num, ware_date, partcode, partname, name, empl_name, empl_email,e_check
-			from 
+			select order_num, ware_date, partcode, partname, name, empl_name, empl_email,
+			case when e_check='1' then '완료' end as e_check from
 			(select rownum rn, order_num, ware_date, partcode, partname, name, empl_name, empl_email,e_check
 			from
 			(select  o.order_num order_num, w.ware_date ware_date, p.partcode partcode, p.partname partname, cp.name name,
 			e.empl_name empl_name,e.empl_email empl_email ,w.e_check e_check
 			from tbl_part p , tbl_contract c, tbl_company cp, warehousing w, purchase_order o,
 			employee e where p.partcode = c.partcode and c.code = cp.code and c.contractno = o.contract_num and w.order_num = o.order_num and
-			o.empl_num = e.empl_num and w.ware_date is not null 
+			o.empl_num = e.empl_num and w.ware_date is not null
 		]]>
 		
 	    	<include refid="criteria"></include>
