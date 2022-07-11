@@ -70,6 +70,12 @@ public class BoardController {
 		model.addAttribute("pageMaker", new PageDTO(cri, service.count(cri)));
 	}
 	
+	//차트
+	@GetMapping("chart")
+	public void chart() {
+		log.info("chart 요청");
+	}
+	
 	//입고처리페이지
 	@GetMapping("wareHandling")
 	public void wareHandling(Model model, HandleVO ho) {

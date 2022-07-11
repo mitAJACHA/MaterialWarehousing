@@ -19,6 +19,9 @@
     <link rel="stylesheet" type="text/css" href="/resources/assets/css/main.css">
     <!-- Responsive Style -->
     <link rel="stylesheet" type="text/css" href="/resources/assets/css/responsive.css">
+    
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    
 </head>
 <body>
     <div class="app header-default side-nav-dark">
@@ -202,147 +205,22 @@
 				<!-- Breadcrumb End -->
 			</div>
 			<div class="container-fluid">
-				<div class="row">
-					<div class="col-lg-12 col-md-12 col-xs-12">
-						<div class="card">
-							<div class="table-overflow">
-								<form action="orderStatus" method="get" style="margin-bottom: 0px">
-									<table class="table table-lg">
-										<tr>
-											<th>회사명&nbsp;<input type="text" class="form-control" name="companyName" value="${pageMaker.cri.companyName }"></th>
-											<th>품목명&nbsp;<input type="text" class="form-control" name="partName" value="${pageMaker.cri.partName }"></th>
-											<th>일자&nbsp;&nbsp;<input class="form-control" type="date" name="startDate" value="${pageMaker.cri.startDate }"></th>
-											<th> &nbsp;&nbsp;<input class="form-control" type="date" name="endDate" value="${pageMaker.cri.endDate }"></th>
-											<th>
-												<div
-													class="custom-control custom-radio radio custom-control-inline">
-													<input type="radio" class="custom-control-input"
-														name="recentDate"  id="male"> <label
-														class="custom-control-label" for="male">최근 일주일</label>
-												</div>
-												<div
-													class="custom-control custom-radio radio custom-control-inline">
-													<input type="radio" class="custom-control-input"
-														name="recentDate" id="gender" > <label
-														class="custom-control-label" for="gender">최근 한달</label>
-												</div>
-												<div id="displayNone" style="display: none"
-													class="custom-control custom-radio radio custom-control-inline">
-													<input type="radio" class="custom-control-input"
-														name="recentDate" id="gender" checked> <label
-														class="custom-control-label" for="gender"></label>
-												</div>
-												<input type="hidden" name='pageNum' value='${pageMaker.cri.pageNum }'/>
-	                            				<input type="hidden" name='amount' value='${pageMaker.cri.amount }'/>
-												<button type="submit"
-													class="btn btn-outline-success btn-rounded">Search</button>
-											</th>
-										</tr>
-									</table>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- 발주현황 내역 -->
-				<div class="row">
-					<div class="col-lg-12 col-md-12 col-xs-12">
-						<div class="card">
-							<div class="card-header">
-								<h4 class="card-title">OrderList</h4>
-								<div class="selected float-right">
-									<select class="custom-select">
-										<option selected="selected" value="0">10개</option>
-										<option value="1">30개</option>
-										<option value="2">50개</option>
-										<option value="3">100개</option>
-									</select>
-								</div>
-								<a href="chart"><button type="button" class="btn btn-link">report</button></a>
-							</div>
-							<div class="table-overflow">
-								<table class="table table-lg">
-									<thead align="center">
-										<tr>
-											<th class="text-dark text-semibold">발주번호</th>
-											<th class="text-dark text-semibold">발주일자</th>
-											<th class="text-dark text-semibold">납기일자</th>
-											<th class="text-dark text-semibold">마감일자</th>
-											<th class="text-dark text-semibold">품목명</th>
-											<th class="text-dark text-semibold">수량</th>
-											<th class="text-dark text-semibold">단가</th>
-											<th class="text-dark text-semibold">협력회사명</th>
-											<th class="text-dark text-semibold">사업자등록번호</th>
-											<th class="text-dark text-semibold">담당자</th>
-											<th class="text-dark text-semibold">상태</th>
-											<th class="text-dark text-semibold">비고</th>
-										</tr>
-									</thead>
-									<c:forEach var="order" items="${orderList}">
-										<tbody align="center">
-											<tr>
-												<td><c:out value="${order.order_num==0 ? '-':order.order_num}" /></td>
-												<td>
-													<c:choose>
-														<c:when test="${order.order_date==null}">-</c:when>
-														<c:when test="${order.order_date!=null}"><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${order.order_date}"/></c:when>
-													</c:choose>
-												</td>
-												<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${order.deliverydate }"/></td>
-												<td>
-													<c:choose>
-														<c:when test="${order.ware_date==null}">-</c:when>
-														<c:when test="${order.ware_date!=null}"><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${order.ware_date}"/></c:when>
-													</c:choose>
-												</td>
-												<td><c:out value="${order.partname}" /></td>
-												<td><c:out value="${order.order_quantity==0 ? '-' :order.order_quantity}" /></td>
-												<td><c:out value="${order.unitprice}" /></td>
-												<td><c:out value="${order.name}" /></td>
-												<td><c:out value="${order.business_number}" /></td>
-												<td><c:out value="${order.empl_name==null?'-':order.empl_name}" /></td>
-												<td>
-													<c:choose>
-														<c:when test="${order.status=='발주예정'}"><a href="#" class="badge badge-primary">${order.status}</a></c:when>
-														<c:when test="${order.status=='발주서발행'}"><a href="#" class="badge badge-warning">${order.status}</a></c:when>
-														<c:when test="${order.status=='조달진행중'}"><a href="#" class="badge badge-info">${order.status}</a></c:when>
-														<c:when test="${order.status=='거래마감'}"><a href="#" class="badge badge-success">${order.status}</a></c:when>
-													</c:choose>
-												</td>
-												<td>
-													<a class="btn btn-circle btn-info text-white"><c:out value="${order.returnny==null ? '-':order.returnny}" /></a>
-												</td>
-											</tr>
-										</tbody>
-									</c:forEach>
-								</table>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-12 col-md-12 col-xs-12" align="center">
-						<c:if test="${pageMaker.prev }">
-                          	<a href="/orderStatus?pageNum=${pageMaker.startPage-1 }">&lt;&lt;</a>
-                           </c:if>
-                       	<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
-                       		&nbsp;<a href="/orderStatus?pageNum=${num }&amount=${pageMaker.cri.amount}&companyName=${pageMaker.cri.companyName}&partName=${pageMaker.cri.partName}&startDate=${pageMaker.cri.startDate}&endDate=${pageMaker.cri.endDate}">
-                       		
-                       		<c:if test="${pageMaker.cri.pageNum == num }" >
-                       		<%--현재 페이지를 ${param.pageNum } or ${pageMaker.cri.pageNum } or {criteria.pageNum}> --%>
-                       		<b>${num }</b>
-                       		</c:if>
-                       		
-                       		<c:if test="${pageMaker.cri.pageNum != num }" >
-                       		${num }
-                       		</c:if>
-                       		
-                       		</a>&nbsp;&nbsp;&nbsp;
-                       	</c:forEach>
-                       	<c:if test="${pageMaker.next }">
-                           	<a href="/orderStatus?pageNum=${pageMaker.endPage+1 }">&gt;&gt;</a>
-                        </c:if>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="card">
+                    <div class="card-header border-bottom">
+                      <h4 class="card-title">Status Chart</h4>
                     </div>
-				</div>
-			</div>
+                    <div class="card-body" align="center">
+                      <div id="columnchart_material" style="height: 500px; width: 1500px"></div>
+                    </div>
+                  </div>
+                </div> 
+             </div>
+          </div>
+          <div align="right">
+          <button type="button" class="btn btn-outline-info btn-rounded" id="print" onclick="window.print()">print</button>
+          </div>
 		</div>
 		<!-- Content Wrapper END -->
 		<!-- Footer START -->
@@ -370,9 +248,9 @@
     
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="/resources/assets/js/jquery-min.js"></script>
+    <script src="/resources/assets/js/jquery.app.js"></script>
     <script src="/resources/assets/js/popper.min.js"></script>
     <script src="/resources/assets/js/bootstrap.min.js"></script>
-    <script src="/resources/assets/js/jquery.app.js"></script>
     <script src="/resources/assets/js/main.js"></script>
 
     <!--Morris Chart-->
@@ -388,8 +266,56 @@
 		$("input[type=date]").on("change",function(){
 			$('[name=recentDate]').prop("disabled",true);
 		});
+		
+		
 	</script>
     
     
   </body>
+  <script>
+  function showChart(cc){
+	  google.charts.load('current', {'packages':['corechart', 'bar']});
+	  google.charts.setOnLoadCallback(drawStuff);
+	  
+	  function drawStuff() {
+
+	    var data = google.visualization.arrayToDataTable(cc);
+
+	    var options = {
+    	  legend: { position: 'none' },
+          chart: {
+            title: '현황별 발주 수',
+            subtitle: 'Order Staus',
+          },
+    	  series: {
+    		  0: {color: '#24d5d8'}
+    	  }
+	        };
+
+	    var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+	    chart.draw(data, google.charts.Bar.convertOptions(options));
+	  }
+  }
+  
+  function Chart(){
+		$.ajax({
+			url:"/api/description",
+			type:"get",
+			async: false,
+			cache:false,
+			success:function(data){
+				var cc= [['status', 'cn']];
+				 data.forEach((statusList) => {
+					 cc.push([statusList.status,statusList.cn]);
+				 });
+				 
+				 
+				showChart(cc);
+			}
+		});
+		
+	}
+  Chart();
+  </script>
 </html>
