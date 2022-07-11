@@ -161,12 +161,12 @@ public class BoardController {
 //	 }
 
 //	 
-	 @RequestMapping("send.do") 
+	 @RequestMapping("send") 
 	 public String send(@ModelAttribute EmailDTO dto, Model model,Criteria cri,Long order_num) {
 		 
 	           emailService.sendMail(dto); 
 	        
-//	           model.addAttribute("message", "success");  
+	           model.addAttribute("message", "success");  
 	           service1.modify(order_num);
 	    
 	           return "redirect:/transactionClose"; 

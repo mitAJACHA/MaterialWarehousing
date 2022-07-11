@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class transactionCloseVO {
-	private int order_num; //발주번호
+	private Long order_num; //발주번호
 	private Date ware_date; //입고일
 	private int partcode; //품목코드
 	private String partname;	//품목명
@@ -18,6 +18,6 @@ public class transactionCloseVO {
 	private int ware_quantity; //수량
 	private Date order_date; //발주일자
 	private int unitprice;//단가
-	private int e_check;
+	private String e_check;
 
 }

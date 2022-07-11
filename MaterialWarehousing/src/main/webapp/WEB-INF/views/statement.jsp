@@ -82,6 +82,7 @@
                       <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                         <thead>
                             <tr>
+                            	<th>No</th>
                                 <th>품목코드</th>
                                 <th>품목명</th>
                                 <th>수량</th>
@@ -93,6 +94,7 @@
                         </thead>
                         <tbody>
                             <tr class="odd gradeX">
+                            	 <td>1</td>
                                 <td><c:out value="${state.partcode}" /></td>
                                 <td><c:out value="${state.partname}" /></td>
                                 <td><c:out value="${state.ware_quantity}" /></td>
@@ -102,6 +104,48 @@
                                  
                                   
                             </tr>
+                             <tr class="odd gradeX">
+                                <td>2</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                
+                            </tr>
+                             <tr class="odd gradeX">
+                                <td>3</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                
+                                
+                            </tr>
+                             <tr class="odd gradeX">
+                                <td>4</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                
+                            </tr>
+                             <tr class="odd gradeX">
+                                <td>5</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                
+                            </tr>
+                              
                          
                           
                         </tbody>
@@ -114,6 +158,6 @@
                         <td><fmt:formatNumber value="${(state.unitprice*state.ware_quantity)*1.1}"  pattern="#,###"/></td>
                         </tr><br>
                        </table>
-                    <button type="button" class="btn btn-inverse-dark" style="float:right;" >출력</button>
+                       <button type="button" class="btn btn-inverse-dark" id="print" onclick="window.print()"style="float:right;">인쇄</button>
 </body>
 </html>
