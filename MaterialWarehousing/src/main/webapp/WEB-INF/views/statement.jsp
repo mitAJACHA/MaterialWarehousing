@@ -98,7 +98,8 @@
                                 <td><c:out value="${state.ware_quantity}" /></td>
                                 <td><c:out value="${state.unitprice}" /></td>
                                 <td><c:out value="${state.unitprice*state.ware_quantity}" /></td>
-                                 <td class="center">X</td>
+                                <td><fmt:formatNumber value="${(state.unitprice*state.ware_quantity)*1.1}"  pattern="#,###"/></td>
+                                 
                                   
                             </tr>
                          
@@ -109,7 +110,8 @@
                     <table id="table2" class="table table-striped table-bordered table-hover" border="1" width="300" height="60" align="left">
                    
                         <tr>
-                        <td>총 거래 금액</td><td>15,000</td>
+                        <td>총 거래 금액</td>
+                        <td><fmt:formatNumber value="${(state.unitprice*state.ware_quantity)*1.1}"  pattern="#,###"/></td>
                         </tr><br>
                        </table>
                     <button type="button" class="btn btn-inverse-dark" style="float:right;" >출력</button>
