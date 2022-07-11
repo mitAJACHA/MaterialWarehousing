@@ -73,9 +73,24 @@ public class BoardController {
 	
 	//입고처리페이지
 	@GetMapping("wareHandling")
-	public void wareHandling(Model model, HandleVO ho) {
+	public void wareHandling(Model model, Criteria cri) {
 		log.info("wareHandling 요청");
-		model.addAttribute("whList", whservice.getList());
+		if (cri != null) {
+			if (cri.getCompanyName()=="") {
+				cri.setCompanyName(null);
+			}
+			if (cri.getEndDate()=="") {
+				cri.setEndDate(null);
+			}
+			if (cri.getPartName()=="") {
+				cri.setPartName(null);
+			}
+			if (cri.getStartDate()=="") {
+				cri.setStartDate(null);
+			}
+		}
+		model.addAttribute("whList", whservice.getList(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, whservice.count(cri)));
 	}
 	
 	//입고처리
