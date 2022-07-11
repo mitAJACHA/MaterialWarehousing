@@ -277,6 +277,7 @@
 											<th class="text-dark text-semibold">거래명세서</th>
 											<th class="text-dark text-semibold">담당자명</th>
 											<th class="text-dark text-semibold">이메일</th>
+											<th class="text-dark text-semibold">이메일 전송</th>
 											
 										
 										</tr>
@@ -294,6 +295,7 @@
 													'test','left=450,width=800,height=900,location=no,status=no,scrollbars=yes');">보기</button></td>
 												<td id="name"><c:out value="${close.empl_name}" /></td>
 												<td id="email"><c:out value="${close.empl_email}" /></td>
+												<td id="email"><c:out value="${close.e_check}" /></td>
 																				
 										</tr>
 										
@@ -414,6 +416,7 @@
     	var pname = td.eq(4).text()+", ";		
     	var cname= td.eq(7).text()+", ";		
     	var email = td.eq(8).text()+", ";		
+    	var order_num =td.eq(1).text()+", ";	
     	
     	var tdArray = new Array();
     	checkbox.each(function(i){
@@ -423,11 +426,13 @@
         	pname=td.eq(4).text()+" 입고 마감되었습니다."; 		
         	cname=td.eq(7).text(); 		
         	email=td.eq(8).text();	
+        	order_num=td.eq(1).text(); 
         	
         	tdArray.push(code);
         	tdArray.push(pname);
         	tdArray.push(cname);
         	tdArray.push(email);
+        	tdArray.push(order_num);
         
         	});
         	$('#array1').html(tdArray[0]);
@@ -435,6 +440,7 @@
         	$('input[name=receiveMail]').attr('value',tdArray[3]);
         	$('input[name=subject]').attr('value',tdArray[0]);
         	$('input[name=message]').attr('value',tdArray[1]);
+        	$('input[name=order_num]').attr('value',tdArray[4]);
         	
         	
         	
@@ -491,11 +497,11 @@
                           <input type="text"  name="subject" class="form-control" id="exampleInputName1" placeholder="Email">
                         </div>
                         
-          
                         <div class="form-group m-b-20">
                           <label for="exampleTextarea1">내용</label>
                          <input type="text"  name="message" class="form-control" id="exampleTextarea1" rows="4">
                         </div>
+                        <input type="text" name="order_num" >
                         
                        
 	      </div>
@@ -518,7 +524,7 @@
 			for(var i = 0; i < para.length; i++) {
 				if(para[i] == 'success') {
 					alert('success');
-					var redirect = link.replaceAll("message=발송 되었습니다.", "");
+					var redirect = link.replaceAll("success", "");
 					location.href=redirect;
 				}
 			}

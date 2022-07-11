@@ -33,6 +33,12 @@ public class transactionCloseServiceImpl implements transactionCloseService {
 		return mapper.count(cri);
 	}
 
+	@Override
+	public boolean modify(Long order_num) {
+		return (mapper.update(order_num)==1);
+	}
+	
+	
 
 	
 

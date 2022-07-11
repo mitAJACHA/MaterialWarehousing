@@ -12,4 +12,8 @@ public interface transactionCloseService {
 	
 	public Long count(Criteria cri);
 
+	public boolean modify(Long order_num);
+
+	
+
 }

@@ -18,5 +18,6 @@ public class transactionCloseVO {
 	private int ware_quantity; //수량
 	private Date order_date; //발주일자
 	private int unitprice;//단가
+	private int e_check;
 
 }
