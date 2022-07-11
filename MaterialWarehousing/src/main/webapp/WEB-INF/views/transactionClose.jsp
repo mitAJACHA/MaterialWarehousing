@@ -191,51 +191,42 @@
 		<div class="main-content">
 			<div class="container-fluid">
 				<!-- Breadcrumb Start -->
-				<div class="breadcrumb-wrapper row">
-					<div class="col-12 col-lg-3 col-md-6">
-						<h4 class="page-title">거래마감</h4>
-					</div>
-					<div class="col-12 col-lg-9 col-md-6">
-						<ol class="breadcrumb float-right">
-							<li><a href="index.html">Home</a></li>
-							<li class="active">/ Dashboard</li>
-						</ol>
-					</div>
-				</div>
+				 <div class="breadcrumb-wrapper row">
+                <div class="col-12 col-lg-3 col-md-6">
+                  <h3 class="page-title"><strong>거래마감</strong></h3>
+                  <h5>거래마감페이지입니다</h6>
+                </div>
+                <div class="col-12 col-lg-9 col-md-6">
+                  <ol class="breadcrumb float-right">
+                    <li><a href="index.html">조달관리 시스템</a></li>
+                    <li class="active">/ 거래마감</li>
+                  </ol>
+                </div>
+              </div>
 				<!-- Breadcrumb End -->
-			</div>
-			<div class="container-fluid">
+			  </div>
+            <div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-xs-12">
 						<div class="card">
 							<div class="table-overflow">
-								<form action="search" method="post" style="margin-bottom: 0px">
-									<table class="table table-lg">
-										<tr>
-											<th>회사명&nbsp;&nbsp;<input type="text" id="form-control"></th>
-											<th>품목명&nbsp;&nbsp;<input type="text" id="form-control"></th>
-											<th>일자&nbsp;&nbsp; <input type="date" id="form-control"
-												name="startDate">&nbsp; ~ &nbsp;<input type="date"
-												id="form-control" name="endDate"></th>
-											<th>
-												<div
-													class="custom-control custom-radio radio custom-control-inline">
-													<input type="radio" class="custom-control-input"
-														name="recentDate" id="recentDate" checked=""> <label
-														class="custom-control-label" for="male">최근 일주일</label>
-												</div>
-												<div
-													class="custom-control custom-radio radio custom-control-inline">
-													<input type="radio" class="custom-control-input"
-														name="recentDate" id="recentDate" checked=""> <label
-														class="custom-control-label" for="gender">최근 한달</label>
-												</div>
-												<button type="button"
-													class="btn btn-outline-success btn-rounded">Search</button>
-											</th>
-										</tr>
-									</table>
-								</form>
+								<table class="table table-lg">
+									<tr>
+										<th>회사명&nbsp;&nbsp;<input class="form-control" type="text"></th>
+										<th>품목명&nbsp;&nbsp;<input class="form-control" type="text"></th>
+										<th>일자&nbsp;&nbsp;<input class="form-control" type="date"></th>
+										<th> &nbsp;&nbsp;<input class="form-control" type="date"></th>
+										<th>
+								<div class="custom-control custom-radio radio custom-control-inline">
+                                  <input type="radio" class="custom-control-input" name="chk_info" id="recentWeek" checked="">
+                                  <label class="custom-control-label" for="recentWeek">최근 일주일</label></div>
+                                  <div class="custom-control custom-radio radio custom-control-inline">
+                                  <input type="radio" class="custom-control-input" name="chk_info" id="recentMonth" checked="">
+                                  <label class="custom-control-label" for="recentMonth">최근 한달</label></div>
+											<button type="button" class="btn btn-outline-success btn-rounded">Search</button>
+										</th>
+									</tr>
+								</table>
 							</div>
 						</div>
 					</div>
@@ -245,8 +236,8 @@
 					<div class="col-lg-12 col-md-12 col-xs-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">Best Performing Clients</h4>
-								<td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#handlingmodal" id="emailsend">발송</button></td>
+								<h4 class="card-title">LIST</h4>
+								<td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#handlingmodal" id="emailsend">이메일 전송</button></td>
 								<div class="selected float-right">
 									<select class="custom-select">
 										<option selected="selected" value="0">Monthly</option>
