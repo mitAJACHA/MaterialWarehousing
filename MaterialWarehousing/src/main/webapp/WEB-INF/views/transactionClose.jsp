@@ -210,23 +210,40 @@
 					<div class="col-lg-12 col-md-12 col-xs-12">
 						<div class="card">
 							<div class="table-overflow">
+							<form action="transactionClose" method="get" style="margin-bottom: 0px">
 								<table class="table table-lg">
 									<tr>
-										<th>회사명&nbsp;&nbsp;<input class="form-control" type="text"></th>
-										<th>품목명&nbsp;&nbsp;<input class="form-control" type="text"></th>
-										<th>일자&nbsp;&nbsp;<input class="form-control" type="date"></th>
-										<th> &nbsp;&nbsp;<input class="form-control" type="date"></th>
+										<th>회사명&nbsp;&nbsp;<input class="form-control" type="text" name="companyName" value="${pageMaker.cri.companyName}"></th>
+										<th>품목명&nbsp;&nbsp;<input class="form-control" type="text" name="partName" value="${pageMaker.cri.partName}"></th>
+										<th>일자&nbsp;&nbsp;<input class="form-control" type="date" name="startDate" value="${pageMaker.cri.startDate}"></th>
+										<th> &nbsp;&nbsp;<input class="form-control" type="date" name="endDate" value="${pageMaker.cri.endDate}"></th>
 										<th>
-								<div class="custom-control custom-radio radio custom-control-inline">
-                                  <input type="radio" class="custom-control-input" name="chk_info" id="recentWeek" checked="">
-                                  <label class="custom-control-label" for="recentWeek">최근 일주일</label></div>
-                                  <div class="custom-control custom-radio radio custom-control-inline">
-                                  <input type="radio" class="custom-control-input" name="chk_info" id="recentMonth" checked="">
-                                  <label class="custom-control-label" for="recentMonth">최근 한달</label></div>
-											<button type="button" class="btn btn-outline-success btn-rounded">Search</button>
-										</th>
+								<div
+													class="custom-control custom-radio radio custom-control-inline">
+													<input type="radio" class="custom-control-input"
+														name="recentDate"  id="male"> <label
+														class="custom-control-label" for="male">최근 일주일</label>
+												</div>
+												<div
+													class="custom-control custom-radio radio custom-control-inline">
+													<input type="radio" class="custom-control-input"
+														name="recentDate" id="gender" > <label
+														class="custom-control-label" for="gender">최근 한달</label>
+												</div>
+												<div id="displayNone" style="display: none"
+													class="custom-control custom-radio radio custom-control-inline">
+													<input type="radio" class="custom-control-input"
+														name="recentDate" id="gender" checked> <label
+														class="custom-control-label" for="gender"></label>
+												</div>
+												<input type="hidden" name='pageNum' value='${pageMaker.cri.pageNum}'/>
+	                            				<input type="hidden" name='amount' value='${pageMaker.cri.amount}'/>
+												<button type="submit"
+													class="btn btn-outline-success btn-rounded">Search</button>
+											</th>
 									</tr>
 								</table>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -269,11 +286,12 @@
 											<tr>
 											<td><input type="checkbox" id="user_CheckBox" class="rowChk" onclick="clickCheck(this)"></td>
 											<td><c:out value="${close.order_num}" /></td>
-												<td><fmt:formatDate pattern="yyyy-MM-dd " value="${close.ware_date }"/></td>
+												<td><fmt:formatDate pattern="yyyy-MM-dd " value="${close.ware_date}"/></td>
 												<td id="code"><c:out value="${close.partcode}" /></td>
 												<td id="pname"><c:out value="${close.partname}" /></td>
 												<td><c:out value="${close.name}" /></td>
-												<td><button class="btn btn-warning" onclick="location.href='/statement?order_num=${close.order_num}'">보기</button></td>
+													<td><button class="btn btn-warning" onclick="window.open('/statement?order_num=${close.order_num}',
+													'test','left=450,width=800,height=900,location=no,status=no,scrollbars=yes');">보기</button></td>
 												<td id="name"><c:out value="${close.empl_name}" /></td>
 												<td id="email"><c:out value="${close.empl_email}" /></td>
 																				
@@ -282,10 +300,31 @@
 									</tbody>
 									</c:forEach>
 								</table>
-								<div id="array"></div>
 							</div>
 						</div>
 					</div>
+					<div class="col-lg-12 col-md-12 col-xs-12" align="center">
+						<c:if test="${pageMaker.prev}">
+                          	<a href="/transactionClose?pageNum=${pageMaker.startPage-1}">&lt;&lt;</a>
+                           </c:if>
+                       	<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
+                       		&nbsp;<a href="/transactionClose?pageNum=${num}&amount=${pageMaker.cri.amount}&companyName=${pageMaker.cri.companyName}&partName=${pageMaker.cri.partName}&startDate=${pageMaker.cri.startDate}&endDate=${pageMaker.cri.endDate}">
+                       		
+                       		<c:if test="${pageMaker.cri.pageNum == num}" >
+                       		<%--현재 페이지를 ${param.pageNum } or ${pageMaker.cri.pageNum } or {criteria.pageNum}> --%>
+                       		<b>${num }</b>
+                       		</c:if>
+                       		
+                       		<c:if test="${pageMaker.cri.pageNum != num }" >
+                       		${num }
+                       		</c:if>
+                       		
+                       		</a>&nbsp;&nbsp;&nbsp;
+                       	</c:forEach>
+                       	<c:if test="${pageMaker.next}">
+                           	<a href="/transactionClose?pageNum=${pageMaker.endPage+1}">&gt;&gt;</a>
+                        </c:if>
+                    </div>
 				</div>
 			</div>
 		</div>
@@ -352,6 +391,14 @@
 		})
     });
 	</script>
+	
+	
+	
+	
+	
+
+    
+	
 
 	
 	

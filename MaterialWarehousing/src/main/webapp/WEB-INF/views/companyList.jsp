@@ -246,7 +246,7 @@
 				    <div class="col-12 grid-margin">
                   <div class="card">
                     <div class="card-header border-bottom">
-                      <h4 class="card-title">품목등록</h4>
+                      <h4 class="card-title">업체등록</h4>
                     </div>
                     <div class="card-body">
                       <form class="form-sample">
@@ -307,7 +307,7 @@
                         <div class="row">
                           <div class="col-md-6">
                             <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">대표자 연락처</label>
+                              <label class="col-sm-3 col-form-label">대표자연락처</label>
                               <div class="col-sm-9">
                                 <input type="text" class="form-control">
                               </div>
@@ -325,7 +325,7 @@
                         <div class="row">
                           <div class="col-md-6">
                             <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">계산서 발행 여부</label>
+                              <label class="col-sm-3 col-form-label">계산서  발행여부</label>
                               <div class="col-sm-9">
                                 <input type="text" class="form-control">
                               </div>
@@ -361,7 +361,7 @@
                         <div class="row">
                           <div class="col-md-6">
                             <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">사업자 번호</label>
+                              <label class="col-sm-3 col-form-label">사업자번호</label>
                               <div class="col-sm-9">
                                 <input type="text" class="form-control">
                               </div>
@@ -379,7 +379,7 @@
                         <div class="row">
                           <div class="col-md-6">
                             <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">거래 개시일</label>
+                              <label class="col-sm-3 col-form-label">거래개시일</label>
                               <div class="col-sm-9">
                                 <input type="text" class="form-control">
                               </div>
@@ -397,7 +397,7 @@
                         <div class="row">
                           <div class="col-md-6">
                             <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">거래 종료일</label>
+                              <label class="col-sm-3 col-form-label">거래종료일</label>
                               <div class="col-sm-9">
                                 <input type="text" class="form-control">
                               </div>
@@ -405,7 +405,7 @@
                           </div>
                           <div class="col-md-6">
                             <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">매출액 규모</label>
+                              <label class="col-sm-3 col-form-label">매출액규모</label>
                               <div class="col-sm-9">
                                 <input type="text" class="form-control">
                               </div>
@@ -439,90 +439,32 @@
 							</div>
 							<div class="table-overflow">
 								<table class="table table-lg">
-									<thead>
+									<thead align="center">
 										<tr>
-											<th class="text-dark text-semibold">순번</th>
-											<th class="text-dark text-semibold">품목코드</th>
-											<th class="text-dark text-semibold">품목명</th>
-											<th class="text-dark text-semibold">품목구분</th>
-											<th class="text-dark text-semibold">약칭</th>
-											<th class="text-dark text-semibold">품목설명</th>
+											<th class="text-dark text-semibold">번호</th>
+											<th class="text-dark text-semibold">업태</th>
+											<th class="text-dark text-semibold">업체명</th>
+											<th class="text-dark text-semibold">대표자명</th>
+											<th class="text-dark text-semibold">사업자번호</th>
+											<th class="text-dark text-semibold">전화번호</th>
+											<th class="text-dark text-semibold">주소</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<td>
-												<div class="list-media">
-													<div class="list-item">
-														<div class="media-img">
-															<a class="btn btn-circle btn-info text-white">TM</a>
-														</div>
-													
-													</div>
-												</div>
-											</td>
-											<td>CRM Software</td>
-											<td>Onsite</td>
-											<td><a href="#" class="badge badge-danger">Processing</a></td>
-											<td>$423.00</td>
-											<td>$168.00</td>
+									<c:forEach var="cp" items="${CompanyList}">
+										<tbody align="center">
+											<tr>
+											<td><c:out value="${cp.code}" /></td>
+												<td><c:out value="${cp.category}" /></td>
+												<td><c:out value="${cp.name}" /></td>
+												<td><c:out value="${cp.owner}" /></td>
+												<td><c:out value="${cp.business_number}" /></td>
+												<td><c:out value="${cp.contact}" /></td>
+												<td><c:out value="${cp.address}" /></td>
+																				
+										</tr>
 										
-										</tr>
-										<tr>
-											<td>
-												<div class="list-media">
-													<div class="list-item">
-														<div class="media-img">
-															<a class="btn btn-circle btn-danger text-white">SM</a>
-														</div>
-														
-													</div>
-												</div>
-											</td>
-											<td>GIS Software</td>
-											<td>Marketplace</td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td>$665.67</td>
-											<td>$665.67</td>
-											
-										</tr>
-										<tr>
-											<td>
-												<div class="list-media">
-													<div class="list-item">
-														<div class="media-img">
-															<a class="btn btn-circle btn-success text-white">DR</a>
-														</div>
-														
-													</div>
-												</div>
-											</td>
-											<td>Accounting Software</td>
-											<td>Others</td>
-											<td><a href="#" class="badge badge-info">On-hold</a></td>
-											<td>$576.00</td>
-											<td>$476.00</td>
-											
-										</tr>
-										<tr>
-											<td>
-												<div class="list-media">
-													<div class="list-item">
-														<div class="media-img">
-															<a class="btn btn-circle btn-primary text-white">UD</a>
-														</div>
-														
-													</div>
-												</div>
-											</td>
-											<td>Sales Dashboard</td>
-											<td>Marketplace</td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td>$234.00</td>
-											<td>$234.00</td>
-											
-										</tr>
 									</tbody>
+									</c:forEach>
 								</table>
 							</div>
 						</div>

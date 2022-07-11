@@ -6,13 +6,6 @@ import lombok.Data;
 
 @Data
 public class transactionCloseVO {
-//	private Long order_num;
-//	private Date ware_date;
-//	private int partcode;
-//	private String partname;
-//	private String name;
-//	private String empl_name;
-//	private String empl_email;
 	private int order_num; //발주번호
 	private Date ware_date; //입고일
 	private int partcode; //품목코드
