@@ -2,19 +2,53 @@
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.mit.mapper.transactionCloseMapper">
+	<sql id="criteria">
+    	<trim prefixOverrides="AND">
+   			<trim prefix="AND">
+   				<if test='companyName!=null'>
+   					AND name like'%'||#{companyName}||'%'
+   				</if>
+   				<if test='partName!=null'>
+   					AND partname like'%'||#{partName}||'%'
+   				</if>
+   				<if test='startDate!=null and endDate ==null'>
+   					<![CDATA[ AND ware_date => TO_TIMESTAMP(#{startDate}, 'YYYY-MM-DD')  ]]>
+   				</if>
+   				<if test='startDate==null and endDate !=null'>
+   					<![CDATA[ AND ware_date <= TO_TIMESTAMP(#{endDate}, 'YYYY-MM-DD') ]]>
+   				</if>
+   				<if test='startDate!=null and endDate !=null'>
+   					AND ware_date between TO_TIMESTAMP(#{startDate}, 'YYYY-MM-DD')-1 and TO_TIMESTAMP(#{endDate}, 'YYYY-MM-DD')+1 
+   					<!-- 날짜 검색 기능 개선 (between은 양쪽 날짜가 포함되지 않아 -1, +1 함)-->
+   				</if>
+   			</trim>
+    	</trim>
+    </sql>
+    
 	
-	<select id="getList" resultType="com.mit.domain.transactionCloseVO">
+	<sql id="tbl_tran">
 		<![CDATA[
-			SELECT o.order_num order_num, w.ware_date ware_date, 
-			p.partcode partcode,p.partname partname, cp.name name,
-			e.empl_name empl_name,e.empl_email empl_email FROM tbl_part p , 
-			tbl_contract c, tbl_company cp, warehousing w, purchase_order o,
-			employee e WHERE p.partcode = c.partcode and c.code = cp.code and
-			c.contractno = o.contract_num and w.order_num = o.order_num and
-			o.empl_num = e.empl_num and w.ware_date is not null ORDER BY order_num DESC
+		
+			select order_num, ware_date, partcode, partname, name, empl_name, empl_email,
+			case when e_check='1' then '완료' end as e_check from
+			(select rownum rn, order_num, ware_date, partcode, partname, name, empl_name, empl_email,e_check
+			from
+			(select  o.order_num order_num, w.ware_date ware_date, p.partcode partcode, p.partname partname, cp.name name,
+			e.empl_name empl_name,e.empl_email empl_email ,w.e_check e_check
+			from tbl_part p , tbl_contract c, tbl_company cp, warehousing w, purchase_order o,
+			employee e where p.partcode = c.partcode and c.code = cp.code and c.contractno = o.contract_num and w.order_num = o.order_num and
+			o.empl_num = e.empl_num and w.ware_date is not null
+		]]>
+		
+	    	<include refid="criteria"></include>
+    	
+		<![CDATA[        
+		       	order by order_num desc)
+	    	WHERE ROWNUM <= (#{pageNum} * #{amount}))
+		WHERE rn > ((#{pageNum}-1) * #{amount}) 
 		]]>
 
-	</select>
+	</sql>
 	
 	<select id="read" resultType="com.mit.domain.transactionCloseVO">
 		<![CDATA[
@@ -28,5 +62,20 @@
 		]]>
 
 	</select>
+	
+	<select id="count" resultType="long">
+		select count(*) from(<include refid="tbl_tran"></include>)
+	
+	
+	</select>
+	
+	<select id="getList" resultType="com.mit.domain.transactionCloseVO">
+	<include refid="tbl_tran"></include>
+		
+	</select>
+	<update id="update">
+	update  warehousing set  e_check=1 where  order_num=#{order_num}
+	</update>
+	
 	
 </mapper>
