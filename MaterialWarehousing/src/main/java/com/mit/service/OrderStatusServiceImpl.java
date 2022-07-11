@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.mit.domain.Criteria;
 import com.mit.domain.OrderStatusVO;
+import com.mit.domain.StatusVO;
 import com.mit.mapper.OrderStatusMapper;
 
 import lombok.AllArgsConstructor;
@@ -25,6 +26,11 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 	@Override
 	public Long count(Criteria cri) {
 		return mapper.count(cri);
+	}
+
+	@Override
+	public List<StatusVO> description(Criteria cri) {
+		return mapper.description(cri);
 	}
 
 }

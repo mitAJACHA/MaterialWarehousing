@@ -86,4 +86,9 @@
 		select count(*) from(<include refid="tbl_orderStatus"></include>)
 	</select>
 	
+	<select id="description" resultType="com.mit.domain.StatusVO">
+		select count(*) cn, status from(<include refid="tbl_orderStatus"></include>)
+		group by status
+	</select>
+	
 </mapper>
