@@ -8,6 +8,14 @@
 	select code,category, name, owner, business_number, contact,address from tbl_company
 	</select>
 	
-	
+	<insert id="register">
+		insert into tbl_board 
+			(code, name, domestic_foreign, deal_type, owner, contact, address, currency, invoice_issue, 
+			account, company_size, business_number,  taxcode, category, start_date, end_date, sales)
+		values 
+			(company_code.nextval, #{name}, #{domestic_foreign}, #{deal_type}, #{owner}, #{contact}, 
+			#{address}, #{currency}, #{invoice_issue}, #{account}, #{company_size}, #{company_size}, 
+			#{business_number}, #{taxcode}, #{category}, #{start_date}, #{end_date}, #{sales})
+	</insert>
 	
 </mapper>
