@@ -9,16 +9,13 @@
 	</select>
 	
 	<insert id="insert">
-	<![CDATA[
-		insert into tbl_company
+		insert into tbl_board 
 			(code, name, domestic_foreign, deal_type, owner, contact, address, currency, invoice_issue, 
 			account, company_size, business_number,  taxcode, category, start_date, end_date, sales)
 		values 
-		
-			(COMPANY_CODE.NEXTVAL, ]]> #{name}, #{domestic_foreign}, #{deal_type}, #{owner}, #{contact}, 
-			#{address}, #{currency}, #{invoice_issue}, #{account}, #{company_size}, #{business_number}, 
-			#{taxcode}, #{category}, #{start_date}, #{end_date}, #{sales}<![CDATA[ ) ]]>
+			(company_code.nextval, #{name}, #{domestic_foreign}, #{deal_type}, #{owner}, #{contact}, 
+			#{address}, #{currency}, #{invoice_issue}, #{account}, #{company_size},
+			#{business_number}, #{taxcode}, #{category}, #{start_date}, #{end_date}, #{sales})
 	</insert>
-	
 	
 </mapper>
