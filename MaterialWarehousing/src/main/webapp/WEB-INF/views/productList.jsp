@@ -210,15 +210,13 @@
 								<table class="table table-lg">
 									<tr>
                          				<th>품목코드<input type="text" class="form-control" id="exampleInputUsername1"></th>
-                         				<th>도면번호<input type="text" class="form-control" id="exampleInputUsername1"></th>
                          				<th>품목명<input type="text" class="form-control" id="exampleInputUsername1"></th>
-                         				<th>공용여부<input type="text" class="form-control" id="exampleInputUsername1"></th>
                          				<th>약칭<input type="text" class="form-control" id="exampleInputUsername1"></th>
                          				<th>품목구분<input type="text" class="form-control" id="exampleInputUsername1"></th>
-										
-											
+										<th>회로도 번호<input type="text" class="form-control" id="exampleInputUsername1"></th>
+										<th>부가설명<input type="text" class="form-control" id="exampleInputUsername1"></th>	
 											<th><button type="button" class="btn btn-outline-success btn-rounded">Search</button>&nbsp;&nbsp;
-											<button class="btn btn-common btn-rounded">Register</button></th>
+											<button id="testBtn" class="btn btn-common btn-rounded">Register</button></th>
 									</tr>
 								</table>
 							</div>
@@ -238,92 +236,29 @@
                                
 							</div>
 							<div class="table-overflow">
-								<table class="table table-lg">
-									<thead>
+							<table class="table table-lg table-hover">
+								<thead class="table-light" align="center">
 										<tr>
-											<th class="text-dark text-semibold">순번</th>
 											<th class="text-dark text-semibold">품목코드</th>
 											<th class="text-dark text-semibold">품목명</th>
-											<th class="text-dark text-semibold">품목구분</th>
 											<th class="text-dark text-semibold">약칭</th>
-											<th class="text-dark text-semibold">품목설명</th>
-										
+											<th class="text-dark text-semibold">품목구분</th>
+											<th class="text-dark text-semibold">회로도번호</th>
+											<th class="text-dark text-semibold">부가설명</th>
 										</tr>
 									</thead>
-									<tbody>
+									<c:forEach var="part" items="${ProductList}">
+									<tbody align="center">
 										<tr>
-											<td>
-												<div class="list-media">
-													<div class="list-item">
-														<div class="media-img">
-															<a class="btn btn-circle btn-info text-white">TM</a>
-														</div>
-													
-													</div>
-												</div>
-											</td>
-											<td>CRM Software</td>
-											<td>Onsite</td>
-											<td><a href="#" class="badge badge-danger">Processing</a></td>
-											<td>$423.00</td>
-											<td>$168.00</td>
-										
-										</tr>
-										<tr>
-											<td>
-												<div class="list-media">
-													<div class="list-item">
-														<div class="media-img">
-															<a class="btn btn-circle btn-danger text-white">SM</a>
-														</div>
-														
-													</div>
-												</div>
-											</td>
-											<td>GIS Software</td>
-											<td>Marketplace</td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td>$665.67</td>
-											<td>$665.67</td>
-											
-										</tr>
-										<tr>
-											<td>
-												<div class="list-media">
-													<div class="list-item">
-														<div class="media-img">
-															<a class="btn btn-circle btn-success text-white">DR</a>
-														</div>
-														
-													</div>
-												</div>
-											</td>
-											<td>Accounting Software</td>
-											<td>Others</td>
-											<td><a href="#" class="badge badge-info">On-hold</a></td>
-											<td>$576.00</td>
-											<td>$476.00</td>
-											
-										</tr>
-										<tr>
-											<td>
-												<div class="list-media">
-													<div class="list-item">
-														<div class="media-img">
-															<a class="btn btn-circle btn-primary text-white">UD</a>
-														</div>
-														
-													</div>
-												</div>
-											</td>
-											<td>Sales Dashboard</td>
-											<td>Marketplace</td>
-											<td><a href="#" class="badge badge-success">Done</a></td>
-											<td>$234.00</td>
-											<td>$234.00</td>
-											
+											<td><c:out value="${part.partcode}" /></td>
+											<td><c:out value="${part.partname}" /></td>
+											<td><c:out value="${part.nickname}" /></td>
+											<td><c:out value="${part.library}" /></td>
+											<td><c:out value="${part.drw_no}" /></td>
+											<td><c:out value="${part.remark}" /></td>
 										</tr>
 									</tbody>
+									</c:forEach>
 								</table>
 							</div>
 						</div>
@@ -347,8 +282,8 @@
 			</div>
 		</footer>
 		<!-- Footer END -->
-
 </div>
+
 <!-- Page Container END -->
     <!-- Preloader -->
     <div id="preloader">
