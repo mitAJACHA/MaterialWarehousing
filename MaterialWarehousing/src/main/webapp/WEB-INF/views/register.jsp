@@ -225,7 +225,7 @@
                             <div class="form-group row">
                               <label class="col-sm-3 col-form-label">업체명</label>
                               <div class="col-sm-9">
-                                <input type="text" class="form-control" name="name">
+                                <input type="text" class="form-control" name="name" required>
                               </div>
                             </div>
                           </div>
@@ -233,7 +233,7 @@
                             <div class="form-group row">
                               <label class="col-sm-3 col-form-label">내외자 구분</label>
                               <div class="col-sm-9">
-                                <input type="text" class="form-control" name="domestic_foreign">
+                                <input type="text" class="form-control" name="domestic_foreign" required>
                               </div>
                             </div>
                           </div>
@@ -243,7 +243,7 @@
                             <div class="form-group row">
                               <label class="col-sm-3 col-form-label">거래형태</label>
                               <div class="col-sm-9">
-                                <select class="form-control" name="deal_type">
+                                <select class="form-control" name="deal_type" required>
                                   <option>선택</option>
                                   <option value="임가공(도급)">임가공(도급)</option>
                                   <option value="임가공(사급)">임가공(사급)</option>
@@ -256,7 +256,7 @@
                             <div class="form-group row">
                               <label class="col-sm-3 col-form-label">대표자 이름</label>
                               <div class="col-sm-9">
-                                <input type="text" class="form-control" name="owner">
+                                <input type="text" class="form-control" name="owner" required>
                               </div>
                             </div>
                           </div>
@@ -266,7 +266,7 @@
                             <div class="form-group row">
                               <label class="col-sm-3 col-form-label">대표자 연락처</label>
                               <div class="col-sm-9">
-                                <input type="text" class="form-control" name="contact">
+                                <input type="text" class="form-control" name="contact" required>
                               </div>
                             </div>
                           </div>
@@ -274,7 +274,7 @@
                             <div class="form-group row">
                               <label class="col-sm-3 col-form-label">회사 주소</label>
                               <div class="col-sm-9">
-                               	<input type="text" class="form-control" name="address">
+                               	<input type="text" class="form-control" name="address" required>
                               </div>
                             </div>
                           </div>
@@ -284,7 +284,7 @@
                             <div class="form-group row">
                               <label class="col-sm-3 col-form-label">결제통화</label>
                               <div class="col-sm-9">
-                                <input type="text" class="form-control" name="currency">
+                                <input type="text" class="form-control" name="currency" required>
                               </div>
                             </div>
                           </div>
@@ -292,7 +292,7 @@
                             <div class="form-group row">
                               <label class="col-sm-3 col-form-label">계산서 발행 여부</label>
                               <div class="col-sm-9">
-                                <input type="text" class="form-control" name="invoice_issue">
+                                <input type="text" class="form-control" name="invoice_issue" required>
                               </div>
                             </div>
                           </div>
@@ -302,7 +302,7 @@
                             <div class="form-group row">
                               <label class="col-sm-3 col-form-label">계좌정보</label>
                               <div class="col-sm-9">
-                                <input type="text" class="form-control" name="account">
+                                <input type="text" class="form-control" name="account" required>
                               </div>
                             </div>
                           </div>
@@ -310,7 +310,7 @@
                             <div class="form-group row">
                               <label class="col-sm-3 col-form-label">업체 규모</label>
                               <div class="col-sm-9">
-                                <select class="form-control" name="company_size">
+                                <select class="form-control" name="company_size" required>
                                 <option>선택</option>
                                   <option value="대">대</option>
                                   <option value="중소">중소</option>
@@ -324,7 +324,7 @@
                             <div class="form-group row">
                               <label class="col-sm-3 col-form-label">사업자번호</label>
                               <div class="col-sm-9">
-                                <input type="text" class="form-control" name="business_number">
+                                <input type="text" class="form-control" name="business_number" required>
                               </div>
                             </div>
                           </div>
@@ -332,7 +332,7 @@
                             <div class="form-group row">
                               <label class="col-sm-3 col-form-label">세무코드</label>
                               <div class="col-sm-9">
-                                <input type="text" class="form-control" name="taxcode">
+                                <input type="text" class="form-control" name="taxcode" required>
                               </div>
                             </div>
                           </div>
@@ -342,7 +342,7 @@
                             <div class="form-group row">
                               <label class="col-sm-3 col-form-label">업태분류</label>
                               <div class="col-sm-9">
-                                <input type="text" class="form-control" name="category">
+                                <input type="text" class="form-control" name="category" required>
                               </div>
                             </div>
                           </div>
@@ -350,7 +350,7 @@
                             <div class="form-group row">
                               <label class="col-sm-3 col-form-label">매출액 규모</label>
                               <div class="col-sm-9">
-                                <input type="text" class="form-control" name="sales">
+                                <input type="text" class="form-control" name="sales" required>
                               </div>
                             </div>
                           </div>
@@ -360,7 +360,7 @@
                             <div class="form-group row">
                               <label class="col-sm-3 col-form-label">거래 개시일</label>
                               <div class="col-sm-9">
-                                <input type="date" class="form-control" name="start_date">
+                                <input type="date" class="form-control" name="start_date" required>
                               </div>
                             </div>
                           </div>
@@ -368,7 +368,7 @@
                             <div class="form-group row">
                               <label class="col-sm-3 col-form-label">거래 종료일</label>
                               <div class="col-sm-9">
-                                <input type="date" class="form-control" name="end_date">
+                                <input type="date" class="form-control" name="end_date" required>
                               </div>
                             </div>
                           </div>
