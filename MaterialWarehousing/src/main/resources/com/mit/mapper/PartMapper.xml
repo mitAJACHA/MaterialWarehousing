@@ -5,7 +5,7 @@
 
 
 	<select id="getList" resultType="com.mit.domain.PartVO">
-	select partcode, partname, nickname, library, drw_no, remark from tbl_Part
+	select partcode, partname, nickname, library, drw_no, common, remark from tbl_Part
 	</select>
 	
 	
