@@ -251,13 +251,6 @@
 						<div class="card">
 						<div class="card-header">
 								<h4 class="card-title"><strong>입고처리</strong></h4>
-								<div class="selected float-right">
-									<select class="custom-select">	<!-- 한페이지에 몇개의 목록을 띄울 것인지 -->
-										<option selected="selected" value="0">10개</option>
-										<option value="1">30개</option>
-										<option value="2">50개</option>
-									</select>
-								</div>
 							</div>
           				    <div class="table-overflow">
 								<table class="table table-lg table-hover">
