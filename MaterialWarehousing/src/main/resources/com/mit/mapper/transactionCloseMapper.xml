@@ -21,6 +21,14 @@
    					AND ware_date between TO_TIMESTAMP(#{startDate}, 'YYYY-MM-DD')-1 and TO_TIMESTAMP(#{endDate}, 'YYYY-MM-DD')+1 
    					<!-- 날짜 검색 기능 개선 (between은 양쪽 날짜가 포함되지 않아 -1, +1 함)-->
    				</if>
+   				<if test='recentDate !=null and recentDate.equals("week")'>
+   					<![CDATA[ AND ware_date >= sysdate-7  ]]>
+   					<!-- 최근 일주일  -->
+   				</if>
+   				<if test='recentDate !=null and recentDate.equals("month")'>
+   					<![CDATA[ AND ware_date >= sysdate-30 ]]>
+   					<!-- 최근 한달  -->
+   				</if>
    			</trim>
     	</trim>
     </sql>
@@ -29,13 +37,13 @@
 	<sql id="tbl_tran">
 		<![CDATA[
 		
-			select order_num, ware_date, partcode, partname, name, empl_name, empl_email,
-			case when e_check='1' then '완료' end as e_check from
-			(select rownum rn, order_num, ware_date, partcode, partname, name, empl_name, empl_email,e_check
-			from
-			(select  o.order_num order_num, w.ware_date ware_date, p.partcode partcode, p.partname partname, cp.name name,
+			SELECT order_num, ware_date, partcode, partname, name, empl_name, empl_email,
+			CASE WHEN e_check='1' then '완료' end as e_check FROM
+			(SELECT rownum rn, order_num, ware_date, partcode, partname, name, empl_name, empl_email,e_check
+			FROM
+			(SELECT  o.order_num order_num, w.ware_date ware_date, p.partcode partcode, p.partname partname, cp.name name,
 			e.empl_name empl_name,e.empl_email empl_email ,w.e_check e_check
-			from tbl_part p , tbl_contract c, tbl_company cp, warehousing w, purchase_order o,
+			FROM tbl_part p , tbl_contract c, tbl_company cp, warehousing w, purchase_order o,
 			employee e where p.partcode = c.partcode and c.code = cp.code and c.contractno = o.contract_num and w.order_num = o.order_num and
 			o.empl_num = e.empl_num and w.ware_date is not null
 		]]>

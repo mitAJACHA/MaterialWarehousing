@@ -19,6 +19,12 @@
     <link rel="stylesheet" type="text/css" href="/resources/assets/css/main.css">
     <!-- Responsive Style -->
     <link rel="stylesheet" type="text/css" href="/resources/assets/css/responsive.css">
+	
+	<script src="./jquery-3.4.1.min.js"></script>
+	<link rel="stylesheet" href="./bootstrapt/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="./bootstrapt/css/bootstrap.css" />
+	<script src="./bootstrapt/js/bootstrap.min.js"></script>
+	
 </head>
 
 <body>
@@ -215,8 +221,8 @@
                          				<th>품목구분<input type="text" class="form-control" id="exampleInputUsername1"></th>
 										<th>회로도 번호<input type="text" class="form-control" id="exampleInputUsername1"></th>
 										<th>부가설명<input type="text" class="form-control" id="exampleInputUsername1"></th>	
-											<th><button type="button" class="btn btn-outline-success btn-rounded">Search</button>&nbsp;&nbsp;
-											<button id="testBtn" class="btn btn-common btn-rounded">Register</button></th>
+										<th><button type="button" class="btn btn-outline-success btn-rounded">Search</button>&nbsp;&nbsp;
+											<a href="partregister"><button id="testBtn" class="btn btn-common btn-rounded">Register</button></a>
 									</tr>
 								</table>
 							</div>
@@ -284,9 +290,10 @@
 			</div>
 		</footer>
 		<!-- Footer END -->
-</div>
+	</div>
+	
+	<!-- Page Container END -->
 
-<!-- Page Container END -->
     <!-- Preloader -->
     <div id="preloader">
       <div class="loader" id="loader-1"></div>
@@ -304,7 +311,7 @@
     <script src="/resources/assets/plugins/morris/morris.min.js"></script>
     <script src="/resources/assets/plugins/raphael/raphael-min.js"></script>
     <script src="/resources/assets/js/dashborad1.js"></script>
-    
+
     
   </body>
 </html>

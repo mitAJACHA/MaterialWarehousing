@@ -5,8 +5,13 @@
 
 
 	<select id="getList" resultType="com.mit.domain.PartVO">
-	select partcode, partname, nickname, library, drw_no, common, remark from tbl_Part
+		<![CDATA[select partcode, partname, nickname, library, drw_no, common, remark from tbl_Part]]>
 	</select>
+	
+	<insert id="insert">
+		<![CDATA[INSERT INTO tbl_part(partcode, partname, nickname, library, drw_no, drw_img, common, remark) 
+		values(seq_partcode.nextval, #{partname}, #{nickname}, #{library}, #{drw_no}, #{drw_img}, #{common}, #{remark})]]>
+	</insert>
 	
 	
 	
