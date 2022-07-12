@@ -2,6 +2,7 @@ package com.mit.domain;
 
 import java.util.Date;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
@@ -20,8 +21,8 @@ public class CompanyVO {
 	private String business_number;
 	private String taxcode;
 	private String category;
-	private Date start_date;
-	private Date end_date;
+	private String start_date;
+	private String end_date;
 	private int sales;
 	
 	
