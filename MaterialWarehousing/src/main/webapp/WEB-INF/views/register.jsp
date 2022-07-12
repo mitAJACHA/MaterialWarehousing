@@ -311,7 +311,7 @@
                               <label class="col-sm-3 col-form-label">업체 규모</label>
                               <div class="col-sm-9">
                                 <select class="form-control" name="company_size">
-                                  <option>선택</option>
+                                <option>선택</option>
                                   <option value="대">대</option>
                                   <option value="중소">중소</option>
                                 </select>
