@@ -456,6 +456,32 @@
     });
 	</script>
 	
+	<script>
+	$("#endwhing").click(function(){
+			var endwhing = $(this);
+			var tr = endwhing.parent().parent();
+			var td = tr.children();
+			
+			var order_num = td.eq(0).text();
+			var real_quantity = td.eq(4).text();
+    	
+    	var tdArr = new Array();
+    	endwhing.each(function(i){
+    		tr=endwhing.parent().parent().eq(i);
+        	td = tr.children();
+        	real_quantity=td.eq(4).text();		
+        	order_num=td.eq(0).text(); 
+        	
+        	tdArr.push(real_quantity);
+        	tdArr.push(order_num);
+        
+        	});
+        	
+        	$('input[name=order_num]').attr('value',tdArr[0]);
+        	$('input[name=real_quantity]').attr('value',tdArr[4]);
+	});
+	</script>
+	
 	
 	<!-- Modal1 입고처리 클릭시 등장 -->
 	<div class="modal fade" id="handlingmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -465,28 +491,21 @@
 	        <h5 class="modal-title" id="staticBackdropLabel">입고처리</h5>
 	      </div>
 	      <div class="modal-body">
-	      	<form class="wareupdate">
 	      	  <div class="container-fluid">
-				 <div class="table-overflow" style="text-align:center">
-					<table class="table table-lg table-hover" style="margin-left: auto; margin-right: auto;">
-						<tbody align="center">
-						<tr>
-						<th>품목</th>
-						<th>수량</th>
-						</tr>
-						<tr>
-						<td>${partname}</td>
-						<td>${real_quantity}</td>
-						</tr>
-						</tbody>
-					</table>
+				 <div class="form-group" >
+                         <label for="order_num">발주번호</label>
+                         <input type="text" name="order_num" class="form-control" id="exampleInputName1" value="" >
+                      </div>
+                 <div class="form-group" >
+                         <label for="real_quantity">수량</label>
+                         <input type="text" name="real_quantity" class="form-control" id="exampleInputName1" value="" >
+                      </div>
 					</div>
 	    	  </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modalcancel">취소하기</button>
 	        <button type="button" class="btn btn-primary" id="handlingend">입고마감</button>
 	      </div>
-	      </form>
 	    </div>
 	  </div>
 	</div>
