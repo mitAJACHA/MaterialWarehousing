@@ -287,12 +287,7 @@
 											<td><fmt:formatDate pattern="yyyy-MM-dd " value="${handling.order_date}" /></td>
 											<td><c:out value="${handling.partname}" /></td>
 											<td><c:out value="${handling.companyname}" /></td>
-											<td>
-											<c:choose>
-												<c:when test="${handling.real_quantity==null}">-</c:when>
-												<c:when test="${handling.real_quantity!=null}">${handling.real_quantity}</c:when>
-											</c:choose>
-											</td>
+											<td><c:out value="${handling.real_quantity}" /></td>
 											<td><c:out value="${handling.order_quantity}" /></td>
 											<td>
 											<c:choose>
@@ -316,6 +311,7 @@
 									</tbody>
 									</c:forEach>
 								</table>
+								<div id="ex2_Result1">
 							</div>
 			            </div>
 			        </div>
@@ -457,29 +453,30 @@
 	</script>
 	
 	<script>
-	$("#endwhing").click(function(){
-			var endwhing = $(this);
-			var tr = endwhing.parent().parent();
-			var td = tr.children();
-			
-			var order_num = td.eq(0).text();
-			var real_quantity = td.eq(4).text();
-    	
-    	var tdArr = new Array();
-    	endwhing.each(function(i){
-    		tr=endwhing.parent().parent().eq(i);
-        	td = tr.children();
-        	real_quantity=td.eq(4).text();		
-        	order_num=td.eq(0).text(); 
-        	
-        	tdArr.push(real_quantity);
-        	tdArr.push(order_num);
-        
-        	});
-        	
-        	$('input[name=order_num]').attr('value',tdArr[0]);
-        	$('input[name=real_quantity]').attr('value',tdArr[4]);
-	});
+	$("#endwhing ").click(function(){ 
+		
+		   var str = ""
+		        var tdArr = new Array();   
+		        var endwhing = $(this);
+		            
+		      
+		        var tr = endwhing.parent().parent();
+		        var td = tr.children();
+		            
+		        console.log("클릭한 Row의 모든 데이터 : "+tr.text());
+		            
+		        var order_num = td.eq(0).text();
+		        var real_quantity = td.eq(4).text();
+		            
+		            
+		     
+		        td.each(function(i){    
+		            tdArr.push(td.eq(i).text());
+		        });
+		            
+		        $('input[name=order_num]').attr('value',order_num);
+	        	$('input[name=real_quantity]').attr('value',real_quantity);
+		})
 	</script>
 	
 	
