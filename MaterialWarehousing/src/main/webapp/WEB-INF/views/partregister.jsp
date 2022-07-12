@@ -19,12 +19,14 @@
     <link rel="stylesheet" type="text/css" href="/resources/assets/css/main.css">
     <!-- Responsive Style -->
     <link rel="stylesheet" type="text/css" href="/resources/assets/css/responsive.css">
-	
-	<script src="./jquery-3.4.1.min.js"></script>
+    
+    <script src="./jquery-3.4.1.min.js"></script>
 	<link rel="stylesheet" href="./bootstrapt/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="./bootstrapt/css/bootstrap.css" />
 	<script src="./bootstrapt/js/bootstrap.min.js"></script>
 	
+
+
 </head>
 
 <body>
@@ -196,81 +198,111 @@
 				<!-- Breadcrumb Start -->
 				<div class="breadcrumb-wrapper row">
 					<div class="col-12 col-lg-3 col-md-6">
-						<h4 class="page-title">품목조회/등록</h4>
+						<h4 class="page-title"><strong>품목등록</strong></h4>
 					</div>
 					<div class="col-12 col-lg-9 col-md-6">
 						<ol class="breadcrumb float-right">
-							<li><a href="index.html">Home</a></li>
-							<li class="active">/ Dashboard</li>
+							<li><a href="index.html">품목조회</a></li>
+							<li class="active">/ 등록</li>
 						</ol>
 					</div>
 				</div>
 				<!-- Breadcrumb End -->
 			</div>
 			<div class="container-fluid">
-			
-				<div class="row">
-					<div class="col-lg-12 col-md-12 col-xs-12">
-						<div class="card">
-							<div class="table-overflow">
-								<table class="table table-lg">
-									<tr>
-                         				<th>품목코드<input type="text" class="form-control" id="exampleInputUsername1"></th>
-                         				<th>품목명<input type="text" class="form-control" id="exampleInputUsername1"></th>
-                         				<th>약칭<input type="text" class="form-control" id="exampleInputUsername1"></th>
-                         				<th>품목구분<input type="text" class="form-control" id="exampleInputUsername1"></th>
-										<th>회로도 번호<input type="text" class="form-control" id="exampleInputUsername1"></th>
-										<th>부가설명<input type="text" class="form-control" id="exampleInputUsername1"></th>	
-										<th><button type="button" class="btn btn-outline-success btn-rounded">Search</button>&nbsp;&nbsp;
-											<a href="partregister"><button id="testBtn" class="btn btn-common btn-rounded">Register</button></a>
-									</tr>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-			
-				<!-- 발주현황 내역 -->
-				<div class="row">
-					<div class="col-lg-12 col-md-12 col-xs-12">
-						<div class="card">
-							<div class="card-header">
-							<span class="icon-holder">
-                    		<i class="lni-list"></i>
-                  			</span>
-								<h4 class="card-title">목록</h4>
-                               
-							</div>
-							<div class="table-overflow">
-							<table class="table table-lg table-hover">
-								<thead class="table-light" align="center">
-										<tr>
-											<th class="text-dark text-semibold">품목코드</th>
-											<th class="text-dark text-semibold">품목명</th>
-											<th class="text-dark text-semibold">약칭</th>
-											<th class="text-dark text-semibold">품목구분</th>
-											<th class="text-dark text-semibold">회로도번호</th>
-											<th class="text-dark text-semibold">부가설명</th>
-										</tr>
-									</thead>
-									<c:forEach var="part" items="${ProductList}">
-									<tbody align="center">
-										<tr>
-											<td><c:out value="${part.partcode}" /></td>
-											<td><c:out value="${part.partname}" /></td>
-											<td><c:out value="${part.nickname}" /></td>
-											<td><c:out value="${part.library}" /></td>
-											<td><c:out value="${part.drw_no}" /></td>
-											<td><c:out value="${part.remark}" /></td>
-										</tr>
-									</tbody>
-									</c:forEach>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+				<div class="col-12 grid-margin">
+                  <div class="card">
+                    <div class="card-header border-bottom">
+                      <h4 class="card-title">품목 등록</h4>
+                    </div>
+                    <div class="card-body">
+                      <form class="form-sample" action="partregi" method="post">
+                        <p class="card-description">
+                          	품목정보를 등록하세요
+                        </p>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label">품목명 *</label>
+                              <div class="col-sm-9">
+                                <input type="text" class="form-control" name="partname" required>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label">약칭</label>
+                              <div class="col-sm-9">
+                                <input type="text" class="form-control" name="nickname">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label">품목구분 *</label>
+                              <div class="col-sm-9">
+                                <select class="form-control" name="library" required>
+                                  <option>선택</option>
+                                  <option value="대">대</option>
+                                  <option value="중">중</option>
+                                  <option value="소">소</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label">회로도 번호</label>
+                              <div class="col-sm-9">
+                                <input type="text" class="form-control" name="drw_no">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label">회로도 이미지</label>
+                              <div class="col-sm-9">
+                                <input type="file" class="form-control" name="drw_img">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label">공용여부 *</label>
+                              <div class="col-sm-9">
+                               	<select class="form-control" name="library" required>
+                                  <option>선택</option>
+                                  <option value="0">공용</option>
+                                  <option value="1">전용</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label">부가설명</label>
+                              <div class="col-sm-9">
+                               <input type="text" class="form-control" name="remark">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div align="center">
+                        	<button type="submit" class="btn btn-common mr-3">등록</button>
+                        	<button type="reset" class="btn btn-light">다시쓰기</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+           </div>
 		</div>
 		<!-- Content Wrapper END -->
 	
@@ -288,15 +320,7 @@
 			</div>
 		</footer>
 		<!-- Footer END -->
-	</div>
-	
-	<!-- Page Container END -->
-
-    <!-- Preloader -->
-    <div id="preloader">
-      <div class="loader" id="loader-1"></div>
-    </div>
-    <!-- End Preloader -->
+<!-- Page Container END -->
     
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="/resources/assets/js/jquery-min.js"></script>
@@ -305,11 +329,5 @@
     <script src="/resources/assets/js/jquery.app.js"></script>
     <script src="/resources/assets/js/main.js"></script>
 
-    <!--Morris Chart-->
-    <script src="/resources/assets/plugins/morris/morris.min.js"></script>
-    <script src="/resources/assets/plugins/raphael/raphael-min.js"></script>
-    <script src="/resources/assets/js/dashborad1.js"></script>
-
-    
   </body>
 </html>

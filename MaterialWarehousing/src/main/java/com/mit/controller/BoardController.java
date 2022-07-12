@@ -33,7 +33,6 @@ public class BoardController {
 	
 	private transactionCloseService service1;
 	private CompanyService cpservice;
-	private PartService pservice;
 	
 	
 	// 전체 목록 /main(get)	-> /main.jsp
@@ -72,12 +71,6 @@ public class BoardController {
 		model.addAttribute("CompanyList", cpservice.getList(cri));
 	}
 	
-	// 품목조회/등록  -> 조회
-		@GetMapping("productList")
-		public void productList(Model model, Criteria cri) {
-			log.info("productList 요청");
-		model.addAttribute("ProductList", pservice.getList(cri));
-	}
 		
 	// 거래명세서 
 	@GetMapping("statement")
