@@ -219,29 +219,23 @@
 										<th>일자&nbsp;&nbsp;<input class="form-control" type="date" name="startDate" value="${pageMaker.cri.startDate }"></th>
 										<th> &nbsp;&nbsp;<input class="form-control" type="date" name="endDate" value="${pageMaker.cri.endDate }"></th>
 										<th>
-								<div
-													class="custom-control custom-radio radio custom-control-inline">
-													<input type="radio" class="custom-control-input"
-														name="recentDate"  id="male"> <label
-														class="custom-control-label" for="male">최근 일주일</label>
+										<div class="custom-control custom-radio radio custom-control-inline">
+											<input type="radio" class="custom-control-input" name="recentDate"  id="male" value="week"> <label
+												class="custom-control-label" for="male">최근 일주일</label>
 												</div>
-												<div
-													class="custom-control custom-radio radio custom-control-inline">
-													<input type="radio" class="custom-control-input"
-														name="recentDate" id="gender" > <label
-														class="custom-control-label" for="gender">최근 한달</label>
+												<div class="custom-control custom-radio radio custom-control-inline">
+												<input type="radio" class="custom-control-input" name="recentDate" id="gender" value="month"> <label
+												class="custom-control-label" for="gender">최근 한달</label>
 												</div>
-												<div id="displayNone" style="display: none"
-													class="custom-control custom-radio radio custom-control-inline">
-													<input type="radio" class="custom-control-input"
-														name="recentDate" id="gender" checked> <label
-														class="custom-control-label" for="gender"></label>
+												<div id="displayNone" style="display: none" class="custom-control custom-radio radio custom-control-inline">
+												<input type="radio" class="custom-control-input" name="recentDate" id="gender" checked> <label
+												class="custom-control-label" for="gender"></label>
 												</div>
-												<input type="hidden" name='pageNum' value='${pageMaker.cri.pageNum }'/>
-	                            				<input type="hidden" name='amount' value='${pageMaker.cri.amount }'/>
-												<button type="submit"
-													class="btn btn-outline-success btn-rounded">Search</button>
-											</th>
+											<input type="hidden" name='pageNum' value='${pageMaker.cri.pageNum }'/>
+                            				<input type="hidden" name='amount' value='${pageMaker.cri.amount }'/>
+											<button type="submit"
+												class="btn btn-outline-success btn-rounded">Search</button>
+										</th>
 									</tr>
 								</table>
 								</form>
@@ -311,7 +305,6 @@
 									</tbody>
 									</c:forEach>
 								</table>
-								<div id="ex2_Result1">
 							</div>
 			            </div>
 			        </div>
@@ -321,7 +314,7 @@
                           	<a href="/wareHandling?pageNum=${pageMaker.startPage-1 }">&lt;&lt;</a>
                            </c:if>
                        	<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
-                       		&nbsp;<a href="/wareHandling?pageNum=${num }&amount=${pageMaker.cri.amount}&companyName=${pageMaker.cri.companyName}&partName=${pageMaker.cri.partName}&startDate=${pageMaker.cri.startDate}&endDate=${pageMaker.cri.endDate}">
+                       		&nbsp;<a href="/wareHandling?pageNum=${num }&amount=${pageMaker.cri.amount}&companyName=${pageMaker.cri.companyName}&partName=${pageMaker.cri.partName}&startDate=${pageMaker.cri.startDate}&endDate=${pageMaker.cri.endDate}&recentDate=${pageMaker.cri.recentDate}">
                        		
                        		<c:if test="${pageMaker.cri.pageNum == num }" >
                        		<%--현재 페이지를 ${param.pageNum } or ${pageMaker.cri.pageNum } or {criteria.pageNum}> --%>
@@ -409,28 +402,12 @@
 	
 	<script>
     /*입고처리 버튼 클릭*/
-    $('#endwhing').click(function(){	//id가 endwhing인 버튼을 클릭하면
+     $('#endwhing').click(function(){	//id가 endwhing인 버튼을 클릭하면
         $('#handlingmodal').modal();   //id가 "handlingmodal"인 모달창을 열어준다. 
-        $('#handlingend').click(function(){		//id가 handlingend인 버튼을 클릭하면
-    		$('#alerthandling').modal();	//id가 alerthandling인 모달창을 열어준다
-    		$('#handlingmodal').modal('hide');	//id가 handlingmodal인 모달창은 닫는다
-			$('#modalcancel2').click(function(){	//alerthandling에서 취소하기 버튼을 누르면
-	    		$('#alerthandling').modal('hide');	//닫힌다
+		$('#modalcancel2').click(function(){	//handlingmodal에서 취소하기 버튼을 누르면
+	    	$('#handlingmodal').modal('hide');	//닫힌다
 			})
-			$('#endhandling').click(function(){	//입고마감에서 예를 누르면
-				$('#alerthandling').modal('hide');	//입고마감 창이 사라지고
-				toastr.options.escapeHtml = true;	// 토스트창이 뜨는데 자동으로 사라진다
-				toastr.options.closeButton = true;	//그래도 버튼을 눌러서 없앨 수 있다
-				toastr.options.progressBar = true;	//사라지는 시간을 볼 수 있다
-				toastr.options.preventDuplicates = true;
-			    toastr.options.newestOnTop = false;
-				toastr.info('마감되었습니다', '입고처리', {timeOut: 2000});	//2초동안 토스트창이 뜬다
-			})
-        })
-    	$('#modalcancel').click(function(){	//handlingmodal에서 취소하기 버튼의 id인 modalcancel을 누르면
-    		$('#handlingmodal').modal('hide');	//모달창이 닫힌다
-    	})
-    });
+        });
 	</script>
 	
 	<script>
@@ -440,42 +417,46 @@
         $('#modalcancel3').click(function(){
         	$('#returningmodal').modal('hide');
         })
-        $('#endreturn').click(function(){	//반품처리에서 예를 누르면
-        	$('#returningmodal').modal('hide');	//반품처리 모달이 사라지고
-        	toastr.options.escapeHtml = true;	//토스트가 자동으로 사라진다
-			toastr.options.closeButton = true;	//그래도 버튼을 눌러서 없앨 수 있다
-			toastr.options.progressBar = true;	//사라지는 시간을 볼 수 있다
-		    toastr.options.newestOnTop = false;
-			toastr.options.preventDuplicates = true;
-			toastr.info('마감되었습니다', '반품처리', {timeOut: 2000});
-        })
     });
 	</script>
 	
 	<script>
 	$("#endwhing ").click(function(){ 
-		
 		   var str = ""
 		        var tdArr = new Array();   
 		        var endwhing = $(this);
-		            
-		      
 		        var tr = endwhing.parent().parent();
 		        var td = tr.children();
-		            
 		        console.log("클릭한 Row의 모든 데이터 : "+tr.text());
-		            
 		        var order_num = td.eq(0).text();
+		        var partname = td.eq(2).text();
 		        var real_quantity = td.eq(4).text();
-		            
-		            
 		     
 		        td.each(function(i){    
 		            tdArr.push(td.eq(i).text());
 		        });
 		            
 		        $('input[name=order_num]').attr('value',order_num);
+	        	$('input[name=partname]').attr('value',partname);
 	        	$('input[name=real_quantity]').attr('value',real_quantity);
+		})
+	</script>
+	
+	<script>
+	$("#returning ").click(function(){ 
+		   var str = ""
+		        var tdArr = new Array();   
+		        var endwhing = $(this);
+		        var tr = endwhing.parent().parent();
+		        var td = tr.children();
+		        console.log("클릭한 Row의 모든 데이터 : "+tr.text());
+		        var order_num = td.eq(0).text();
+		     
+		        td.each(function(i){    
+		            tdArr.push(td.eq(i).text());
+		        });
+		            
+		        $('input[name=order_num]').attr('value',order_num);
 		})
 	</script>
 	
@@ -484,51 +465,37 @@
 	<div class="modal fade" id="handlingmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
+	    <form action="handleok" method="post">	<!-- handleok 서비스 -->
 	      <div class="modal-header">
 	        <h5 class="modal-title" id="staticBackdropLabel">입고처리</h5>
 	      </div>
 	      <div class="modal-body">
 	      	  <div class="container-fluid">
 				 <div class="form-group" >
-                         <label for="order_num">발주번호</label>
-                         <input type="text" name="order_num" class="form-control" id="exampleInputName1" value="" >
-                      </div>
+                     <label for="order_num">발주번호</label>
+                     <input type="text" name="order_num" class="form-control" id="exampleInputName1" value="" readonly >
+                 </div>
                  <div class="form-group" >
-                         <label for="real_quantity">수량</label>
-                         <input type="text" name="real_quantity" class="form-control" id="exampleInputName1" value="" >
-                      </div>
-					</div>
+                     <label for="partname">품목</label>
+                     <input type="text" name="partname" class="form-control" id="exampleInputName1" value="" readonly>
+                 </div>
+                 <div class="form-group" >
+                     <label for="real_quantity">수량</label>
+                     <input type="text" name="real_quantity" class="form-control" id="exampleInputName1" value="" readonly>
+                 </div>
+                 &nbsp;&nbsp;거래를 입고처리하시겠습니까?
+			   </div>
 	    	  </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modalcancel">취소하기</button>
-	        <button type="button" class="btn btn-primary" id="handlingend">입고마감</button>
+	        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" id="endhandling">입고처리</button>
+	        <button type="button" class="btn btn-seconday" id="modalcancel2">취소하기</button>
 	      </div>
+	      </form>
 	    </div>
 	  </div>
 	</div>
 	</div>   
 	
-	<!-- Modal2 입고처리에서 입고마감 클릭시 등장 -->
-	<div class="modal fade" id="alerthandling" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-	  <div class="modal-dialog modal-dialog-centered">
-	    <div class="modal-content">
-	    <form action="handleok" method="post">	<!-- handleok 서비스 -->
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="staticBackdropLabel">입고마감</h5>
-	      </div>
-	      <div class="modal-body">
-	        	${WareHandlingVO.partname} 품목<br>
-	        	${WareHandlingVO.real_quantity}개를 <br>
-	        	입고마감하시겠습니까?
-	      </div>
-	      <div class="modal-footer">
-	        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" id="endhandling">예</button>
-	        <button type="button" class="btn btn-seconday" id="modalcancel2">아니오</button>
-	      </div>
-	      </form>
-	    </div>
-	  </div>
-	</div>    
 	
 	<!-- Modal3 반품처리 클릭시 등장 -->
 	<div class="modal fade" id="returningmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -539,7 +506,13 @@
 	        <h5 class="modal-title" id="staticBackdropLabel">반품처리</h5>
 	      </div>
 	      <div class="modal-body">
-	      		거래를 반품시겠습니까?
+	      		<div class="container-fluid">
+				 <div class="form-group" >
+                         <label for="order_num">발주번호</label>
+                         <input type="text" name="order_num" class="form-control" id="exampleInputName1" value="" readonly>
+                      </div>
+                      거래를 반품하시겠습니까?
+					</div>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modalcancel3">취소하기</button>
