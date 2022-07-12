@@ -220,213 +220,17 @@
                          				<th>업체코드<input type="text" class="form-control" id="exampleInputUsername1"></th>
                          				<th>업체명<input type="text" class="form-control" id="exampleInputUsername1"></th>
                          				<th>대표자명<input type="text" class="form-control" id="exampleInputUsername1"></th>
-										
-											
-											<th><button type="button" class="btn btn-outline-success btn-rounded">Search</button>&nbsp;&nbsp;
-											<button id="testBtn" class="btn btn-common btn-rounded" >Register</button></th>
+										<th>
+											<button type="button" class="btn btn-outline-success btn-rounded">Search</button>&nbsp;&nbsp;
+											<a href="register"><button id="testBtn" class="btn btn-common btn-rounded">Register</button></a>
+										</th>
 									</tr>
 								</table>
 							</div>
 						</div>
 					</div>
 				</div>
-			
-				<!-- Modal -->
-			<div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-				<div class="modal-header">
-					
-					<button class="close" type="button" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">X</span>
-					</button>
-				</div>
-				<div class="modal-body">
-				<!-- modal 내용 시작 -->
-				    <div class="col-12 grid-margin">
-                  <div class="card">
-                    <div class="card-header border-bottom">
-                      <h4 class="card-title">업체등록</h4>
-                    </div>
-                    <div class="card-body">
-                      <form class="form-sample">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">업체코드</label>
-                              <div class="col-sm-9">
-                                <input type="text" class="form-control">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">업체코드 생성</label>
-                              <div class="col-sm-9">
-                                <input type="text" class="form-control">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                       <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">업체명</label>
-                              <div class="col-sm-9">
-                                <input type="text" class="form-control">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">내외자</label>
-                              <div class="col-sm-9">
-                                <input type="text" class="form-control">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">대표자</label>
-                              <div class="col-sm-9">
-                                <input type="text" class="form-control">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">업체규모</label>
-                              <div class="col-sm-9">
-                                <input type="text" class="form-control">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">대표자연락처</label>
-                              <div class="col-sm-9">
-                                <input type="text" class="form-control">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">회사 주소</label>
-                              <div class="col-sm-9">
-                                <input type="text" class="form-control">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">계산서  발행여부</label>
-                              <div class="col-sm-9">
-                                <input type="text" class="form-control">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">결제 통화</label>
-                              <div class="col-sm-9">
-                                <input type="text" class="form-control">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">거래형태</label>
-                              <div class="col-sm-9">
-                                <input type="text" class="form-control">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">계좌정보</label>
-                              <div class="col-sm-9">
-                                <input type="text" class="form-control">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">사업자번호</label>
-                              <div class="col-sm-9">
-                                <input type="text" class="form-control">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">세무 코드</label>
-                              <div class="col-sm-9">
-                                <input type="text" class="form-control">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">거래개시일</label>
-                              <div class="col-sm-9">
-                                <input type="text" class="form-control">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">업태 분류</label>
-                              <div class="col-sm-9">
-                                <input type="text" class="form-control">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">거래종료일</label>
-                              <div class="col-sm-9">
-                                <input type="text" class="form-control">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">매출액규모</label>
-                              <div class="col-sm-9">
-                                <input type="text" class="form-control">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-				<!-- modal 내용 끝-->				
-				</div>
-				<div class="modal-footer">
-					<button class="btn btn-common mr-3" id="modalY" type="submit" href="register">등록</a>
-					<button class="btn" type="button" data-dismiss="modal">취소</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- modal end -->
-				<!-- 발주현황 내역 -->
+				<!-- 업체 내역  -->
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-xs-12">
 						<div class="card">
@@ -508,13 +312,6 @@
     <script src="/resources/assets/plugins/morris/morris.min.js"></script>
     <script src="/resources/assets/plugins/raphael/raphael-min.js"></script>
     <script src="/resources/assets/js/dashborad1.js"></script>
-    
-	<script>
-		$('#testBtn').click(function(e){
-			e.preventDefault();
-			$('#testModal').modal("show");
-		});
-	</script>
     
   </body>
 </html>
