@@ -10,5 +10,5 @@ public interface CompanyMapper {
 	public List<CompanyVO> getList(Criteria cri);
 	public Long count(Criteria cri);
 	
-	public void register(CompanyVO vo);
+	public void insert(CompanyVO vo);
 }
