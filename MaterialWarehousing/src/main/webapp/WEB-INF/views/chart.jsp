@@ -218,9 +218,6 @@
                 </div> 
              </div>
           </div>
-          <div align="right">
-          <button type="button" class="btn btn-outline-info btn-rounded" id="print" onclick="window.print()">print</button>
-          </div>
 		</div>
 		<!-- Content Wrapper END -->
 		<!-- Footer START -->
