@@ -9,4 +9,5 @@ public interface PartMapper {
 
 	public List<PartVO> getList(Criteria cri);
 	public Long count(Criteria cri);
+	public void register(PartVO vo);
 }

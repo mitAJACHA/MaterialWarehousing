@@ -26,4 +26,9 @@ public class PartServiceImpl implements PartService {
 		return mapper.count(cri);
 	}
 	
+	@Override
+	public void register(PartVO vo) {
+		mapper.register(vo);
+	}
+	
 }

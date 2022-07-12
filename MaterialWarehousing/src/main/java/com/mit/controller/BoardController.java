@@ -79,6 +79,7 @@ public class BoardController {
 		model.addAttribute("ProductList", pservice.getList(cri));
 	}
 		
+		
 	// 거래명세서 
 	@GetMapping("statement")
 	public void statement(Model model,Long order_num) {
