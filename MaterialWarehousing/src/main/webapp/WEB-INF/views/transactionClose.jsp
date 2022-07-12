@@ -205,29 +205,29 @@
               </div>
 				<!-- Breadcrumb End -->
 			  </div>
-            <div class="container-fluid">
+			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-xs-12">
 						<div class="card">
 							<div class="table-overflow">
-							<form action="transactionClose" method="get" style="margin-bottom: 0px">
-								<table class="table table-lg">
-									<tr>
-										<th>회사명&nbsp;&nbsp;<input class="form-control" type="text" name="companyName" value="${pageMaker.cri.companyName}"></th>
-										<th>품목명&nbsp;&nbsp;<input class="form-control" type="text" name="partName" value="${pageMaker.cri.partName}"></th>
-										<th>일자&nbsp;&nbsp;<input class="form-control" type="date" name="startDate" value="${pageMaker.cri.startDate}"></th>
-										<th> &nbsp;&nbsp;<input class="form-control" type="date" name="endDate" value="${pageMaker.cri.endDate}"></th>
-										<th>
-								<div
+								<form action="transactionClose" method="get" style="margin-bottom: 0px">
+									<table class="table table-lg">
+										<tr>
+											<th>회사명&nbsp;<input type="text" class="form-control" name="companyName" value="${pageMaker.cri.companyName }"></th>
+											<th>품목명&nbsp;<input type="text" class="form-control" name="partName" value="${pageMaker.cri.partName }"></th>
+											<th>일자&nbsp;&nbsp;<input class="form-control" type="date" name="startDate" value="${pageMaker.cri.startDate }"></th>
+											<th> &nbsp;&nbsp;<input class="form-control" type="date" name="endDate" value="${pageMaker.cri.endDate }"></th>
+											<th>
+												<div
 													class="custom-control custom-radio radio custom-control-inline">
 													<input type="radio" class="custom-control-input"
-														name="recentDate"  id="male"> <label
+														name="recentDate"  id="male" value="week"> <label
 														class="custom-control-label" for="male">최근 일주일</label>
 												</div>
 												<div
 													class="custom-control custom-radio radio custom-control-inline">
 													<input type="radio" class="custom-control-input"
-														name="recentDate" id="gender" > <label
+														name="recentDate" id="gender" value="month"> <label
 														class="custom-control-label" for="gender">최근 한달</label>
 												</div>
 												<div id="displayNone" style="display: none"
@@ -236,13 +236,13 @@
 														name="recentDate" id="gender" checked> <label
 														class="custom-control-label" for="gender"></label>
 												</div>
-												<input type="hidden" name='pageNum' value='${pageMaker.cri.pageNum}'/>
-	                            				<input type="hidden" name='amount' value='${pageMaker.cri.amount}'/>
+												<input type="hidden" name='pageNum' value='${pageMaker.cri.pageNum }'/>
+	                            				<input type="hidden" name='amount' value='${pageMaker.cri.amount }'/>
 												<button type="submit"
 													class="btn btn-outline-success btn-rounded">Search</button>
 											</th>
-									</tr>
-								</table>
+										</tr>
+									</table>
 								</form>
 							</div>
 						</div>
@@ -253,16 +253,9 @@
 					<div class="col-lg-12 col-md-12 col-xs-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">LIST</h4>
+								
 								<td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#handlingmodal" id="emailsend">이메일 전송</button></td>
-								<div class="selected float-right">
-									<select class="custom-select">
-										<option selected="selected" value="0">Monthly</option>
-										<option value="1">Daily</option>
-										<option value="2">Weekly</option>
-										<option value="3">Yearly</option>
-									</select>
-								</div>
+								
 							</div>
 							<div class="table-overflow">
 								<table class="table table-lg">
@@ -287,15 +280,15 @@
 											<tr>
 											<td><input type="checkbox" id="user_CheckBox" class="rowChk" onclick="clickCheck(this)"></td>
 											<td><c:out value="${close.order_num}" /></td>
-												<td><fmt:formatDate pattern="yyyy-MM-dd " value="${close.ware_date}"/></td>
-												<td id="code"><c:out value="${close.partcode}" /></td>
-												<td id="pname"><c:out value="${close.partname}" /></td>
+												<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm " value="${close.ware_date}"/></td>
+												<td ><c:out value="${close.partcode}" /></td>
+												<td ><c:out value="${close.partname}" /></td>
 												<td><c:out value="${close.name}" /></td>
 													<td><button class="btn btn-warning" onclick="window.open('/statement?order_num=${close.order_num}',
 													'test','left=450,width=800,height=900,location=no,status=no,scrollbars=yes');">보기</button></td>
-												<td id="name"><c:out value="${close.empl_name}" /></td>
-												<td id="email"><c:out value="${close.empl_email}" /></td>
-												<td id="email"><c:out value="${close.e_check}" /></td>
+												<td ><c:out value="${close.empl_name}" /></td>
+												<td ><c:out value="${close.empl_email}" /></td>
+												<td><c:out value="${close.e_check}" /></td>
 																				
 										</tr>
 										
@@ -310,7 +303,7 @@
                           	<a href="/transactionClose?pageNum=${pageMaker.startPage-1}">&lt;&lt;</a>
                            </c:if>
                        	<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
-                       		&nbsp;<a href="/transactionClose?pageNum=${num}&amount=${pageMaker.cri.amount}&companyName=${pageMaker.cri.companyName}&partName=${pageMaker.cri.partName}&startDate=${pageMaker.cri.startDate}&endDate=${pageMaker.cri.endDate}">
+                       		&nbsp;<a href="/transactionClose?pageNum=${num}&amount=${pageMaker.cri.amount}&companyName=${pageMaker.cri.companyName}&partName=${pageMaker.cri.partName}&startDate=${pageMaker.cri.startDate}&endDate=${pageMaker.cri.endDate}&recentDate=${pageMaker.cri.recentDate}">
                        		
                        		<c:if test="${pageMaker.cri.pageNum == num}" >
                        		<%--현재 페이지를 ${param.pageNum } or ${pageMaker.cri.pageNum } or {criteria.pageNum}> --%>
@@ -372,8 +365,6 @@
 
     
     
- 	
-</script>
 	<script>
     /*이메일 전송 클릭*/
        $('#emailsend').click(function(){	
@@ -425,35 +416,23 @@
         	$('input[name=subject]').attr('value',tdArray[0]);
         	$('input[name=message]').attr('value',tdArray[1]);
         	$('input[name=order_num]').attr('value',tdArray[4]);
-        	
-        	
-        	
-        	
-        	
+
 	});
 	
-	function checkOnlyOne(element) {
-		  
-		  const checkboxes 
-		      = document.getElementsByName("send");
-		  
-		  checkboxes.forEach((cb) => {
-		    cb.checked = false;
-		  })
-		  
-		  element.checked = true;
-		}
-    	
-	
-
-	function clickCheck(target) {
-	    document.querySelectorAll(`input[type=checkbox]`)
-	        .forEach(el => el.checked = false);
-
-	    target.checked = true;
-	}
 
 	</script>
+	
+		<script>
+		$('[name=recentDate]').on("change",function(){
+			$("input[type=date]").prop("disabled",true);
+		});
+		
+		$("input[type=date]").on("change",function(){
+			$('[name=recentDate]').prop("disabled",true);
+		});
+	</script>
+	
+	
 
 <!--Email Modal-->
 	<div class="modal fade" id="handlingmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

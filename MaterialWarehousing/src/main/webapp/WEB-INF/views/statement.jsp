@@ -158,6 +158,6 @@
                         <td><fmt:formatNumber value="${(state.unitprice*state.ware_quantity)*1.1}"  pattern="#,###"/></td>
                         </tr><br>
                        </table>
-                       <button type="button" class="btn btn-inverse-dark" id="print" onclick="window.print()"style="float:right;">인쇄</button>
+                       <button type="button" class="btn btn-outline-info btn-rounded" id="print" onclick="window.print()"style="float:right;">print</button>
 </body>
 </html>

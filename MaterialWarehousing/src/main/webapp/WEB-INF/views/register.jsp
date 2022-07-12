@@ -216,7 +216,7 @@
                       <h4 class="card-title">Horizontal Two column</h4>
                     </div>
                     <div class="card-body">
-                      <form class="form-sample" action="register" method="post">
+                      <form class="form-sample" action="register" method="POST">
                         <p class="card-description">
                           	업체정보 등록
                         </p>

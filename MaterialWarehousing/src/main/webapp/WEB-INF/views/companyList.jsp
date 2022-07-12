@@ -222,7 +222,7 @@
                          				<th>대표자명<input type="text" class="form-control" id="exampleInputUsername1"></th>
 										<th>
 											<button type="button" class="btn btn-outline-success btn-rounded">Search</button>&nbsp;&nbsp;
-											<a href="register"><button id="testBtn" class="btn btn-common btn-rounded">Register</button></a>
+											<a href="/register"><button id="testBtn" class="btn btn-common btn-rounded">Register</button></a>
 										</th>
 									</tr>
 								</table>
