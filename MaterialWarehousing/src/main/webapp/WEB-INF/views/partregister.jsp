@@ -65,12 +65,12 @@
                   </span>
                 </a>
                   <ul class="dropdown-menu sub-down">
-                  <li>
+                  <li class="active">
                     <a href="productList">품목조회/등록</a>
                   </li>
                 </ul>
                 <ul class="dropdown-menu sub-down">
-                  <li class="active">
+                  <li>
                     <a href="companyList">업체조회/등록</a>
                   </li>
                 </ul>
@@ -198,11 +198,11 @@
 				<!-- Breadcrumb Start -->
 				<div class="breadcrumb-wrapper row">
 					<div class="col-12 col-lg-3 col-md-6">
-						<h4 class="page-title"><strong>업체등록</strong></h4>
+						<h4 class="page-title"><strong>품목등록</strong></h4>
 					</div>
 					<div class="col-12 col-lg-9 col-md-6">
 						<ol class="breadcrumb float-right">
-							<li><a href="index.html">업체조회</a></li>
+							<li><a href="index.html">품목조회</a></li>
 							<li class="active">/ 등록</li>
 						</ol>
 					</div>
@@ -213,27 +213,27 @@
 				<div class="col-12 grid-margin">
                   <div class="card">
                     <div class="card-header border-bottom">
-                      <h4 class="card-title">Horizontal Two column</h4>
+                      <h4 class="card-title">품목 등록</h4>
                     </div>
                     <div class="card-body">
-                      <form class="form-sample" action="register" method="POST">
+                      <form class="form-sample" action="partregi" method="post">
                         <p class="card-description">
-                          	업체정보 등록
+                          	품목정보를 등록하세요
                         </p>
                         <div class="row">
                           <div class="col-md-6">
                             <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">업체명</label>
+                              <label class="col-sm-3 col-form-label">품목명 *</label>
                               <div class="col-sm-9">
-                                <input type="text" class="form-control" name="name" required>
+                                <input type="text" class="form-control" name="partname" required>
                               </div>
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">내외자 구분</label>
+                              <label class="col-sm-3 col-form-label">약칭</label>
                               <div class="col-sm-9">
-                                <input type="text" class="form-control" name="domestic_foreign" required>
+                                <input type="text" class="form-control" name="nickname">
                               </div>
                             </div>
                           </div>
@@ -241,79 +241,43 @@
                         <div class="row">
                           <div class="col-md-6">
                             <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">거래형태</label>
+                              <label class="col-sm-3 col-form-label">품목구분 *</label>
                               <div class="col-sm-9">
-                                <select class="form-control" name="deal_type" required>
+                                <select class="form-control" name="library" required>
                                   <option>선택</option>
-                                  <option value="임가공(도급)">임가공(도급)</option>
-                                  <option value="임가공(사급)">임가공(사급)</option>
-                                  <option value="기성사양품">기성사양품</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">대표자 이름</label>
-                              <div class="col-sm-9">
-                                <input type="text" class="form-control" name="owner" required>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">대표자 연락처</label>
-                              <div class="col-sm-9">
-                                <input type="text" class="form-control" name="contact" required>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">회사 주소</label>
-                              <div class="col-sm-9">
-                               	<input type="text" class="form-control" name="address" required>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">결제통화</label>
-                              <div class="col-sm-9">
-                                <input type="text" class="form-control" name="currency" required>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">계산서 발행 여부</label>
-                              <div class="col-sm-9">
-                                <input type="text" class="form-control" name="invoice_issue" required>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">계좌정보</label>
-                              <div class="col-sm-9">
-                                <input type="text" class="form-control" name="account" required>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">업체 규모</label>
-                              <div class="col-sm-9">
-                                <select class="form-control" name="company_size" required>
-                                <option>선택</option>
                                   <option value="대">대</option>
-                                  <option value="중소">중소</option>
+                                  <option value="중">중</option>
+                                  <option value="소">소</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label">회로도 번호</label>
+                              <div class="col-sm-9">
+                                <input type="text" class="form-control" name="drw_no">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label">회로도 이미지</label>
+                              <div class="col-sm-9">
+                                <input type="file" class="form-control" name="drw_img">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label">공용여부 *</label>
+                              <div class="col-sm-9">
+                               	<select class="form-control" name="library" required>
+                                  <option>선택</option>
+                                  <option value="0">공용</option>
+                                  <option value="1">전용</option>
                                 </select>
                               </div>
                             </div>
@@ -322,60 +286,16 @@
                         <div class="row">
                           <div class="col-md-6">
                             <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">사업자번호</label>
+                              <label class="col-sm-3 col-form-label">부가설명</label>
                               <div class="col-sm-9">
-                                <input type="text" class="form-control" name="business_number" required>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">세무코드</label>
-                              <div class="col-sm-9">
-                                <input type="text" class="form-control" name="taxcode" required>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">업태분류</label>
-                              <div class="col-sm-9">
-                                <input type="text" class="form-control" name="category" required>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">매출액 규모</label>
-                              <div class="col-sm-9">
-                                <input type="text" class="form-control" name="sales" required>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">거래 개시일</label>
-                              <div class="col-sm-9">
-                                <input type="date" class="form-control" name="start_date" required>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">거래 종료일</label>
-                              <div class="col-sm-9">
-                                <input type="date" class="form-control" name="end_date" required>
+                               <input type="text" class="form-control" name="remark">
                               </div>
                             </div>
                           </div>
                         </div>
                         <div align="center">
                         	<button type="submit" class="btn btn-common mr-3">등록</button>
-                        	<button class="btn btn-light">취소</button>
+                        	<button type="reset" class="btn btn-light">다시쓰기</button>
                         </div>
                       </form>
                     </div>

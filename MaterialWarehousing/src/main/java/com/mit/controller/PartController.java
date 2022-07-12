@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.mit.domain.CompanyVO;
 import com.mit.domain.Criteria;
-import com.mit.service.CompanyService;
+import com.mit.domain.PartVO;
 import com.mit.service.PartService;
 
 import lombok.AllArgsConstructor;
@@ -19,31 +18,25 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/")
 @Log4j
 @AllArgsConstructor
-public class BoardController {
+public class PartController {
+	private PartService pservice;
 	
-	
-	private CompanyService cpservice;
-	
-	
-	// 전체 목록 /main(get)	-> /main.jsp
-	@GetMapping("main")
-	public void main() {
-		log.info("main 요청");
+	// 품목조회/등록  -> 조회
+	@GetMapping("productList")
+	public void productList(Model model, Criteria cri) {
+		log.info("productList 요청");
+	model.addAttribute("ProductList", pservice.getList(cri));
 	}
 	
-	
-	// 업체조회/등록  -> 조회
-	
-	@GetMapping("companyList")
-	public void companyList(Model model,Criteria cri) {
-		log.info("companyList 요청");
-		model.addAttribute("CompanyList", cpservice.getList(cri));
+	@GetMapping("/partregister")
+	public void register() {
+		
 	}
-
-
 	
-	
-	
-
-	
+	@PostMapping("partregi")
+	public String register(PartVO vo){
+		log.info("부품등록 요청");
+		pservice.register(vo);	//부품등록 요청
+		return "redirect:partList";
+	}
 }
