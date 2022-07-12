@@ -217,13 +217,13 @@
 												<div
 													class="custom-control custom-radio radio custom-control-inline">
 													<input type="radio" class="custom-control-input"
-														name="recentDate"  id="male"> <label
+														name="recentDate"  id="male" value="week"> <label
 														class="custom-control-label" for="male">최근 일주일</label>
 												</div>
 												<div
 													class="custom-control custom-radio radio custom-control-inline">
 													<input type="radio" class="custom-control-input"
-														name="recentDate" id="gender" > <label
+														name="recentDate" id="gender" value="month"> <label
 														class="custom-control-label" for="gender">최근 한달</label>
 												</div>
 												<div id="displayNone" style="display: none"
@@ -324,7 +324,7 @@
                           	<a href="/orderStatus?pageNum=${pageMaker.startPage-1 }">&lt;&lt;</a>
                            </c:if>
                        	<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
-                       		&nbsp;<a href="/orderStatus?pageNum=${num }&amount=${pageMaker.cri.amount}&companyName=${pageMaker.cri.companyName}&partName=${pageMaker.cri.partName}&startDate=${pageMaker.cri.startDate}&endDate=${pageMaker.cri.endDate}">
+                       		&nbsp;<a href="/orderStatus?pageNum=${num }&amount=${pageMaker.cri.amount}&companyName=${pageMaker.cri.companyName}&partName=${pageMaker.cri.partName}&startDate=${pageMaker.cri.startDate}&endDate=${pageMaker.cri.endDate}&recentDate=${pageMaker.cri.recentDate}">
                        		
                        		<c:if test="${pageMaker.cri.pageNum == num }" >
                        		<%--현재 페이지를 ${param.pageNum } or ${pageMaker.cri.pageNum } or {criteria.pageNum}> --%>

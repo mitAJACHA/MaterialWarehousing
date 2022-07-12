@@ -16,6 +16,7 @@ public class Criteria {
 	private String partName;
 	private String startDate;
 	private String endDate;
+	private String recentDate;
 	
 	
 	// 기본 생성자 -> 기본값 1, 10
