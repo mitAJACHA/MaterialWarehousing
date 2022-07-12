@@ -253,9 +253,8 @@
 					<div class="col-lg-12 col-md-12 col-xs-12">
 						<div class="card">
 							<div class="card-header">
-								
-								<td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#handlingmodal" id="emailsend">이메일 전송</button></td>
-								
+								<h4 class="card-title"><strong>거래마감</strong></h4>
+								<td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#handlingmodal" id="emailsend" style="float:right;">이메일 전송</button></td>
 							</div>
 							<div class="table-overflow">
 								<table class="table table-lg">
