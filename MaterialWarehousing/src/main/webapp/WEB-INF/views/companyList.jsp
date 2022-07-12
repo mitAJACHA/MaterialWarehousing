@@ -242,7 +242,7 @@
                                
 							</div>
 							<div class="table-overflow">
-								<table class="table table-lg">
+								<table class="table table-lg table-hover">
 									<thead align="center">
 										<tr>
 											<th class="text-dark text-semibold">번호</th>

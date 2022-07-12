@@ -251,6 +251,7 @@
 											<th class="text-dark text-semibold">품목구분</th>
 											<th class="text-dark text-semibold">회로도번호</th>
 											<th class="text-dark text-semibold">부가설명</th>
+											<th class="text-dark text-semibold">공용여부</th>
 										</tr>
 									</thead>
 									<c:forEach var="part" items="${ProductList}">
@@ -259,8 +260,9 @@
 											<td><c:out value="${part.partcode}" /></td>
 											<td><c:out value="${part.partname}" /></td>
 											<td><c:out value="${part.nickname}" /></td>
-											<td><c:out value="${part.library}" /></td>
+											<td><c:out value="${part.library == 0 ? '대' : part.library == 1 ? '중' : '소'}" /></td>
 											<td><c:out value="${part.drw_no}" /></td>
+											<td><c:out value="${part.common == 0 ? '공용' : '전용'}" /></td>
 											<td><c:out value="${part.remark}" /></td>
 										</tr>
 									</tbody>

@@ -250,18 +250,10 @@
 						<div class="card">
 							<div class="card-header">
 								<h4 class="card-title">OrderList</h4>
-								<div class="selected float-right">
-									<select class="custom-select">
-										<option selected="selected" value="0">10개</option>
-										<option value="1">30개</option>
-										<option value="2">50개</option>
-										<option value="3">100개</option>
-									</select>
-								</div>
 								<a href="chart"><button type="button" class="btn btn-link">report</button></a>
 							</div>
 							<div class="table-overflow">
-								<table class="table table-lg">
+								<table class="table table-lg table-hover">
 									<thead align="center">
 										<tr>
 											<th class="text-dark text-semibold">발주번호</th>
