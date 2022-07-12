@@ -19,8 +19,9 @@ public class WareHandlingServiceImpl implements WareHandlingService {
 	private WareHandlingMapper mapper;
 	
 	@Override
-	public List<WareHandlingVO> getList(){
-		return mapper.getList();
+	public List<WareHandlingVO> getList(Criteria cri){
+		System.out.println(cri);
+		return mapper.getList(cri);
 	}
 	
 	@Override
@@ -31,6 +32,11 @@ public class WareHandlingServiceImpl implements WareHandlingService {
 	@Override
 	public void handleno(HandleVO ho) {
 		mapper.handleno(ho);
+	}
+	
+	@Override
+	public Long count(Criteria cri) {
+		return mapper.count(cri);
 	}
 
 

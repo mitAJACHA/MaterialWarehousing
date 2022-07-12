@@ -4,40 +4,94 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
  
  <mapper namespace="com.mit.mapper.WareHandlingMapper">
- 	<select id="getList" resultType="com.mit.domain.WareHandlingVO">
- 		<![CDATA[SELECT po.order_num, po.order_date, tp.partname, tc.name company_name, 
-				((SELECT SUM(inspection_quantity) From inspection) - (Select SUM(inspection_defect) FROM inspection_result)) real_quantity, 
-				po.order_quantity order_quantity, 
-				CASE 
-				WHEN ((select COUNT(inspection_num) FROM inspection) = (SELECT COUNT(inspection_num) FROM inspection_result)) THEN '검수완료'
-				WHEN  ((select COUNT(inspection_num) FROM inspection) != (SELECT COUNT(inspection_num) FROM inspection_result)) THEN '검수미완료'
-				END AS inspection_status,
-				CASE
-				WHEN ((SELECT SUM(inspection_quantity) From inspection) - (Select SUM(inspection_defect) FROM inspection_result)) >= po.order_quantity 
-				AND ((select COUNT(inspection_num) FROM inspection) = (SELECT COUNT(inspection_num) FROM inspection_result)) 
-				AND wh.ware_date is null THEN '입고처리'
-				WHEN ((SELECT SUM(inspection_quantity) From inspection) - (Select SUM(inspection_defect) FROM inspection_result)) < po.order_quantity 
-				AND ((select COUNT(inspection_num) FROM inspection) = (SELECT COUNT(inspection_num) FROM inspection_result)) 
-				AND wh.ware_date is null THEN '반품처리'
-				WHEN wh.ware_date is not null THEN '입고완료'
-				ELSE '입고불가'
-				END AS handleorreturn,
-				wh.ware_date ware_date
-				FROM purchase_order po, TBL_PART tp, TBL_COMPANY tc, TBL_contract ct, inspection i, INSPECTION_RESULT ir, WareHousing wh 
-				WHERE po.contract_num = ct.contractno AND tp.partcode = ct.partcode AND i.order_num = ir.order_num AND tc.code = ct.code 
-				AND wh.order_num = po.order_num AND po.order_num = i.order_num AND po.order_num = ir.order_num 
-				order by order_num DESC
-				]]>
+ 	<sql id="criteria">
+    	<trim prefixOverrides="AND">
+   			<trim prefix="AND">
+   				<if test='companyName!=null'>
+   					name like'%'||#{companyName}||'%'
+   				</if>
+   				<if test='partName!=null'>
+   					AND partname like'%'||#{partName}||'%'
+   				</if>
+   				<if test='startDate!=null and endDate ==null'>
+   					<![CDATA[ AND order_date => TO_TIMESTAMP(#{startDate}, 'YYYY-MM-DD')  ]]>
+   				</if>
+   				<if test='startDate==null and endDate !=null'>
+   					<![CDATA[ AND order_date <= TO_TIMESTAMP(#{endDate}, 'YYYY-MM-DD') ]]>
+   				</if>
+   				<if test='startDate!=null and endDate !=null'>
+   					AND order_date between TO_TIMESTAMP(#{startDate}, 'YYYY-MM-DD')-1 and TO_TIMESTAMP(#{endDate}, 'YYYY-MM-DD')+1 
+   					<!-- 날짜 검색 기능 개선 (between은 양쪽 날짜가 포함되지 않아 -1, +1 함)-->
+   				</if>
+   			</trim>
+    	</trim>
+    </sql>
+ 	
+ 	<sql id="List">
+	 		<![CDATA[
+	 		SELECT *
+	 			FROM (select rownum rn, order_num, order_date, partname, companyname, real_quantity, order_quantity,
+	 			 inspection_status, handleorreturn, ware_date
+	 			FROM (WITH tbl_result AS
+				(select tbl_sumq.order_num, (tbl_sumq.sum_q-tbl_sumi.sum_i) real_quantity
+				from 
+				    (select order_num, sum(inspection_quantity)sum_q from inspection group by order_num)tbl_sumq,
+				    (select order_num, sum(inspection_defect)sum_i from inspection_result group by order_num)tbl_sumi
+				where tbl_sumq.order_num = tbl_sumi.order_num)
+				
+				select DISTINCT
+				    po.order_num order_num, 
+				    po.order_date order_date, 
+				    p.partname partname, 
+				    company.name companyname, 
+				    re.real_quantity real_quantity, 
+				    po.order_quantity order_quantity, 
+				        CASE 
+				        WHEN ir.close = 1 THEN '검수완료'
+				        ELSE '검수미완료'
+				        END AS inspection_status,
+				    CASE
+				        WHEN real_quantity >= po.order_quantity
+				        AND ir.close = 1 AND wh.ware_date IS NULL THEN '입고처리'
+				        WHEN real_quantity < po.order_quantity
+				        AND ir.close = 1 AND wh.ware_date IS NULL THEN '반품처리'
+				        WHEN wh.ware_date IS NOT NULL THEN '입고완료'
+				        ELSE '입고불가'
+				    END AS handleorreturn,
+				    wh.ware_date ware_date
+				from purchase_order po INNER JOIN tbl_contract c ON po.contract_num = c.contractno
+				        INNER JOIN tbl_part p ON p.partcode = c.partcode
+				        INNER JOIN tbl_company company ON c.code = company.code
+				        LEFT JOIN warehousing wh ON wh.order_num = po.order_num
+				        RIGHT JOIN inspection i ON i.order_num = po.order_num
+				        INNER JOIN inspection_result ir ON ir.order_num = i.order_num
+				        RIGHT JOIN tbl_result re ON re.order_num = po.order_num
+				 ]]>
+			<where>
+	    	<include refid="criteria"></include>
+    	</where>
+		<![CDATA[
+ ORDER BY order_num DESC) WHERE ROWNUM <= (#{pageNum} * #{amount}))
+		WHERE rn > ((#{pageNum}-1) * #{amount})
+		]]>
+ 	</sql>
+ 	
+ 	<select id="getList"  resultType="com.mit.domain.WareHandlingVO">
+ 		<include refid="List"></include>
  	</select>
  	
- 	<select id="handleok" resultType="com.mit.domain.HandleVO">
- 		<![CDATA[INSERT INTO warehousing(ware_num, ware_date, ware_quantity, return, order_num) values(warehousing_num.nextval, sysdate, #{real_qauntity}, 'N', #{order_num})]]>
- 	</select>
  	
- 	<select id="handleno" resultType="com.mit.domain.HandleVO">
- 		<![CDATA[INSERT INTO warehousing(ware_num, ware_date, ware_quantity, return, order_num) values(warehousing_num.nextval, sysdate, 0, 'Y', #{order_num})]]>
- 	</select>
+ 	<insert id="handleok">
+ 		<![CDATA[INSERT INTO warehousing(ware_num, ware_date, ware_quantity, return, order_num) values(warehousing_num.nextval, sysdate, ${real_quantity}, 'N', ${order_num})]]>
+	</insert>
  	
+ 	<insert id="handleno">
+ 		<![CDATA[INSERT INTO warehousing(ware_num, ware_date, ware_quantity, return, order_num) values(warehousing_num.nextval, sysdate, 0, 'Y', ${order_num})]]>
+ 	</insert>
+ 	
+    <select id="count" resultType="long">
+		select count(*) from(<include refid="List"></include>)
+	</select>
  	
 
  </mapper>

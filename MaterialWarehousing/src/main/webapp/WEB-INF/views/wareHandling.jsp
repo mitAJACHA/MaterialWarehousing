@@ -59,9 +59,14 @@
                     <i class="lni-chevron-right"></i>
                   </span>
                 </a>
-                <ul class="dropdown-menu sub-down">
+                 <ul class="dropdown-menu sub-down">
                   <li>
-                    <a href="index.html">등록</a>
+                    <a href="productList">품목조회/등록</a>
+                  </li>
+                </ul>
+                <ul class="dropdown-menu sub-down">
+                <li>
+                    <a href="companyList">업체조회/등록</a>
                   </li>
                 </ul>
               </li>
@@ -206,23 +211,40 @@
 					<div class="col-lg-12 col-md-12 col-xs-12">
 						<div class="card">
 							<div class="table-overflow">
+							<form action="wareHandling" method="get" style="margin-bottom: 0px">
 								<table class="table table-lg">
 									<tr>
-										<th>회사명&nbsp;&nbsp;<input class="form-control" type="text"></th>
-										<th>품목명&nbsp;&nbsp;<input class="form-control" type="text"></th>
-										<th>일자&nbsp;&nbsp;<input class="form-control" type="date"></th>
-										<th> &nbsp;&nbsp;<input class="form-control" type="date"></th>
+										<th>회사명&nbsp;<input type="text" class="form-control" name="companyName" value="${pageMaker.cri.companyName }"></th>
+										<th>품목명&nbsp;<input type="text" class="form-control" name="partName" value="${pageMaker.cri.partName }"></th>
+										<th>일자&nbsp;&nbsp;<input class="form-control" type="date" name="startDate" value="${pageMaker.cri.startDate }"></th>
+										<th> &nbsp;&nbsp;<input class="form-control" type="date" name="endDate" value="${pageMaker.cri.endDate }"></th>
 										<th>
-								<div class="custom-control custom-radio radio custom-control-inline">
-                                  <input type="radio" class="custom-control-input" name="chk_info" id="recentWeek">
-                                  <label class="custom-control-label" for="recentWeek">최근 일주일</label></div>
-                                  <div class="custom-control custom-radio radio custom-control-inline">
-                                  <input type="radio" class="custom-control-input" name="chk_info" id="recentMonth">
-                                  <label class="custom-control-label" for="recentMonth">최근 한달</label></div>
-											<button type="button" class="btn btn-outline-success btn-rounded">Search</button>
-										</th>
+								<div
+													class="custom-control custom-radio radio custom-control-inline">
+													<input type="radio" class="custom-control-input"
+														name="recentDate"  id="male"> <label
+														class="custom-control-label" for="male">최근 일주일</label>
+												</div>
+												<div
+													class="custom-control custom-radio radio custom-control-inline">
+													<input type="radio" class="custom-control-input"
+														name="recentDate" id="gender" > <label
+														class="custom-control-label" for="gender">최근 한달</label>
+												</div>
+												<div id="displayNone" style="display: none"
+													class="custom-control custom-radio radio custom-control-inline">
+													<input type="radio" class="custom-control-input"
+														name="recentDate" id="gender" checked> <label
+														class="custom-control-label" for="gender"></label>
+												</div>
+												<input type="hidden" name='pageNum' value='${pageMaker.cri.pageNum }'/>
+	                            				<input type="hidden" name='amount' value='${pageMaker.cri.amount }'/>
+												<button type="submit"
+													class="btn btn-outline-success btn-rounded">Search</button>
+											</th>
 									</tr>
 								</table>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -264,7 +286,7 @@
 											<td><c:out value="${handling.order_num}" /></td>
 											<td><fmt:formatDate pattern="yyyy-MM-dd " value="${handling.order_date}" /></td>
 											<td><c:out value="${handling.partname}" /></td>
-											<td><c:out value="${handling.company_name}" /></td>
+											<td><c:out value="${handling.companyname}" /></td>
 											<td>
 											<c:choose>
 												<c:when test="${handling.real_quantity==null}">-</c:when>
@@ -298,6 +320,29 @@
 			            </div>
 			        </div>
 			  </div>
+			  <div class="col-lg-12 col-md-12 col-xs-12" align="center">
+						<c:if test="${pageMaker.prev }">
+                          	<a href="/wareHandling?pageNum=${pageMaker.startPage-1 }">&lt;&lt;</a>
+                           </c:if>
+                       	<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
+                       		&nbsp;<a href="/wareHandling?pageNum=${num }&amount=${pageMaker.cri.amount}&companyName=${pageMaker.cri.companyName}&partName=${pageMaker.cri.partName}&startDate=${pageMaker.cri.startDate}&endDate=${pageMaker.cri.endDate}">
+                       		
+                       		<c:if test="${pageMaker.cri.pageNum == num }" >
+                       		<%--현재 페이지를 ${param.pageNum } or ${pageMaker.cri.pageNum } or {criteria.pageNum}> --%>
+                       		<b>${num }</b>
+                       		</c:if>
+                       		
+                       		<c:if test="${pageMaker.cri.pageNum != num }" >
+                       		${num }
+                       		</c:if>
+                       		
+                       		</a>&nbsp;&nbsp;&nbsp;
+                       	</c:forEach>
+                       	<c:if test="${pageMaker.next }">
+                           	<a href="/wareHandling?pageNum=${pageMaker.endPage+1 }">&gt;&gt;</a>
+                        </c:if>
+                    </div>
+			  
 		  </div>
 		  </div>
 		
@@ -339,6 +384,18 @@
     <script src="/resources/assets/plugins/morris/morris.min.js"></script>
     <script src="/resources/assets/plugins/raphael/raphael-min.js"></script>
     <script src="/resources/assets/js/dashborad1.js"></script>
+    
+    <script>
+		$('[name=recentDate]').on("change",function(){
+			$("input[type=date]").prop("disabled",true);
+		});
+		
+		$("input[type=date]").on("change",function(){
+			$('[name=recentDate]').prop("disabled",true);
+		});
+	</script>
+	
+
     
 	<script>
 	//경고창
@@ -399,6 +456,32 @@
     });
 	</script>
 	
+	<script>
+	$("#endwhing").click(function(){
+			var endwhing = $(this);
+			var tr = endwhing.parent().parent();
+			var td = tr.children();
+			
+			var order_num = td.eq(0).text();
+			var real_quantity = td.eq(4).text();
+    	
+    	var tdArr = new Array();
+    	endwhing.each(function(i){
+    		tr=endwhing.parent().parent().eq(i);
+        	td = tr.children();
+        	real_quantity=td.eq(4).text();		
+        	order_num=td.eq(0).text(); 
+        	
+        	tdArr.push(real_quantity);
+        	tdArr.push(order_num);
+        
+        	});
+        	
+        	$('input[name=order_num]').attr('value',tdArr[0]);
+        	$('input[name=real_quantity]').attr('value',tdArr[4]);
+	});
+	</script>
+	
 	
 	<!-- Modal1 입고처리 클릭시 등장 -->
 	<div class="modal fade" id="handlingmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -408,49 +491,44 @@
 	        <h5 class="modal-title" id="staticBackdropLabel">입고처리</h5>
 	      </div>
 	      <div class="modal-body">
-	      	<form class="wareupdate">
 	      	  <div class="container-fluid">
-				 <div class="table-overflow" style="text-align:center">
-					<table class="table table-lg table-hover" style="margin-left: auto; margin-right: auto;">
-						</thead>
-						<tbody align="center">
-						<tr>
-						<th>품목</th>
-						<th>수량</th>
-						</tr>
-						<tr>
-						<td><c:out value="${partname}" /></td>
-						<td><c:out value="${real_quantity}" /></td>
-						</tr>
-						</tbody>
-					</table>
-
-	      	</form>
-	      </div>
+				 <div class="form-group" >
+                         <label for="order_num">발주번호</label>
+                         <input type="text" name="order_num" class="form-control" id="exampleInputName1" value="" >
+                      </div>
+                 <div class="form-group" >
+                         <label for="real_quantity">수량</label>
+                         <input type="text" name="real_quantity" class="form-control" id="exampleInputName1" value="" >
+                      </div>
+					</div>
+	    	  </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modalcancel">취소하기</button>
 	        <button type="button" class="btn btn-primary" id="handlingend">입고마감</button>
 	      </div>
 	    </div>
 	  </div>
+	</div>
 	</div>   
 	
 	<!-- Modal2 입고처리에서 입고마감 클릭시 등장 -->
 	<div class="modal fade" id="alerthandling" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
+	    <form action="handleok" method="post">	<!-- handleok 서비스 -->
 	      <div class="modal-header">
 	        <h5 class="modal-title" id="staticBackdropLabel">입고마감</h5>
 	      </div>
 	      <div class="modal-body">
-	        	"${partname}" 품목<br>
-	        	"${real_quantity}"개를 <br>
+	        	${WareHandlingVO.partname} 품목<br>
+	        	${WareHandlingVO.real_quantity}개를 <br>
 	        	입고마감하시겠습니까?
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="endhandling">예</button>
+	        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" id="endhandling">예</button>
 	        <button type="button" class="btn btn-seconday" id="modalcancel2">아니오</button>
 	      </div>
+	      </form>
 	    </div>
 	  </div>
 	</div>    
@@ -459,17 +537,18 @@
 	<div class="modal fade" id="returningmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
+	   	 <form action="handleno" method="post">	<!-- handleno 서비스 -->
 	      <div class="modal-header">
 	        <h5 class="modal-title" id="staticBackdropLabel">반품처리</h5>
 	      </div>
 	      <div class="modal-body">
-	        	"${partname}" 품목 거래를
-	        	반품시겠습니까?
+	      		거래를 반품시겠습니까?
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modalcancel3">취소하기</button>
-	        <button type="button" class="btn btn-primary" id="endreturn">반품하기</button>
+	        <button type="submit" class="btn btn-primary" id="endreturn">반품하기</button>
 	      </div>
+	      </form>
 	    </div>
 	  </div>
 	</div>

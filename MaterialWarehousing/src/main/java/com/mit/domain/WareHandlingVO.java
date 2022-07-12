@@ -9,7 +9,7 @@ public class WareHandlingVO {
 	private long order_num;
 	private Date order_date;
 	private String partname;
-	private String company_name;
+	private String companyname;
 	private int real_quantity;
 	private int order_quantity;
 	private String inspection_status;

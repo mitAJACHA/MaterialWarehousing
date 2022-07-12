@@ -8,7 +8,7 @@ import lombok.Data;
 public class HandleVO {
 	private long ware_num;
 	private Date ware_date;
-	private int ware_quantity;
+	private int real_quantity;
 	private String returning;
 	private long order_num;
 }
