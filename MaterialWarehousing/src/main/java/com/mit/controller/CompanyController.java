@@ -25,7 +25,7 @@ public class CompanyController {
 	}
 	
 	@PostMapping("register")
-	public String register1(CompanyVO vo) {
+	public String register(CompanyVO vo) {
 		service.register(vo);
 		return "redirect:companyList";
 	}
