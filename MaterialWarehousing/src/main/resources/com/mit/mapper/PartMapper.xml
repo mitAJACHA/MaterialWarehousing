@@ -10,7 +10,7 @@
 	
 	<insert id="insert">
 		<![CDATA[INSERT INTO tbl_part(partcode, partname, nickname, library, drw_no, drw_img, common, remark) 
-		values(seq_partcode.nextval, ${partname}, ${nickname}, ${library}, ${drw_no}, ${drw_img}, ${common}, ${remark})]]>
+		values(seq_partcode.nextval, #{partname}, #{nickname}, #{library}, #{drw_no}, #{drw_img}, #{common}, #{remark})]]>
 	</insert>
 	
 	
