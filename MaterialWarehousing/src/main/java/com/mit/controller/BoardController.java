@@ -32,7 +32,6 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class BoardController {
 	
-	private OrderStatusService service;
 	private transactionCloseService service1;
 	private WareHandlingService whservice;
 	private CompanyService cpservice;
@@ -42,34 +41,6 @@ public class BoardController {
 	@GetMapping("main")
 	public void main() {
 		log.info("main 요청");
-	}
-	
-	@GetMapping("orderStatus")
-	public void orderStatus(Model model, Criteria cri) {
-		log.info("orderStatus 요청");
-		if (cri != null) {
-			if (cri.getCompanyName()=="") {
-				cri.setCompanyName(null);
-			}
-			if (cri.getEndDate()=="") {
-				cri.setEndDate(null);
-			}
-			if (cri.getPartName()=="") {
-				cri.setPartName(null);
-			}
-			if (cri.getStartDate()=="") {
-				cri.setStartDate(null);
-			}
-		}
-		
-		model.addAttribute("orderList", service.getList(cri));
-		model.addAttribute("pageMaker", new PageDTO(cri, service.count(cri)));
-	}
-	
-	//차트
-	@GetMapping("chart")
-	public void chart() {
-		log.info("chart 요청");
 	}
 	
 	//입고처리페이지
