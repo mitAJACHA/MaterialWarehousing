@@ -14,7 +14,7 @@
 			account, company_size, business_number,  taxcode, category, start_date, end_date, sales)
 		values 
 			(company_code.nextval, #{name}, #{domestic_foreign}, #{deal_type}, #{owner}, #{contact}, 
-			#{address}, #{currency}, #{invoice_issue}, #{account}, #{company_size}, #{company_size}, 
+			#{address}, #{currency}, #{invoice_issue}, #{account}, #{company_size},
 			#{business_number}, #{taxcode}, #{category}, #{start_date}, #{end_date}, #{sales})
 	</insert>
 	
