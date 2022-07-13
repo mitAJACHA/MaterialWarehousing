@@ -45,7 +45,7 @@
 			e.empl_name empl_name,e.empl_email empl_email ,w.e_check e_check
 			FROM tbl_part p , tbl_contract c, tbl_company cp, warehousing w, purchase_order o,
 			employee e where p.partcode = c.partcode and c.code = cp.code and c.contractno = o.contract_num and w.order_num = o.order_num and
-			o.empl_num = e.empl_num and w.ware_date is not null
+			o.empl_num = e.empl_num and w.ware_date is not null and w.return = 'N'
 		]]>
 		
 	    	<include refid="criteria"></include>
