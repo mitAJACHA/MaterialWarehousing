@@ -51,7 +51,8 @@
 				    po.order_num order_num, 
 				    po.order_date order_date, 
 				    p.partname partname, 
-				    company.name companyname, 
+				    company.name companyname,
+				    company.comemail email, 
 				    re.real_quantity real_quantity, 
 				    po.order_quantity order_quantity, 
 				        CASE 
@@ -63,7 +64,10 @@
 				        AND ir.close = 1 AND wh.ware_date IS NULL THEN '입고처리'
 				        WHEN real_quantity < po.order_quantity
 				        AND ir.close = 1 AND wh.ware_date IS NULL THEN '반품처리'
-				        WHEN wh.ware_date IS NOT NULL THEN '입고완료'
+				        WHEN real_quantity >= po.order_quantity
+				        AND ir.close = 1 AND wh.ware_date IS NOT NULL THEN '입고완료'
+				        WHEN real_quantity < po.order_quantity
+				        AND ir.close = 1 AND wh.ware_date IS NOT NULL THEN '반품완료'
 				        ELSE '입고불가'
 				    END AS handleorreturn,
 				    wh.ware_date ware_date

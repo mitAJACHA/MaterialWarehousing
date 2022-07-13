@@ -260,11 +260,12 @@
 											<th class="text-dark text-semibold">발주일자</th>
 											<th class="text-dark text-semibold">품목명</th>
 											<th class="text-dark text-semibold">협력회사</th>
-											<th class="text-dark text-semibold">정품수량</th>
+											<th class="text-dark text-semibold">담당자이메일</th>
 											<th class="text-dark text-semibold">필요수량</th>
+											<th class="text-dark text-semibold">정품수량</th>
 											<th class="text-dark text-semibold">입고검수</th>
-											<th class="text-dark text-semibold">수량정보입력</th>
-											<th class="text-dark text-semibold">입고일자</th>
+											<th class="text-dark text-semibold">입고/반품</th>
+											<th class="text-dark text-semibold">처리일자</th>
 										</tr>
 									</thead>
 									<c:forEach var="handling" items="${whList}">
@@ -274,8 +275,9 @@
 											<td><fmt:formatDate pattern="yyyy-MM-dd " value="${handling.order_date}" /></td>
 											<td><c:out value="${handling.partname}" /></td>
 											<td><c:out value="${handling.companyname}" /></td>
-											<td><c:out value="${handling.real_quantity}" /></td>
+											<td><c:out value="${handling.email}" /></td>
 											<td><c:out value="${handling.order_quantity}" /></td>
+											<td><c:out value="${handling.real_quantity}" /></td>
 											<td>
 											<c:choose>
 												<c:when test="${handling.inspection_status=='검수완료'}"><a href="#" class="badge badge-success">${handling.inspection_status}</a></c:when>
@@ -283,9 +285,10 @@
 											</c:choose></td>
 											<td>
 											<c:choose>
-												<c:when test="${handling.handleorreturn=='입고처리'}"><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#handlingmodal" id="endwhing">${handling.handleorreturn}</button></c:when>
+												<c:when test="${handling.handleorreturn=='입고처리'}"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#handlingmodal" id="endwhing">${handling.handleorreturn}</button></c:when>
 												<c:when test="${handling.handleorreturn=='반품처리'}"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#returningmodal" id="returning">${handling.handleorreturn}</button></c:when>
-												<c:when test="${handling.handleorreturn=='입고완료'}"><button type="button" class="btn btn-primary" onclick="endend()">${handling.handleorreturn}</button></c:when>
+												<c:when test="${handling.handleorreturn=='입고완료'}"><button type="button" class="btn btn-success" onclick="endend()">${handling.handleorreturn}</button></c:when>
+												<c:when test="${handling.handleorreturn=='반품완료'}"><button type="button" class="btn btn-dark" onclick="endend()">${handling.handleorreturn}</button></c:when>
 												<c:when test="${handling.handleorreturn=='입고불가'}"><button type="button" class="btn btn-secondary" onclick="notyet()">${handling.handleorreturn}</button></c:when>
 											</c:choose></td>
 											<td>
@@ -382,7 +385,7 @@
 	<script>
 	//경고창
 	function endend() {
-  	alert("이미 입고가 마감되었습니다");
+  	alert("이미 처리되었습니다");
 	}
 	</script>
 	
@@ -423,7 +426,7 @@
 		        console.log("클릭한 Row의 모든 데이터 : "+tr.text());
 		        var order_num = td.eq(0).text();
 		        var partname = td.eq(2).text();
-		        var real_quantity = td.eq(4).text();
+		        var real_quantity = td.eq(6).text();
 		     
 		        td.each(function(i){    
 		            tdArr.push(td.eq(i).text());
