@@ -194,8 +194,8 @@
 					</div>
 					<div class="col-12 col-lg-9 col-md-6">
 						<ol class="breadcrumb float-right">
-							<li><a href="index.html">Home</a></li>
-							<li class="active">/ Dashboard</li>
+							<li><a href="index.html">조달관리 시스템</a></li>
+							<li class="active">/발주현황</li>
 						</ol>
 					</div>
 				</div>
@@ -249,7 +249,7 @@
 					<div class="col-lg-12 col-md-12 col-xs-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">OrderList</h4>
+								<h4 class="card-title"><strong>발주현황</strong></h4>
 								<a href="chart"><button type="button" class="btn btn-link">report</button></a>
 							</div>
 							<div class="table-overflow">
