@@ -257,8 +257,8 @@
 								<td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#handlingmodal" id="emailsend" style="float:right;">이메일 전송</button></td>
 							</div>
 							<div class="table-overflow">
-								<table class="table table-lg">
-									<thead align="center">
+								<table class="table table-lg table-hover">
+									<thead class="table-light" align="center">
 										<tr>
 											<th class="text-dark text-semibold"></th>
 											<th class="text-dark text-semibold">발주번호</th>
