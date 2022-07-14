@@ -69,7 +69,7 @@
 	<select id="read" resultType="com.mit.domain.transactionCloseVO">
 		<![CDATA[
 			select*from(select  o.order_num order_num, w.ware_date ware_date, p.partcode partcode, p.partname partname, cp.name name,
-				 s.deliverydate deliverydate , cp.business_number business_number,cp.email email, cp.c_name,
+				 s.deliverydate deliverydate , cp.business_number business_number,cp.comemail, cp.comemployee,
 				w.ware_quantity ware_quantity, o.order_date order_date, c.unitprice unitprice
 				from tbl_part p , tbl_contract c, tbl_company cp, warehousing w, purchase_order o,
              tbl_support s
