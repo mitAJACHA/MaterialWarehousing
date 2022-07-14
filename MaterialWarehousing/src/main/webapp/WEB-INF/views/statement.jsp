@@ -54,13 +54,13 @@
 				    <td>담당자</td>
 				    <td>김ㅇㅇ</td>
 				    <td>담당자</td>
-				    <td><c:out value="${state.empl_name}" /></td>
+				    <td><c:out value="${state.c_name}" /></td>
 				    </tr>
 				    <tr>
 				     <td>이메일</td>
 				    <td>ajacha_mit@gmail.com</td>
 				    <td>이메일</td>
-				    <td><c:out value="${state.empl_email}" /></td>
+				    <td><c:out value="${state.email}" /></td>
 				    </tr>
 				    
 				    <tr>

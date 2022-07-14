@@ -262,13 +262,15 @@
 										<tr>
 											<th class="text-dark text-semibold"></th>
 											<th class="text-dark text-semibold">발주번호</th>
-											<th class="text-dark text-semibold">마감일자</th>
+											<th class="text-dark text-semibold">입고일자</th>
 											<th class="text-dark text-semibold">품목코드</th>
 											<th class="text-dark text-semibold">품목명</th>
 											<th class="text-dark text-semibold">협력회사명</th>
-											<th class="text-dark text-semibold">거래명세서</th>
-											<th class="text-dark text-semibold">담당자명</th>
-											<th class="text-dark text-semibold">이메일</th>
+											<th class="text-dark text-semibold">정품수량</th>
+											<th class="text-dark text-semibold">거래금액</th>
+											<th class="text-dark text-semibold">마감</th>
+											<th class="text-dark text-semibold">마감일자</th>
+											<th class="text-dark text-semibold">명세서보기</th>
 											<th class="text-dark text-semibold">이메일 전송</th>
 											
 										
@@ -279,16 +281,25 @@
 											<tr>
 											<td><input type="checkbox" id="user_CheckBox" class="rowChk" onclick="clickCheck(this)"></td>
 											<td><c:out value="${close.order_num}" /></td>
-												<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm " value="${close.ware_date}"/></td>
-												<td ><c:out value="${close.partcode}" /></td>
-												<td ><c:out value="${close.partname}" /></td>
-												<td><c:out value="${close.name}" /></td>
-													<td><button class="btn btn-warning" onclick="window.open('/statement?order_num=${close.order_num}',
-													'test','left=450,width=800,height=900,location=no,status=no,scrollbars=yes');">보기</button></td>
-												<td ><c:out value="${close.empl_name}" /></td>
-												<td ><c:out value="${close.empl_email}" /></td>
-												<td><c:out value="${close.e_check}" /></td>
-																				
+											<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm " value="${close.ware_date}"/></td>
+											<td ><c:out value="${close.partcode}" /></td>
+											<td ><c:out value="${close.partname}" /></td>
+											<td><c:out value="${close.name}" /></td>
+											<td><c:out value="${close.ware_quantity}" /></td>
+											<td ><c:out value="${close.price}" /></td>
+											
+												
+												<td><button type="button" class="btn btn-primary" data-bs-toggle="modal" 
+												data-bs-target="#handlingmodal" id="close" style="float:right;">마감처리</button></td>
+												<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm " value="${close.closing_date}"/></td>
+												<td>
+												<c:choose>
+												<c:when test="${close.closing_date==null}">-</c:when>
+												<c:when test="${close.closing_date!=null}">
+													<button class="btn btn-warning" onclick="window.open('/statement?order_num=${close.order_num}',
+													'test','left=450,width=800,height=900,location=no,status=no,scrollbars=yes');">보기</button></c:when>
+													</c:choose></td>
+																	<td ><c:out value="${close.e_check}" /></td>			
 										</tr>
 										
 									</tbody>
@@ -327,12 +338,8 @@
 		<!-- Footer START -->
 		<footer class="content-footer">
 			<div class="footer">
-				<div class="copyright">
-					<span>Copyright Â© 2018 <b class="text-dark">UIdeck</b>. All
-						Right Reserved
-					</span> <span class="go-right"> <a href="" class="text-gray">Term
-							&amp; Conditions</a> <a href="" class="text-gray">Privacy &amp;
-							Policy</a>
+				<span class="go-right text-gray"> 
+				AJACHA!
 					</span>
 				</div>
 			</div>
@@ -341,10 +348,6 @@
 
 </div>
 <!-- Page Container END -->
-    <!-- Preloader -->
-    <div id="preloader">
-      <div class="loader" id="loader-1"></div>
-    </div>
     <!-- End Preloader -->
     
 
@@ -369,8 +372,19 @@
        $('#emailsend').click(function(){	
         $('#handlingmodal').modal();    
                  
-        $('#modalcancel').click(function(){
+        $('#modalcancel1').click(function(){
         	$('#handlingmodal').modal('hide');
+        })
+       
+    });
+	</script>
+	<script>
+    /*마감버튼클릭*/
+       $('#close').click(function(){	
+        $('#closeingmodal').modal();    
+                 
+        $('#modalcancel2').click(function(){
+        	$('#closeingmodal').modal('hide');
         })
        
     });
@@ -431,6 +445,31 @@
 		});
 	</script>
 	
+		<script>
+		/*거래마감*/
+	$("#close ").click(function(){ 
+		   var str = ""
+		        var tdArr = new Array();   
+		        var endwhing = $(this);
+		        var tr = endwhing.parent().parent();
+		        var td = tr.children();
+		        console.log("클릭한 Row의 모든 데이터 : "+tr.text());
+		        var order_num = td.eq(1).text();
+		        var partname = td.eq(4).text();
+		        var real_quantity = td.eq(6).text();
+		        var price = td.eq(7).text();
+		     
+		        td.each(function(i){    
+		            tdArr.push(td.eq(i).text());
+		        });
+		            
+		        $('input[name=order_num]').attr('value',order_num);
+	        	$('input[name=partname]').attr('value',partname);
+	        	$('input[name=real_quantity]').attr('value',real_quantity);
+	        	$('input[name=price]').attr('value',price);
+		})
+	</script>
+	
 	
 
 <!--Email Modal-->
@@ -475,6 +514,45 @@
 	    </div>
 	  </div>
 	</div>   
+	
+	<!-- Modal1 입고처리 클릭시 등장 -->
+	<div class="modal fade" id="closeingmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	    <form action="closing" method="post">	<!-- handleok 서비스 -->
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="staticBackdropLabel">거래마감</h5>
+	      </div>
+	      <div class="modal-body">
+	      	  <div class="container-fluid">
+				 <div class="form-group" >
+                     <label for="order_num">발주번호</label>
+                     <input type="text" name="order_num" class="form-control" id="exampleInputName1" value="" readonly >
+                 </div>
+                 <div class="form-group" >
+                     <label for="partname">품목</label>
+                     <input type="text" name="partname" class="form-control" id="exampleInputName1" value="" readonly>
+                 </div>
+                 <div class="form-group" >
+                     <label for="real_quantity">수량</label>
+                     <input type="text" name="real_quantity" class="form-control" id="exampleInputName1" value="" readonly>
+                 </div>
+                 <div class="form-group" >
+                     <label for="real_quantity">거래금액</label>
+                     <input type="text" name="price" class="form-control" id="exampleInputName1" value="" readonly>
+                 </div>
+                 &nbsp;&nbsp;거래를 마감하시겠습니까?
+			   </div>
+	    	  </div>
+	      <div class="modal-footer">
+	        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" id="endhandling">마감</button>
+	        <button type="button" class="btn btn-seconday" id="modalcancel2">취소하기</button>
+	      </div>
+	      </form>
+	    </div>
+	  </div>
+	</div>
+	
 	
 	<script>
 		var link = document.location.href;
