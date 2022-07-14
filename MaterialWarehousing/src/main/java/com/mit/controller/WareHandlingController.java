@@ -1,8 +1,11 @@
 package com.mit.controller;
 
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -10,7 +13,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.mit.domain.Criteria;
 import com.mit.domain.HandleVO;
 import com.mit.domain.PageDTO;
+import com.mit.service.EmailService;
 import com.mit.service.WareHandlingService;
+import com.mit.domain.EmailDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -55,9 +60,12 @@ public class WareHandlingController {
 		}
 			
 		//반품처리
-		@PostMapping("handleno")
-		public String handleno(HandleVO ho, RedirectAttributes rttr){
+		@Inject
+		EmailService emailService;
+		@RequestMapping("handleno")
+		public String handleno(@ModelAttribute EmailDTO dto, HandleVO ho, RedirectAttributes rttr){
 			log.info("반품처리 요청");
+			emailService.sendMail(dto);	//이메일 요청
 			whservice.handleno(ho);	//반품처리 요청
 			rttr.addFlashAttribute("ware_num", ho.getWare_num());	//입력된 입고번호 전송
 			return "redirect:wareHandling";
