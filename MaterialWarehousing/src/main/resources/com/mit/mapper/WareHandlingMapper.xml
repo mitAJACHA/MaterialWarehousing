@@ -38,14 +38,16 @@
  	<sql id="List">
 	 		<![CDATA[
 	 		SELECT *
-	 			FROM (select rownum rn, order_num, order_date, partname, companyname, real_quantity, order_quantity,
+	 			FROM (select rownum rn, order_num, order_date, partname, companyname, email, real_quantity, order_quantity,
 	 			 inspection_status, handleorreturn, ware_date
 	 			FROM (WITH tbl_result AS
 				(select tbl_sumq.order_num, (tbl_sumq.sum_q-tbl_sumi.sum_i) real_quantity
 				from 
 				    (select order_num, sum(inspection_quantity)sum_q from inspection group by order_num)tbl_sumq,
 				    (select order_num, sum(inspection_defect)sum_i from inspection_result group by order_num)tbl_sumi
-				where tbl_sumq.order_num = tbl_sumi.order_num)
+				where tbl_sumq.order_num = tbl_sumi.order_num),
+                TBL_irc AS
+(SELECT order_num, sum(close) inok FROM inspection_result GROUP BY order_num)
 				
 				select DISTINCT
 				    po.order_num order_num, 
@@ -56,18 +58,18 @@
 				    re.real_quantity real_quantity, 
 				    po.order_quantity order_quantity, 
 				        CASE 
-				        WHEN ir.close = 1 THEN '검수완료'
-				        ELSE '검수미완료'
+				        WHEN inok = 1 THEN '검수완료'
+				        WHEN inok = 0 THEN '검수미완료'
 				        END AS inspection_status,
 				    CASE
 				        WHEN real_quantity >= po.order_quantity
-				        AND ir.close = 1 AND wh.ware_date IS NULL THEN '입고처리'
+				        AND inok = 1 AND wh.ware_date IS NULL THEN '입고처리'
 				        WHEN real_quantity < po.order_quantity
-				        AND ir.close = 1 AND wh.ware_date IS NULL THEN '반품처리'
+				        AND inok = 1 AND wh.ware_date IS NULL THEN '반품처리'
 				        WHEN real_quantity >= po.order_quantity
-				        AND ir.close = 1 AND wh.ware_date IS NOT NULL THEN '입고완료'
+				        AND inok = 1 AND wh.ware_date IS NOT NULL THEN '입고완료'
 				        WHEN real_quantity < po.order_quantity
-				        AND ir.close = 1 AND wh.ware_date IS NOT NULL THEN '반품완료'
+				        AND inok = 1 AND wh.ware_date IS NOT NULL THEN '반품완료'
 				        ELSE '입고불가'
 				    END AS handleorreturn,
 				    wh.ware_date ware_date
@@ -78,6 +80,7 @@
 				        RIGHT JOIN inspection i ON i.order_num = po.order_num
 				        INNER JOIN inspection_result ir ON ir.order_num = i.order_num
 				        RIGHT JOIN tbl_result re ON re.order_num = po.order_num
+                        INNER JOIN tbl_irc irc ON irc.order_num = i.order_num
 				 ]]>
 			<where>
 	    	<include refid="criteria"></include>

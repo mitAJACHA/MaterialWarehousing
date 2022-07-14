@@ -285,9 +285,9 @@
 											</c:choose></td>
 											<td>
 											<c:choose>
-												<c:when test="${handling.handleorreturn=='입고처리'}"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#handlingmodal" id="endwhing">${handling.handleorreturn}</button></c:when>
-												<c:when test="${handling.handleorreturn=='반품처리'}"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#returningmodal" id="returning">${handling.handleorreturn}</button></c:when>
-												<c:when test="${handling.handleorreturn=='입고완료'}"><button type="button" class="btn btn-success" onclick="endend()">${handling.handleorreturn}</button></c:when>
+												<c:when test="${handling.handleorreturn=='입고처리'}"><button type="button" class="btn btn-primary" data-target="#handlingmodal" data-bs-toggle="modal" id="endwhing">${handling.handleorreturn}</button></c:when>
+												<c:when test="${handling.handleorreturn=='반품처리'}"><button type="button" class="btn btn-danger" data-target="#returningmodal" data-bs-toggle="modal" id="returning">${handling.handleorreturn}</button></c:when>
+												<c:when test="${handling.handleorreturn=='입고완료'}"><button type="button" class="btn btn-dark" onclick="endend()">${handling.handleorreturn}</button></c:when>
 												<c:when test="${handling.handleorreturn=='반품완료'}"><button type="button" class="btn btn-dark" onclick="endend()">${handling.handleorreturn}</button></c:when>
 												<c:when test="${handling.handleorreturn=='입고불가'}"><button type="button" class="btn btn-secondary" onclick="notyet()">${handling.handleorreturn}</button></c:when>
 											</c:choose></td>
@@ -334,13 +334,11 @@
           <!-- Content Wrapper END -->
 
           <!-- Footer START -->
-          <footer class="content-footer">
+         <footer class="content-footer">
             <div class="footer">
               <div class="copyright">
-                <span>Copyright Â© 2018 <b class="text-dark">UIdeck</b>. All Right Reserved</span>
-                <span class="go-right">
-                  <a href="" class="text-gray">Term &amp; Conditions</a>
-                  <a href="" class="text-gray">Privacy &amp; Policy</a>
+                <span class="go-right text-gray">
+                  AJACHA!
                 </span>
               </div>
             </div>
@@ -417,7 +415,7 @@
 	</script>
 	
 	<script>
-	$("#endwhing ").click(function(){ 
+	$("#endwhing").click(function(){ 
 		   var str = ""
 		        var tdArr = new Array();   
 		        var endwhing = $(this);
@@ -439,7 +437,7 @@
 	</script>
 	
 	<script>
-	$("#returning ").click(function(){ 
+	$("#returning").click(function(){ 
 		   var str = ""
 		        var tdArr = new Array();   
 		        var endwhing = $(this);
@@ -447,12 +445,20 @@
 		        var td = tr.children();
 		        console.log("클릭한 Row의 모든 데이터 : "+tr.text());
 		        var order_num = td.eq(0).text();
+		        var partname = td.eq(2).text();
+		        var subject = "MIT 능력개발원에서 거래 반품을 안내드립니다"
+		        var message = "귀사의" + td.eq(2).text() + " 품목이 오늘자로 반품처리되었음을 알려드립니다"
+		        var receiveMail = td.eq(4).text();
 		     
 		        td.each(function(i){    
 		            tdArr.push(td.eq(i).text());
 		        });
 		            
 		        $('input[name=order_num]').attr('value',order_num);
+		        $('input[name=partname]').attr('value',partname);
+	        	$('input[name=receiveMail]').attr('value',receiveMail);
+	        	$('input[name=subject]').attr('value',subject);
+	        	$('input[name=message]').attr('value',message);
 		})
 	</script>
 	
@@ -479,12 +485,13 @@
                      <label for="real_quantity">수량</label>
                      <input type="text" name="real_quantity" class="form-control" id="exampleInputName1" value="" readonly>
                  </div>
-                 &nbsp;&nbsp;거래를 입고처리하시겠습니까?
+               	  거래를 입고처리하시겠습니까?<br>
+                 <h6>(입고처리시 거래마감에서 마감이 가능합니다)</h6>
 			   </div>
 	    	  </div>
 	      <div class="modal-footer">
-	        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" id="endhandling">입고처리</button>
 	        <button type="button" class="btn btn-seconday" id="modalcancel2">취소하기</button>
+<button type="submit" class="btn btn-primary" data-bs-dismiss="modal" id="endhandling">입고처리</button>
 	      </div>
 	      </form>
 	    </div>
@@ -506,12 +513,24 @@
                          <label for="order_num">발주번호</label>
                          <input type="text" name="order_num" class="form-control" id="exampleInputName1" value="" readonly>
                       </div>
-                      거래를 반품하시겠습니까?
+                  <div class="form-group" >
+                 <label for="partname">품목</label>
+                 <input type="text" name="partname" class="form-control" id="exampleInputName1" value="" readonly>
+                 <input type="hidden" name="receiveMail" class="form-control" id="exampleInputName1" value="" >
+                 <input type="hidden" name="subject" class="form-control" id="exampleInputName1" value="" >
+                 <input type="hidden" name="message" class="form-control" id="exampleInputName1" value="" >
+                 <input type="hidden" name="senderName" class="form-control" id="exampleInputName1" "AJACHA" >
+                 <input type="hidden" name="senderMail" class="form-control" id="exampleInputName1" value="youwjd51@gmail.com">
+
+                 </div>
+                      거래를 반품하시겠습니까?<br>
+                      <h6>(반품시 거래처 담당자에게 이메일이 전송됩니다)</h6><br>
+                      <h6>*이메일 전송에 약간의 시간이 소요되므로 반품을 재시도하거나 페이지를 벗어나지 마세요</h6>
 					</div>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modalcancel3">취소하기</button>
-	        <button type="submit" class="btn btn-primary" id="endreturn">반품하기</button>
+	        <button type="button" class="btn btn-secondary" id="modalcancel3">취소하기</button>
+	        <button type="submit" class="btn btn-danger" id="endreturn">반품하기</button>
 	      </div>
 	      </form>
 	    </div>
