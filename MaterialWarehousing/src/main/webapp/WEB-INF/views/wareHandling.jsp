@@ -289,7 +289,7 @@
 												<c:when test="${handling.handleorreturn=='반품처리'}"><button type="button" class="btn btn-danger" data-target="#returningmodal" data-bs-toggle="modal" id="returning">${handling.handleorreturn}</button></c:when>
 												<c:when test="${handling.handleorreturn=='입고완료'}"><button type="button" class="btn btn-dark" onclick="endend()">${handling.handleorreturn}</button></c:when>
 												<c:when test="${handling.handleorreturn=='반품완료'}"><button type="button" class="btn btn-dark" onclick="endend()">${handling.handleorreturn}</button></c:when>
-												<c:when test="${handling.handleorreturn=='입고불가'}"><button type="button" class="btn btn-warning" onclick="notyet()">${handling.handleorreturn}</button></c:when>
+												<c:when test="${handling.handleorreturn=='입고불가'}"><button type="button" class="btn btn-secondary" onclick="notyet()">${handling.handleorreturn}</button></c:when>
 											</c:choose></td>
 											<td>
 											<c:choose>
