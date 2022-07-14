@@ -26,4 +26,5 @@ public class CompanyVO {
 	private int sales;
 	
 	
+	
 }

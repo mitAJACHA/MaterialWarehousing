@@ -7,14 +7,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mit.domain.Criteria;
 import com.mit.domain.EmailDTO;
 import com.mit.domain.PageDTO;
+import com.mit.domain.transactionCloseVO;
 import com.mit.service.EmailService;
-import com.mit.service.OrderStatusService;
 import com.mit.service.transactionCloseService;
 
 import lombok.AllArgsConstructor;
@@ -77,7 +78,13 @@ public class transactionCloseController {
 	           return "redirect:/transactionClose"; 
 	 }
 	 
-	 
+	//거래마감
+			@PostMapping("closing")
+			public String handleok(transactionCloseVO vo){
+				log.info("거래마감 요청");
+				service.date_update(vo);
+				return "redirect:/transactionClose";
+			}
 	
 	
 }

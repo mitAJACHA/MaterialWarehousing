@@ -14,4 +14,6 @@ public interface transactionCloseMapper {
 	public Long count(Criteria cri);
 	
 	public int update(Long order_num);
+	
+	public void date_update(transactionCloseVO vo);
 }

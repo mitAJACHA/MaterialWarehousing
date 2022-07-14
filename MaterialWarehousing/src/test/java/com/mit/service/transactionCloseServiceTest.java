@@ -35,7 +35,9 @@ public class transactionCloseServiceTest {
 	
 	@Test
 	public void testupdate() {
-		log.info("삭제된 글의 개수는:"+service.modify(23L));
+		log.info(service.modify(23L));
 	}
+	
+
 	
 }
