@@ -287,10 +287,18 @@
 											<td><c:out value="${close.name}" /></td>
 											<td><c:out value="${close.ware_quantity}" /></td>
 											<td ><c:out value="${close.price}" /></td>
-											
+											<td><c:choose>
+												<c:when test="${close.closing_date==null}">
 												
-												<td><button type="button" class="btn btn-primary" data-bs-toggle="modal" 
-												data-bs-target="#handlingmodal" id="close" style="float:right;">마감처리</button></td>
+												<button type="button" class="btn btn-primary" 
+												data-bs-target="#handlingmodal" id="close" >마감처리</button></c:when>
+												<c:when test="${close.closing_date!=null}">
+												<button type="button" class="btn btn-dark" 
+												>마감완료</button></c:when>
+												</c:choose>
+												
+												
+												</td>
 												<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm " value="${close.closing_date}"/></td>
 												<td>
 												<c:choose>
