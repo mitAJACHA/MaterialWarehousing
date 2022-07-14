@@ -38,6 +38,13 @@ public class transactionCloseServiceImpl implements transactionCloseService {
 		return (mapper.update(order_num)==1);
 	}
 	
+	@Override
+	public void date_update(transactionCloseVO vo) {
+		mapper.date_update(vo);
+	}
+	
+	
+	
 	
 
 	

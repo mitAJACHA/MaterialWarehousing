@@ -37,15 +37,23 @@
 	<sql id="tbl_tran">
 		<![CDATA[
 		
-			SELECT order_num, ware_date, partcode, partname, name, empl_name, empl_email,
+			SELECT order_num, ware_date, partcode, partname, name,ware_quantity,price,closing_date,
 			CASE WHEN e_check='1' then '완료' end as e_check FROM
-			(SELECT rownum rn, order_num, ware_date, partcode, partname, name, empl_name, empl_email,e_check
-			FROM
-			(SELECT  o.order_num order_num, w.ware_date ware_date, p.partcode partcode, p.partname partname, cp.name name,
-			e.empl_name empl_name,e.empl_email empl_email ,w.e_check e_check
-			FROM tbl_part p , tbl_contract c, tbl_company cp, warehousing w, purchase_order o,
-			employee e where p.partcode = c.partcode and c.code = cp.code and c.contractno = o.contract_num and w.order_num = o.order_num and
-			o.empl_num = e.empl_num and w.ware_date is not null and w.return = 'N'
+            (select rownum rn,order_num,ware_date ,partcode,partname ,name,ware_quantity,price,closing_date,e_check
+            from
+    		(SELECT  o.order_num order_num,
+             w.ware_date ware_date,
+            p.partcode partcode,
+            p.partname partname, 
+            cp.name name,
+            w.ware_quantity ware_quantity,
+            c.unitprice*o.order_quantity price,
+            w.closing_date closing_date,
+			w.e_check e_check
+            from tbl_part p , tbl_contract c, tbl_company cp, warehousing w, purchase_order o,
+             tbl_support s
+			WHERE p.partcode = c.partcode and c.code = cp.code and c.contractno = o.contract_num and o.order_num = w.order_num and c.partcode = s.partcode
+            and o.support_num = s.supportno and w.ware_date is not null and w.return = 'N'
 		]]>
 		
 	    	<include refid="criteria"></include>
@@ -60,13 +68,13 @@
 	
 	<select id="read" resultType="com.mit.domain.transactionCloseVO">
 		<![CDATA[
-			SELECT * FROM(select  o.order_num order_num, w.ware_date ware_date, p.partcode partcode, p.partname partname, cp.name name,
-				e.empl_name empl_name,e.empl_email empl_email, s.deliverydate deliverydate , cp.business_number business_number,
+			select*from(select  o.order_num order_num, w.ware_date ware_date, p.partcode partcode, p.partname partname, cp.name name,
+				 s.deliverydate deliverydate , cp.business_number business_number,cp.email email, cp.c_name,
 				w.ware_quantity ware_quantity, o.order_date order_date, c.unitprice unitprice
 				from tbl_part p , tbl_contract c, tbl_company cp, warehousing w, purchase_order o,
-				employee e, tbl_support s 
-			WHERE p.partcode = c.partcode and c.code = cp.code and c.contractno = o.contract_num and o.order_num = w.order_num and
-				o.empl_num = e.empl_num and c.partcode = s.partcode and w.ware_date is not null) WHERE order_num=#{order_num}
+             tbl_support s
+			WHERE p.partcode = c.partcode and c.code = cp.code and c.contractno = o.contract_num and o.order_num = w.order_num and c.partcode = s.partcode
+            and o.support_num = s.supportno and w.ware_date is not null and w.return = 'N')WHERE order_num=#{order_num}
 		]]>
 
 	</select>
@@ -78,12 +86,17 @@
 	</select>
 	
 	<select id="getList" resultType="com.mit.domain.transactionCloseVO">
-	<include refid="tbl_tran"></include>
-		
+	<include refid="tbl_tran"></include>		
 	</select>
+	
 	<update id="update">
 	update  warehousing set  e_check=1 where  order_num=#{order_num}
 	</update>
+	
+	<update id="date_update">
+	update  warehousing set closing_date=sysdate where  order_num=${order_num}
+	</update>
+	
 	
 	
 </mapper>
