@@ -389,15 +389,19 @@
 	<script>
     /*마감버튼클릭*/
        $('#close').click(function(){	
-        $('#closeingmodal').modal();    
+        $('#closingmodal').on('show.bs.modal',function(event));    
                  
         $('#modalcancel2').click(function(){
-        	$('#closeingmodal').modal('hide');
+        	$('#closingmodal').modal('hide');
         })
        
     });
 	</script>
+	<script>
+	#cl
+	}
 	
+	</script>
 	
 	
 	<script>
@@ -524,7 +528,7 @@
 	</div>   
 	
 	<!-- Modal1 입고처리 클릭시 등장 -->
-	<div class="modal fade" id="closeingmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal fade" id="closingmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	    <form action="closing" method="post">	<!-- handleok 서비스 -->
