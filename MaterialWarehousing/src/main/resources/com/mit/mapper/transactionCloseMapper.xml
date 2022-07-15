@@ -37,9 +37,9 @@
 	<sql id="tbl_tran">
 		<![CDATA[
 		
-			SELECT order_num, ware_date, partcode, partname, name,ware_quantity,price,closing_date,
-			CASE WHEN e_check='1' then '완료' end as e_check FROM
-            (select rownum rn,order_num,ware_date ,partcode,partname ,name,ware_quantity,price,closing_date,e_check
+			 SELECT order_num, ware_date, partcode, partname, name,ware_quantity,price,closing_date
+			 FROM
+            (select rownum rn,order_num,ware_date ,partcode,partname ,name,ware_quantity,price,closing_date
             from
     		(SELECT  o.order_num order_num,
              w.ware_date ware_date,
@@ -48,8 +48,8 @@
             cp.name name,
             w.ware_quantity ware_quantity,
             c.unitprice*o.order_quantity price,
-            w.closing_date closing_date,
-			w.e_check e_check
+            w.closing_date closing_date
+
             from tbl_part p , tbl_contract c, tbl_company cp, warehousing w, purchase_order o,
              tbl_support s
 			WHERE p.partcode = c.partcode and c.code = cp.code and c.contractno = o.contract_num and o.order_num = w.order_num and c.partcode = s.partcode
@@ -89,10 +89,7 @@
 	<include refid="tbl_tran"></include>		
 	</select>
 	
-	<update id="update">
-	update  warehousing set  e_check=1 where  order_num=#{order_num}
-	</update>
-	
+
 	<update id="date_update">
 	update  warehousing set closing_date=sysdate where  order_num=${order_num}
 	</update>
