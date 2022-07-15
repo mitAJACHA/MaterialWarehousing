@@ -81,6 +81,10 @@
 			        WHERE o.order_num = w.order_num AND o.support_num = s.supportno AND o.empl_num = e.empl_num AND o.contract_num = c.contractno AND c.partcode = p.partcode AND c.code = company.code)
  
         ]]>
+	</sql>
+	
+	<select id="getList" resultType="com.mit.domain.OrderStatusVO">
+		<include refid="tbl_orderStatus"></include>
 		<where>
 	    	<include refid="criteria"></include>
     	</where>
@@ -89,18 +93,20 @@
 	    	WHERE ROWNUM <= (#{pageNum} * #{amount}))
 		WHERE rn > ((#{pageNum}-1) * #{amount}) 
 		]]>
-	</sql>
-	
-	<select id="getList" resultType="com.mit.domain.OrderStatusVO">
-		<include refid="tbl_orderStatus"></include>
 	</select>
 	
 	<select id="count" resultType="long">
-		select count(*) from(<include refid="tbl_orderStatus"></include>)
+		select count(*) from(
+		<include refid="tbl_orderStatus"></include>
+		<where>
+	    	<include refid="criteria"></include>
+    	</where>
+    	)))
 	</select>
 	
 	<select id="description" resultType="com.mit.domain.StatusVO">
-		select count(*) cn, status from(<include refid="tbl_orderStatus"></include>)
+		select count(*) cn, status from(<include refid="tbl_orderStatus"></include>
+		ORDER BY order_num DESC)))
 		group by status
 	</select>
 	
