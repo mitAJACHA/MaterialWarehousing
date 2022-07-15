@@ -6,6 +6,7 @@
 <head>
 
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>조달관리 시스템</title>
 
@@ -320,7 +321,7 @@
                        		
                        		<c:if test="${pageMaker.cri.pageNum == num }" >
                        		<%--현재 페이지를 ${param.pageNum } or ${pageMaker.cri.pageNum } or {criteria.pageNum}> --%>
-                       		<b>${num }</b>
+                       		<b style="color: #e83e8c">${num }</b>
                        		</c:if>
                        		
                        		<c:if test="${pageMaker.cri.pageNum != num }" >
