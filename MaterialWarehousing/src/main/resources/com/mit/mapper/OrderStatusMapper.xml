@@ -38,29 +38,12 @@
 		SELECT * FROM(
 			SELECT * FROM(
 			    SELECT ROWNUM rn,order_num, order_date, deliverydate, ware_date, partname, order_quantity, unitprice, name, business_number, empl_name, returnny,
-			    CASE WHEN order_num IS NULL THEN '발주예정'
-			        WHEN ware_date IS NULL and (sysdate - order_date)*24 < 8 THEN '발주서발행'
-			        WHEN ware_date IS NULL and (sysdate - order_date)*24 >= 8 THEN '조달진행중'
-			        WHEN not ware_date IS NULL THEN '거래마감'
+			    CASE WHEN ware_date IS NULL THEN '조달진행중'
+			        WHEN not ware_date IS NULL and returnny = 'Y' THEN '반품처리'
+			        WHEN not ware_date IS NULL and returnny = 'N' THEN '입고마감'
+                    WHEN not closing_date IS NULL THEN  '거래마감'
 			    END AS status
 			    FROM(
-			        SELECT 
-			            NULL order_num, 
-			            NULL order_date, 
-			            s.deliverydate deliverydate, 
-			            NULL ware_date, 
-			            p.partname partname, 
-			            NULL order_quantity, 
-			            c.unitprice unitprice, 
-			            company.name name, 
-			            company.business_number, 
-			            NULL empl_name, 
-			            NULL returnny
-			        FROM tbl_support s, tbl_part p, tbl_company company, employee e, tbl_contract c, purchase_order o
-			        WHERE o.empl_num = e.empl_num AND o.contract_num = c.contractno AND c.code = company.code AND c.partcode = p.partcode AND s.supportno NOT IN (SELECT support_num FROM purchase_order) AND s.partcode = p.partcode
-			        
-			        UNION
-			        
 			        SELECT 
 			            o.order_num order_num, 
 			            o.order_date order_date, 
@@ -72,9 +55,11 @@
 			            company.name name, 
 			            company.business_number business_number, 
 			            e.empl_name empl_name, 
-			            w.return returnny
+			            w.return returnny,
+                        w.closing_date
 			        FROM purchase_order o, tbl_support s, tbl_part p, tbl_contract c, tbl_company company, employee e, warehousing w
 			        WHERE o.support_num = s.supportno AND o.empl_num = e.empl_num AND o.contract_num = c.contractno AND c.partcode = p.partcode AND w.order_num = o.order_num AND c.code = company.code)
+ 
         ]]>
 		<where>
 	    	<include refid="criteria"></include>
