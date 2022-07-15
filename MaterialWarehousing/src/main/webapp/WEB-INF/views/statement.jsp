@@ -142,11 +142,9 @@
                                 <td></td>
                                 <td></td>
                                 
-                                
+
                             </tr>
-                              
-                         
-                          
+
                         </tbody>
                         
                     </table>
@@ -156,69 +154,22 @@
                         <td>총 거래 금액</td>
                         <td><fmt:formatNumber value="${state.unitprice*state.ware_quantity}"  pattern="#,###"/></td>
                         </tr><br>
-                       </table>
-					<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#handlingmodal" id="emailsend" >이메일 전송</button>
-                  <button type="button" class="btn btn-outline-info btn-rounded" id="print" onclick="window.print()"style="float:right;">print</button>
-
-
+	   	 			<form action="send" method="post">	<!-- handleno 서비스 -->
+	     
+			 	 <input type="hidden" name="order_num" class="form-control" id="exampleInputName1" value="${state.order_num}">
+                 <input type="hidden" name="receiveMail" class="form-control" id="exampleInputName1" value="${state.comemail}" >
+                 <input type="hidden" name="subject" class="form-control" id="exampleInputName1" value="거래명세서  발송" >
+                 <input type="hidden" name="message" class="form-control" id="exampleInputName1" value="http://192.168.0.114:8081/statement?order_num=${state.order_num}" >
+                 <input type="hidden" name="senderName" class="form-control" id="exampleInputName1" "AJACHA" >
+                 <input type="hidden" name="senderMail" class="form-control" id="exampleInputName1" value="youwjd51@gmail.com">
+                 </table>
+                  
+				 	<button type="submit" class="btn btn-primary" name="send" >전송</button></form>
+                 	<button type="button" class="btn btn-outline-info btn-rounded" id="print" onclick="window.print()"style="float:right;">print</button>
 	
-	<!--Email Modal-->
-	<div class="modal fade" id="handlingmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-	  <div class="modal-dialog modal-dialog-centered">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="staticBackdropLabel">Email</h5>
-	      </div>
-	      <div class="modal-body">
-	      	 <form class="forms-sample" method="post" action="send" >
-                        <div class="form-group" >
-                          <label for="exampleInputName1">수신자</label>
-                          <input type="text" name="receiveMail" class="form-control" id="exampleInputName1" value="${state.comemail}" >
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleInputName1">발신자이름</label>
-                          <input type="text" name="senderName" class="form-control" id="exampleInputName2" value="AJACHA">
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleInputName1">발신자  이메일</label>
-                          <input type="text" name="senderMail" class="form-control" id="exampleInputName1" value="youwjd51@gmail.com">
-                        </div>
-                         <div class="form-group">
-                          <label for="exampleInputName1">제목</label>
-                          <input type="text"  name="subject" class="form-control" id="exampleInputName1" placeholder="Email">
-                        </div>
-                        
-                        <div class="form-group m-b-20">
-                          <label for="exampleTextarea1">내용</label>
-                         <input type="text"  name="message" class="form-control" id="exampleTextarea1" rows="4">
-                        </div>
-                        <input type="hidden" name="order_num" >
-                        
-                       
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modalcancel">취소하기</button>
-	        <button type="submit" class="btn btn-primary" name="send" >전송</button>
-	        </form>
-	      </div>
-	    </div>
-	  </div>
-	</div>  
 	
 
-<script>
-    /*이메일 전송 클릭*/
-       $('#emailsend').click(function(){	
-        $('#handlingmodal').modal();    
-                 
-        $('#modalcancel1').click(function(){
-        	$('#handlingmodal').modal('hide');
-        })
-       
-    });
-	</script>
-	
-<script>
+	<script>
 		var link = document.location.href;
 		var para = document.location.href.split("=");
 		
@@ -236,8 +187,6 @@
 		}
 		success(para);
 	</script>
-
-
 
 
 

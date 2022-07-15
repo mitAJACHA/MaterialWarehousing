@@ -260,7 +260,7 @@
 								<table class="table table-lg table-hover">
 									<thead class="table-light" align="center">
 										<tr>
-											<th class="text-dark text-semibold"></th>
+											
 											<th class="text-dark text-semibold">발주번호</th>
 											<th class="text-dark text-semibold">입고일자</th>
 											<th class="text-dark text-semibold">품목코드</th>
@@ -271,7 +271,7 @@
 											<th class="text-dark text-semibold">마감</th>
 											<th class="text-dark text-semibold">마감일자</th>
 											<th class="text-dark text-semibold">명세서보기</th>
-											<th class="text-dark text-semibold">이메일 전송</th>
+											
 											
 										
 										</tr>
@@ -279,14 +279,14 @@
 									<c:forEach var="close" items="${CloseList}">
 										<tbody align="center">
 											<tr>
-											<td><input type="checkbox" id="user_CheckBox" class="rowChk" onclick="clickCheck(this)"></td>
+											
 											<td><c:out value="${close.order_num}" /></td>
-											<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm " value="${close.ware_date}"/></td>
+											<td><fmt:formatDate pattern="yyyy-MM-dd  " value="${close.ware_date}"/></td>
 											<td ><c:out value="${close.partcode}" /></td>
 											<td ><c:out value="${close.partname}" /></td>
 											<td><c:out value="${close.name}" /></td>
 											<td><c:out value="${close.ware_quantity}" /></td>
-											<td ><c:out value="${close.price}" /></td>
+											<td ><fmt:formatNumber value="${close.price}" pattern="#,###"/></td>
 											<td><c:choose>
 												<c:when test="${close.closing_date==null}">
 												<button type="button" class="btn btn-primary closing" data-toggle="modal"
@@ -298,7 +298,7 @@
 												
 												
 												</td>
-												<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm " value="${close.closing_date}"/></td>
+												<td><fmt:formatDate pattern="yyyy-MM-dd " value="${close.closing_date}"/></td>
 												<td>
 												<c:choose>
 												<c:when test="${close.closing_date==null}">-</c:when>
@@ -306,7 +306,8 @@
 													<button class="btn btn-warning" onclick="window.open('/statement?order_num=${close.order_num}',
 													'test','left=450,width=800,height=900,location=no,status=no,scrollbars=yes');">보기</button></c:when>
 													</c:choose></td>
-																	<td ><c:out value="${close.e_check}" /></td>			
+													
+																				
 										</tr>
 										
 									</tbody>
@@ -466,25 +467,9 @@
 	    </div>
 	  </div>
 	</div>
+
 	
-	
-	<script>
-		var link = document.location.href;
-		var para = document.location.href.split("=");
-		
-		function success(para) {
-			let result;
-			
-			for(var i = 0; i < para.length; i++) {
-				if(para[i] == 'success') {
-					alert('이메일이 전송되었습니다.');
-					var redirect = link.replaceAll("success", "");
-					location.href=redirect;
-				}
-			}
-			
-		}
-		success(para);
-	</script>
+
+
     </body>
 </html>
