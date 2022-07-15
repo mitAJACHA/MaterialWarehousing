@@ -87,7 +87,7 @@
                                 <th>품목명</th>
                                 <th>수량</th>
                                 <th>단가</th>
-                                <th>공급가액</th>
+                              
                                 <th>구매가액</th>
                                 
                             </tr>
@@ -99,8 +99,7 @@
                                 <td><c:out value="${state.partname}" /></td>
                                 <td><c:out value="${state.ware_quantity}" /></td>
                                 <td><c:out value="${state.unitprice}" /></td>
-                                <td><c:out value="${state.unitprice*state.ware_quantity}" /></td>
-                                <td><fmt:formatNumber value="${(state.unitprice*state.ware_quantity)*1.1}"  pattern="#,###"/></td>
+                                <td><fmt:formatNumber value="${state.unitprice*state.ware_quantity}"  pattern="#,###"/></td>
                                  
                                   
                             </tr>
@@ -111,7 +110,7 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td></td>
+                              
                                 
                             </tr>
                              <tr class="odd gradeX">
@@ -121,7 +120,7 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td></td>
+                             
                                 
                                 
                             </tr>
@@ -132,7 +131,7 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td></td>
+                              
                                 
                             </tr>
                              <tr class="odd gradeX">
@@ -142,7 +141,7 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td></td>
+                                
                                 
                             </tr>
                               
@@ -155,9 +154,95 @@
                    
                         <tr>
                         <td>총 거래 금액</td>
-                        <td><fmt:formatNumber value="${(state.unitprice*state.ware_quantity)*1.1}"  pattern="#,###"/></td>
+                        <td><fmt:formatNumber value="${state.unitprice*state.ware_quantity}"  pattern="#,###"/></td>
                         </tr><br>
                        </table>
-                       <button type="button" class="btn btn-outline-info btn-rounded" id="print" onclick="window.print()"style="float:right;">print</button>
+					<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#handlingmodal" id="emailsend" >이메일 전송</button>
+                  <button type="button" class="btn btn-outline-info btn-rounded" id="print" onclick="window.print()"style="float:right;">print</button>
+
+
+	
+	<!--Email Modal-->
+	<div class="modal fade" id="handlingmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="staticBackdropLabel">Email</h5>
+	      </div>
+	      <div class="modal-body">
+	      	 <form class="forms-sample" method="post" action="send" >
+                        <div class="form-group" >
+                          <label for="exampleInputName1">수신자</label>
+                          <input type="text" name="receiveMail" class="form-control" id="exampleInputName1" value="${state.comemail}" >
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputName1">발신자이름</label>
+                          <input type="text" name="senderName" class="form-control" id="exampleInputName2" value="AJACHA">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputName1">발신자  이메일</label>
+                          <input type="text" name="senderMail" class="form-control" id="exampleInputName1" value="youwjd51@gmail.com">
+                        </div>
+                         <div class="form-group">
+                          <label for="exampleInputName1">제목</label>
+                          <input type="text"  name="subject" class="form-control" id="exampleInputName1" placeholder="Email">
+                        </div>
+                        
+                        <div class="form-group m-b-20">
+                          <label for="exampleTextarea1">내용</label>
+                         <input type="text"  name="message" class="form-control" id="exampleTextarea1" rows="4">
+                        </div>
+                        <input type="hidden" name="order_num" >
+                        
+                       
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modalcancel">취소하기</button>
+	        <button type="submit" class="btn btn-primary" name="send" >전송</button>
+	        </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>  
+	
+
+<script>
+    /*이메일 전송 클릭*/
+       $('#emailsend').click(function(){	
+        $('#handlingmodal').modal();    
+                 
+        $('#modalcancel1').click(function(){
+        	$('#handlingmodal').modal('hide');
+        })
+       
+    });
+	</script>
+	
+<script>
+		var link = document.location.href;
+		var para = document.location.href.split("=");
+		
+		function success(para) {
+			let result;
+			
+			for(var i = 0; i < para.length; i++) {
+				if(para[i] == 'success') {
+					alert('이메일이 전송되었습니다.');
+					var redirect = link.replaceAll("success", "");
+					location.href=redirect;
+				}
+			}
+			
+		}
+		success(para);
+	</script>
+
+
+
+
+
+
+
+
 </body>
 </html>
