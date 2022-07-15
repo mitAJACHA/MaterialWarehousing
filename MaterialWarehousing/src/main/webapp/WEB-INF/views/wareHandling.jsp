@@ -285,8 +285,8 @@
 											</c:choose></td>
 											<td>
 											<c:choose>
-												<c:when test="${handling.handleorreturn=='입고처리'}"><button type="button" class="btn btn-primary" data-target="#handlingmodal" data-bs-toggle="modal" id="endwhing">${handling.handleorreturn}</button></c:when>
-												<c:when test="${handling.handleorreturn=='반품처리'}"><button type="button" class="btn btn-danger" data-target="#returningmodal" data-bs-toggle="modal" id="returning">${handling.handleorreturn}</button></c:when>
+												<c:when test="${handling.handleorreturn=='입고처리'}"><button type="button" class="btn btn-primary endwhing" data-target="#handlingmodal" data-bs-toggle="modal">${handling.handleorreturn}</button></c:when>
+												<c:when test="${handling.handleorreturn=='반품처리'}"><button type="button" class="btn btn-danger returning" data-target="#returningmodal" data-bs-toggle="modal">${handling.handleorreturn}</button></c:when>
 												<c:when test="${handling.handleorreturn=='입고완료'}"><button type="button" class="btn btn-dark" onclick="endend()">${handling.handleorreturn}</button></c:when>
 												<c:when test="${handling.handleorreturn=='반품완료'}"><button type="button" class="btn btn-dark" onclick="endend()">${handling.handleorreturn}</button></c:when>
 												<c:when test="${handling.handleorreturn=='입고불가'}"><button type="button" class="btn btn-secondary" onclick="notyet()">${handling.handleorreturn}</button></c:when>
@@ -348,11 +348,6 @@
         </div>
         <!-- Page Container END -->
 
-    <!-- Preloader -->
-    <div id="preloader">
-      <div class="loader" id="loader-1"></div>
-    </div>
-    <!-- End Preloader -->
 
      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="/resources/assets/js/jquery-min.js"></script>
@@ -396,7 +391,7 @@
 	
 	<script>
     /*입고처리 버튼 클릭*/
-     $('#endwhing').click(function(){	//id가 endwhing인 버튼을 클릭하면
+     $('.endwhing').click(function(){	//id가 endwhing인 버튼을 클릭하면
         $('#handlingmodal').modal();   //id가 "handlingmodal"인 모달창을 열어준다. 
 		$('#modalcancel2').click(function(){	//handlingmodal에서 취소하기 버튼을 누르면
 	    	$('#handlingmodal').modal('hide');	//닫힌다
@@ -406,7 +401,7 @@
 	
 	<script>
     /*반품처리 버튼 클릭*/
-    $('#returning').click(function(){	//id가 returning인 버튼을 클릭하면
+    $('.returning').click(function(){	//id가 returning인 버튼을 클릭하면
         $('#returningmodal').modal();   //id가 "returningmodal"인 모달창을 열어준다. 
         $('#modalcancel3').click(function(){
         	$('#returningmodal').modal('hide');
@@ -415,7 +410,7 @@
 	</script>
 	
 	<script>
-	$("#endwhing").click(function(){ 
+	$(".endwhing").click(function(){ 
 		   var str = ""
 		        var tdArr = new Array();   
 		        var endwhing = $(this);
@@ -437,7 +432,7 @@
 	</script>
 	
 	<script>
-	$("#returning").click(function(){ 
+	$(".returning").click(function(){ 
 		   var str = ""
 		        var tdArr = new Array();   
 		        var endwhing = $(this);
@@ -464,7 +459,7 @@
 	
 	
 	<!-- Modal1 입고처리 클릭시 등장 -->
-	<div class="modal fade" id="handlingmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div id="handlingmodal" class="modal fade"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	    <form action="handleok" method="post">	<!-- handleok 서비스 -->
