@@ -23,7 +23,27 @@
     width="300" height="60";
     }
     h1 { text-align: center; }
-    </style>
+
+    
+@media print
+{
+    #pager,
+    form,
+    .noprint
+    {
+        display: none !important;
+        height: 0;
+    }
+
+
+    .noprint, .noprint *{
+        display: none !important;
+        height: 0;
+    }
+}
+	</style>
+ 
+    
 </head>
 <body>
 <div class="container-fluid">
@@ -78,6 +98,7 @@
 					     
                     
                     </div>
+                   
                     <div class="card-body">
                       <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                         <thead>
@@ -147,7 +168,7 @@
 
                         </tbody>
                         
-                    </table>
+          
                     <table id="table2" class="table table-striped table-bordered table-hover" border="1" width="300" height="60" align="left">
                    
                         <tr>
@@ -162,10 +183,13 @@
                  <input type="hidden" name="message" class="form-control" id="exampleInputName1" value="http://192.168.0.114:8081/statement?order_num=${state.order_num}" >
                  <input type="hidden" name="senderName" class="form-control" id="exampleInputName1" "AJACHA" >
                  <input type="hidden" name="senderMail" class="form-control" id="exampleInputName1" value="youwjd51@gmail.com">
-                 </table>
-                  
-				 	<button type="submit" class="btn btn-primary" name="send" >전송</button></form>
-                 	<button type="button" class="btn btn-outline-info btn-rounded" id="print" onclick="window.print()"style="float:right;">print</button>
+                 </form></table></table>
+                  </div></div></div></div></div></div>
+                     <div class="noprint" align="center">
+				 	<center><button type="submit" class="btn btn-primary" name="send" >전송</button>
+                 	<button type="button" class="btn btn-dark" id="print" onclick="window.print()">출력</button></center>
+                 	
+                 	</div></div>
 	
 	
 
