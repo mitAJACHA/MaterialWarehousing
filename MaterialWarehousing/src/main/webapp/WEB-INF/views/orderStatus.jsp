@@ -342,11 +342,10 @@
 		<footer class="content-footer">
 			<div class="footer">
 				<div class="copyright">
-					<span>Copyright Â© 2018 <b class="text-dark">UIdeck</b>. All
-						Right Reserved
-					</span> <span class="go-right"> <a href="" class="text-gray">Term
-							&amp; Conditions</a> <a href="" class="text-gray">Privacy &amp;
-							Policy</a>
+					<span><b class="text-dark">AJACHA</b>
+					</span> 
+					<span class="go-right"> 
+					<a href="http://m-it.or.kr/" class="text-gray">MIT능력개발원 </a>
 					</span>
 				</div>
 			</div>
