@@ -354,12 +354,6 @@
 
 </div>
 <!-- Page Container END -->
-    <!-- Preloader -->
-    <div id="preloader">
-      <div class="loader" id="loader-1"></div>
-    </div>
-    <!-- End Preloader -->
-    
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="/resources/assets/js/jquery-min.js"></script>
     <script src="/resources/assets/js/popper.min.js"></script>
