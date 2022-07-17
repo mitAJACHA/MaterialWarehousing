@@ -52,10 +52,9 @@ public class WareHandlingController {
 		
 		//입고처리
 		@PostMapping("handleok")
-		public String handleok(HandleVO ho, RedirectAttributes rttr){
+		public String handleok(HandleVO ho){
 			log.info("입고처리 요청");
 			whservice.handleok(ho);	//입고처리 요청
-			rttr.addFlashAttribute("ware_num", ho.getWare_num());	//입력된 입고번호 전송
 			return "redirect:wareHandling";
 		}
 			
@@ -63,11 +62,10 @@ public class WareHandlingController {
 		@Inject
 		EmailService emailService;
 		@RequestMapping("handleno")
-		public String handleno(@ModelAttribute EmailDTO dto, HandleVO ho, RedirectAttributes rttr){
+		public String handleno(@ModelAttribute EmailDTO dto, HandleVO ho){
 			log.info("반품처리 요청");
 			emailService.sendMail(dto);	//이메일 요청
 			whservice.handleno(ho);	//반품처리 요청
-			rttr.addFlashAttribute("ware_num", ho.getWare_num());	//입력된 입고번호 전송
 			return "redirect:wareHandling";
 		}
 }

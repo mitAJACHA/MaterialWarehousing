@@ -59,7 +59,7 @@
 				    po.order_quantity order_quantity, 
 				        CASE 
 				        WHEN inok = 1 THEN '검수완료'
-				        WHEN inok = 0 THEN '검수미완료'
+				        ELSE '검수미완료'
 				        END AS inspection_status,
 				    CASE
 				        WHEN real_quantity >= po.order_quantity
