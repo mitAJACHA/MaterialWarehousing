@@ -68,14 +68,14 @@ public class transactionCloseController {
 	 @Inject
 	 EmailService emailService;  
 	 @RequestMapping("send") 
-	 public String send(@ModelAttribute EmailDTO dto, Model model,Criteria cri,Long order_num) {
+	 public String send(@ModelAttribute EmailDTO dto, Model model,Criteria cri,transactionCloseVO vo) {
 		 
 	           emailService.sendMail(dto); 
 	        
 	           model.addAttribute("message", "success");  
-	           service.modify(order_num);
+	          
 	    
-	           return "redirect:/transactionClose"; 
+	           return "redirect:/statement?order_num="+vo.getOrder_num(); 
 	 }
 	 
 	//거래마감

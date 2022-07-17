@@ -254,13 +254,13 @@
 						<div class="card">
 							<div class="card-header">
 								<h4 class="card-title"><strong>거래마감</strong></h4>
-								<td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#handlingmodal" id="emailsend" style="float:right;">이메일 전송</button></td>
+								
 							</div>
 							<div class="table-overflow">
 								<table class="table table-lg table-hover">
 									<thead class="table-light" align="center">
 										<tr>
-											<th class="text-dark text-semibold"></th>
+											
 											<th class="text-dark text-semibold">발주번호</th>
 											<th class="text-dark text-semibold">입고일자</th>
 											<th class="text-dark text-semibold">품목코드</th>
@@ -271,7 +271,7 @@
 											<th class="text-dark text-semibold">마감</th>
 											<th class="text-dark text-semibold">마감일자</th>
 											<th class="text-dark text-semibold">명세서보기</th>
-											<th class="text-dark text-semibold">이메일 전송</th>
+											
 											
 										
 										</tr>
@@ -279,19 +279,18 @@
 									<c:forEach var="close" items="${CloseList}">
 										<tbody align="center">
 											<tr>
-											<td><input type="checkbox" id="user_CheckBox" class="rowChk" onclick="clickCheck(this)"></td>
+											
 											<td><c:out value="${close.order_num}" /></td>
-											<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm " value="${close.ware_date}"/></td>
+											<td><fmt:formatDate pattern="yyyy-MM-dd  " value="${close.ware_date}"/></td>
 											<td ><c:out value="${close.partcode}" /></td>
 											<td ><c:out value="${close.partname}" /></td>
 											<td><c:out value="${close.name}" /></td>
 											<td><c:out value="${close.ware_quantity}" /></td>
-											<td ><c:out value="${close.price}" /></td>
+											<td ><fmt:formatNumber value="${close.price}" pattern="#,###"/></td>
 											<td><c:choose>
 												<c:when test="${close.closing_date==null}">
-												
-												<button type="button" class="btn btn-primary" 
-												data-bs-target="#handlingmodal" id="close" >마감처리</button></c:when>
+												<button type="button" class="btn btn-primary closing" data-toggle="modal"
+												data-bs-target="#closingmodal"  >마감처리</button></c:when>
 												<c:when test="${close.closing_date!=null}">
 												<button type="button" class="btn btn-dark" 
 												>마감완료</button></c:when>
@@ -299,7 +298,7 @@
 												
 												
 												</td>
-												<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm " value="${close.closing_date}"/></td>
+												<td><fmt:formatDate pattern="yyyy-MM-dd " value="${close.closing_date}"/></td>
 												<td>
 												<c:choose>
 												<c:when test="${close.closing_date==null}">-</c:when>
@@ -307,7 +306,8 @@
 													<button class="btn btn-warning" onclick="window.open('/statement?order_num=${close.order_num}',
 													'test','left=450,width=800,height=900,location=no,status=no,scrollbars=yes');">보기</button></c:when>
 													</c:choose></td>
-																	<td ><c:out value="${close.e_check}" /></td>			
+													
+																				
 										</tr>
 										
 									</tbody>
@@ -375,77 +375,24 @@
 
     
     
-	<script>
-    /*이메일 전송 클릭*/
-       $('#emailsend').click(function(){	
-        $('#handlingmodal').modal();    
-                 
-        $('#modalcancel1').click(function(){
-        	$('#handlingmodal').modal('hide');
-        })
-       
-    });
-	</script>
+	
 	<script>
     /*마감버튼클릭*/
-       $('#close').click(function(){	
-        $('#closingmodal').on('show.bs.modal',function(event));    
+       $('.closing').click(function(){	
+    	   
+    	   
+        $('#closingmodal').modal();  
                  
         $('#modalcancel2').click(function(){
         	$('#closingmodal').modal('hide');
         })
+        
+        
        
     });
 	</script>
-	<script>
-	#cl
-	}
-	
-	</script>
-	
-	
-	<script>
-	/*체크박스*/
-	
-	$("#emailsend").click(function(){
-		var checkbox = $("input[id=user_CheckBox]:checked");
-		var tr = checkbox.parent().parent();
-    	var td = tr.children();
-    	
-    	var code = td.eq(3).text()+", ";		
-    	var pname = td.eq(4).text()+", ";		
-    	var cname= td.eq(7).text()+", ";		
-    	var email = td.eq(8).text()+", ";		
-    	var order_num =td.eq(1).text()+", ";	
-    	
-    	var tdArray = new Array();
-    	checkbox.each(function(i){
-    		tr=checkbox.parent().parent().eq(i);
-        	td = tr.children();
-        	code=td.eq(3).text()+" 입고 완료";		
-        	pname=td.eq(4).text()+" 입고 마감되었습니다."; 		
-        	cname=td.eq(7).text(); 		
-        	email=td.eq(8).text();	
-        	order_num=td.eq(1).text(); 
-        	
-        	tdArray.push(code);
-        	tdArray.push(pname);
-        	tdArray.push(cname);
-        	tdArray.push(email);
-        	tdArray.push(order_num);
-        
-        	});
-        	$('#array1').html(tdArray[0]);
-        	
-        	$('input[name=receiveMail]').attr('value',tdArray[3]);
-        	$('input[name=subject]').attr('value',tdArray[0]);
-        	$('input[name=message]').attr('value',tdArray[1]);
-        	$('input[name=order_num]').attr('value',tdArray[4]);
 
-	});
 	
-
-	</script>
 	
 		<script>
 		$('[name=recentDate]').on("change",function(){
@@ -459,7 +406,7 @@
 	
 		<script>
 		/*거래마감*/
-	$("#close ").click(function(){ 
+	$(".closing ").click(function(){ 
 		   var str = ""
 		        var tdArr = new Array();   
 		        var endwhing = $(this);
@@ -480,54 +427,10 @@
 	        	$('input[name=real_quantity]').attr('value',real_quantity);
 	        	$('input[name=price]').attr('value',price);
 		})
+		
 	</script>
 	
-	
-
-<!--Email Modal-->
-	<div class="modal fade" id="handlingmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-	  <div class="modal-dialog modal-dialog-centered">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="staticBackdropLabel">Email</h5>
-	      </div>
-	      <div class="modal-body">
-	      	 <form class="forms-sample" method="post" action="send" >
-                        <div class="form-group" >
-                          <label for="exampleInputName1">수신자</label>
-                          <input type="text" name="receiveMail" class="form-control" id="exampleInputName1" value="" >
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleInputName1">발신자이름</label>
-                          <input type="text" name="senderName" class="form-control" id="exampleInputName2" value="AJACHA">
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleInputName1">발신자  이메일</label>
-                          <input type="text" name="senderMail" class="form-control" id="exampleInputName1" value="youwjd51@gmail.com">
-                        </div>
-                         <div class="form-group">
-                          <label for="exampleInputName1">제목</label>
-                          <input type="text"  name="subject" class="form-control" id="exampleInputName1" placeholder="Email">
-                        </div>
-                        
-                        <div class="form-group m-b-20">
-                          <label for="exampleTextarea1">내용</label>
-                         <input type="text"  name="message" class="form-control" id="exampleTextarea1" rows="4">
-                        </div>
-                        <input type="hidden" name="order_num" >
-                        
-                       
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modalcancel">취소하기</button>
-	        <button type="submit" class="btn btn-primary" name="send" >전송</button>
-	        </form>
-	      </div>
-	    </div>
-	  </div>
-	</div>   
-	
-	<!-- Modal1 입고처리 클릭시 등장 -->
+	<!-- Modal1 마감처리 클릭시 등장 -->
 	<div class="modal fade" id="closingmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
@@ -564,25 +467,9 @@
 	    </div>
 	  </div>
 	</div>
+
 	
-	
-	<script>
-		var link = document.location.href;
-		var para = document.location.href.split("=");
-		
-		function success(para) {
-			let result;
-			
-			for(var i = 0; i < para.length; i++) {
-				if(para[i] == 'success') {
-					alert('이메일이 전송되었습니다.');
-					var redirect = link.replaceAll("success", "");
-					location.href=redirect;
-				}
-			}
-			
-		}
-		success(para);
-	</script>
+
+
     </body>
 </html>

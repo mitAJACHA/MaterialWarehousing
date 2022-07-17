@@ -6,6 +6,7 @@
 <head>
 
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>조달관리 시스템</title>
 
@@ -295,9 +296,9 @@
 												<td><c:out value="${order.empl_name==null?'-':order.empl_name}" /></td>
 												<td>
 													<c:choose>
-														<c:when test="${order.status=='발주예정'}"><a href="#" class="badge badge-primary">${order.status}</a></c:when>
-														<c:when test="${order.status=='발주서발행'}"><a href="#" class="badge badge-warning">${order.status}</a></c:when>
-														<c:when test="${order.status=='조달진행중'}"><a href="#" class="badge badge-info">${order.status}</a></c:when>
+														<c:when test="${order.status=='반품처리'}"><a href="#" class="badge badge-primary">${order.status}</a></c:when>
+														<c:when test="${order.status=='조달진행중'}"><a href="#" class="badge badge-warning">${order.status}</a></c:when>
+														<c:when test="${order.status=='입고마감'}"><a href="#" class="badge badge-info">${order.status}</a></c:when>
 														<c:when test="${order.status=='거래마감'}"><a href="#" class="badge badge-success">${order.status}</a></c:when>
 													</c:choose>
 												</td>
@@ -320,7 +321,7 @@
                        		
                        		<c:if test="${pageMaker.cri.pageNum == num }" >
                        		<%--현재 페이지를 ${param.pageNum } or ${pageMaker.cri.pageNum } or {criteria.pageNum}> --%>
-                       		<b>${num }</b>
+                       		<b style="color: #e83e8c">${num }</b>
                        		</c:if>
                        		
                        		<c:if test="${pageMaker.cri.pageNum != num }" >
@@ -341,11 +342,10 @@
 		<footer class="content-footer">
 			<div class="footer">
 				<div class="copyright">
-					<span>Copyright Â© 2018 <b class="text-dark">UIdeck</b>. All
-						Right Reserved
-					</span> <span class="go-right"> <a href="" class="text-gray">Term
-							&amp; Conditions</a> <a href="" class="text-gray">Privacy &amp;
-							Policy</a>
+					<span><b class="text-dark">AJACHA</b>
+					</span> 
+					<span class="go-right"> 
+					<a href="http://m-it.or.kr/" class="text-gray">MIT능력개발원 </a>
 					</span>
 				</div>
 			</div>
@@ -354,12 +354,6 @@
 
 </div>
 <!-- Page Container END -->
-    <!-- Preloader -->
-    <div id="preloader">
-      <div class="loader" id="loader-1"></div>
-    </div>
-    <!-- End Preloader -->
-    
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="/resources/assets/js/jquery-min.js"></script>
     <script src="/resources/assets/js/popper.min.js"></script>
