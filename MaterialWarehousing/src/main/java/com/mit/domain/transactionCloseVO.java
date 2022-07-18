@@ -16,11 +16,11 @@ public class transactionCloseVO {
 	private int order_quantity; //발주수량
 	private Date order_date; //발주일자
 	private int unitprice;//단가
-	private String e_check; //이메일 확인
 	private String comemployee; //업체 담당자 이름
 	private String comemail; //업체 담당자 이메일
 	private Date closing_date;//거래 마감일
 	private int ware_quantity; //정품수량
-	private int price;
+	private int real_quantity; //정품수량
+	private String price;
 
 }

@@ -120,7 +120,7 @@
                                 <td><c:out value="${state.partname}" /></td>
                                 <td><c:out value="${state.ware_quantity}" /></td>
                                 <td><c:out value="${state.unitprice}" /></td>
-                                <td><fmt:formatNumber value="${state.price}"  pattern="#,###"/></td>
+                                <td><fmt:formatNumber value="${state.unitprice*state.ware_quantity}"  pattern="#,###"/></td>
                                  
                                   
                             </tr>
@@ -173,44 +173,20 @@
                    
                         <tr>
                         <td>총 거래 금액</td>
-                        <td><fmt:formatNumber value="${state.price}"  pattern="#,###"/></td>
+                        <td><fmt:formatNumber value="${state.unitprice*state.ware_quantity}"  pattern="#,###"/></td>
                         </tr><br>
-	   	 			<form action="send" method="post">	<!-- handleno 서비스 -->
-	     
-			 	 <input type="hidden" name="order_num" class="form-control" id="exampleInputName1" value="${state.order_num}">
-                 <input type="hidden" name="receiveMail" class="form-control" id="exampleInputName1" value="${state.comemail}" >
-                 <input type="hidden" name="subject" class="form-control" id="exampleInputName1" value="거래명세서  발송" >
-                 <input type="hidden" name="message" class="form-control" id="exampleInputName1" value="http://192.168.0.114:8081/statement2?order_num=${state.order_num}" >
-                 <input type="hidden" name="senderName" class="form-control" id="exampleInputName1" "AJACHA" >
-                 <input type="hidden" name="senderMail" class="form-control" id="exampleInputName1" value="youwjd51@gmail.com">
+	   	 			
                  </table></table>
-                  </div></div></div></div></div>
+                  </div></div></div></div></div></div>
                      <div class="noprint" >
-				 	<button type="submit" class="btn btn-primary" name="send" >전송</button>
-                 	<button type="button" class="btn btn-dark" id="print" onclick="window.print()" >출력</button>
-                 	</form>
-                 	</div></div></table>
+				 
+                 	<button type="button" class="btn btn-dark" id="print" onclick="window.print()">출력</button>
+                 
+                 	</div></div>
 	
 	
 
-	<script>
-		var link = document.location.href;
-		var para = document.location.href.split("=");
-		
-		function success(para) {
-			let result;
-			
-			for(var i = 0; i < para.length; i++) {
-				if(para[i] == 'success') {
-					alert('이메일이 전송되었습니다.');
-					var redirect = link.replaceAll("success", "");
-					location.href=redirect;
-				}
-			}
-			
-		}
-		success(para);
-	</script>
+
 
 
 
