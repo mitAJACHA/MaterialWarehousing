@@ -6,6 +6,7 @@
 <head>
 
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>조달관리 시스템</title>
 
@@ -325,7 +326,7 @@
                        		
                        		<c:if test="${pageMaker.cri.pageNum == num}" >
                        		<%--현재 페이지를 ${param.pageNum } or ${pageMaker.cri.pageNum } or {criteria.pageNum}> --%>
-                       		<b>${num }</b>
+                       		<b style="color: #e83e8c">${num }</b>
                        		</c:if>
                        		
                        		<c:if test="${pageMaker.cri.pageNum != num }" >
@@ -346,8 +347,11 @@
 		<!-- Footer START -->
 		<footer class="content-footer">
 			<div class="footer">
-				<span class="go-right text-gray"> 
-				AJACHA!
+				<div class="copyright">
+					<span><b class="text-dark">AJACHA</b>
+					</span> 
+					<span class="go-right"> 
+					<a href="http://m-it.or.kr/" class="text-gray">MIT능력개발원 </a>
 					</span>
 				</div>
 			</div>
@@ -413,10 +417,10 @@
 		        var tr = endwhing.parent().parent();
 		        var td = tr.children();
 		        console.log("클릭한 Row의 모든 데이터 : "+tr.text());
-		        var order_num = td.eq(1).text();
-		        var partname = td.eq(4).text();
-		        var real_quantity = td.eq(6).text();
-		        var price = td.eq(7).text();
+		        var order_num = td.eq(0).text();
+		        var partname = td.eq(3).text();
+		        var real_quantity = td.eq(5).text();
+		        var price = td.eq(6).text();
 		     
 		        td.each(function(i){    
 		            tdArr.push(td.eq(i).text());
@@ -442,19 +446,19 @@
 	      	  <div class="container-fluid">
 				 <div class="form-group" >
                      <label for="order_num">발주번호</label>
-                     <input type="text" name="order_num" class="form-control" id="exampleInputName1" value="" readonly >
+                     <input type="text" name="order_num" class="form-control" id="exampleInputName1" readonly >
                  </div>
                  <div class="form-group" >
                      <label for="partname">품목</label>
-                     <input type="text" name="partname" class="form-control" id="exampleInputName1" value="" readonly>
+                     <input type="text" name="partname" class="form-control" id="exampleInputName1" readonly>
                  </div>
                  <div class="form-group" >
                      <label for="real_quantity">수량</label>
-                     <input type="text" name="real_quantity" class="form-control" id="exampleInputName1" value="" readonly>
+                     <input type="text" name="real_quantity" class="form-control" id="exampleInputName1" readonly>
                  </div>
                  <div class="form-group" >
-                     <label for="real_quantity">거래금액</label>
-                     <input type="text" name="price" class="form-control" id="exampleInputName1" value="" readonly>
+                     <label for="price">거래금액</label>
+                     <input type="text" name="price" class="form-control" id="exampleInputName1" readonly>
                  </div>
                  &nbsp;&nbsp;거래를 마감하시겠습니까?
 			   </div>

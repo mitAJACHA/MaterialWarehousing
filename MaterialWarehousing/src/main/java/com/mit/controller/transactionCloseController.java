@@ -62,6 +62,14 @@ public class transactionCloseController {
 		model.addAttribute("state", service.get(order_num));
 	}
 	
+	//거래명세서 이메일 발송 버전
+	@GetMapping("statement2")
+	public void statement2(Model model,Long order_num) {
+		log.info("statement 요청");
+		model.addAttribute("state", service.get(order_num));
+	}
+	
+	
 
 	
 	 //메일 보내기
@@ -79,8 +87,8 @@ public class transactionCloseController {
 	 }
 	 
 	//거래마감
-			@PostMapping("closing")
-			public String handleok(transactionCloseVO vo){
+			@PostMapping("/closing")
+			public String closing(transactionCloseVO vo,Criteria cri){
 				log.info("거래마감 요청");
 				service.date_update(vo);
 				return "redirect:/transactionClose";

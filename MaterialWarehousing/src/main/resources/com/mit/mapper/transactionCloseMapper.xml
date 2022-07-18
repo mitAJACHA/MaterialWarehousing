@@ -12,21 +12,21 @@
    					AND partname like'%'||#{partName}||'%'
    				</if>
    				<if test='startDate!=null and endDate ==null'>
-   					<![CDATA[ AND ware_date => TO_TIMESTAMP(#{startDate}, 'YYYY-MM-DD')  ]]>
+   					<![CDATA[ AND closing_date => TO_TIMESTAMP(#{startDate}, 'YYYY-MM-DD')  ]]>
    				</if>
    				<if test='startDate==null and endDate !=null'>
-   					<![CDATA[ AND ware_date <= TO_TIMESTAMP(#{endDate}, 'YYYY-MM-DD') ]]>
+   					<![CDATA[ AND closing_date <= TO_TIMESTAMP(#{endDate}, 'YYYY-MM-DD') ]]>
    				</if>
    				<if test='startDate!=null and endDate !=null'>
    					AND ware_date between TO_TIMESTAMP(#{startDate}, 'YYYY-MM-DD')-1 and TO_TIMESTAMP(#{endDate}, 'YYYY-MM-DD')+1 
    					<!-- 날짜 검색 기능 개선 (between은 양쪽 날짜가 포함되지 않아 -1, +1 함)-->
    				</if>
    				<if test='recentDate !=null and recentDate.equals("week")'>
-   					<![CDATA[ AND ware_date >= sysdate-7  ]]>
+   					<![CDATA[ AND closing_date >= sysdate-7  ]]>
    					<!-- 최근 일주일  -->
    				</if>
    				<if test='recentDate !=null and recentDate.equals("month")'>
-   					<![CDATA[ AND ware_date >= sysdate-30 ]]>
+   					<![CDATA[ AND closing_date >= sysdate-30 ]]>
    					<!-- 최근 한달  -->
    				</if>
    			</trim>
@@ -47,7 +47,7 @@
             p.partname partname, 
             cp.name name,
             w.ware_quantity ware_quantity,
-            c.unitprice*o.order_quantity price,
+            c.unitprice*w.ware_quantity price,
             w.closing_date closing_date
 
             from tbl_part p , tbl_contract c, tbl_company cp, warehousing w, purchase_order o,
@@ -55,22 +55,28 @@
 			WHERE p.partcode = c.partcode and c.code = cp.code and c.contractno = o.contract_num and o.order_num = w.order_num and c.partcode = s.partcode
             and o.support_num = s.supportno and w.ware_date is not null and w.return = 'N'
 		]]>
+	</sql>
 		
+	<select id="getList" resultType="com.mit.domain.transactionCloseVO">
+	<include refid="tbl_tran"></include>
+		
+	
 	    	<include refid="criteria"></include>
+	
     	
 		<![CDATA[        
 		       	order by order_num desc)
 	    	WHERE ROWNUM <= (#{pageNum} * #{amount}))
-		WHERE rn > ((#{pageNum}-1) * #{amount}) 
+		WHERE rn > ((#{pageNum}-1) * #{amount})
 		]]>
 
-	</sql>
+	</select>
 	
 	<select id="read" resultType="com.mit.domain.transactionCloseVO">
 		<![CDATA[
 			select*from(select  o.order_num order_num, w.ware_date ware_date, p.partcode partcode, p.partname partname, cp.name name,
 				 s.deliverydate deliverydate , cp.business_number business_number,cp.comemail, cp.comemployee,
-				w.ware_quantity ware_quantity, o.order_date order_date, c.unitprice unitprice
+				w.ware_quantity ware_quantity, o.order_date order_date, c.unitprice unitprice,c.unitprice*w.ware_quantity price
 				from tbl_part p , tbl_contract c, tbl_company cp, warehousing w, purchase_order o,
              tbl_support s
 			WHERE p.partcode = c.partcode and c.code = cp.code and c.contractno = o.contract_num and o.order_num = w.order_num and c.partcode = s.partcode
@@ -80,13 +86,14 @@
 	</select>
 	
 	<select id="count" resultType="long">
-		select count(*) from(<include refid="tbl_tran"></include>)
+		select count(*) from(
+		<include refid="tbl_tran"></include>
+		
+			<include refid="criteria"></include>
+	
+		)))
 	
 	
-	</select>
-	
-	<select id="getList" resultType="com.mit.domain.transactionCloseVO">
-	<include refid="tbl_tran"></include>		
 	</select>
 	
 
