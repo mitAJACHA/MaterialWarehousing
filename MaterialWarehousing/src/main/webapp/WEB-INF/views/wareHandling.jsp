@@ -30,8 +30,8 @@
         <!-- Header START -->
         <div class="header navbar">
           <div class="header-container">
-            <div class="nav-logo">
-              <a href="index.html">
+            <div class="nav-logo" style="padding-top: 10px;">
+              <a href="#">
                 <b><img src="/resources/assets/img/logo.png" alt=""></b>
                 <span class="logo">
                   <img src="/resources/assets/img/logo-text.png" alt="">
