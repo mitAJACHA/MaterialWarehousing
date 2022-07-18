@@ -28,7 +28,7 @@
         <div class="header navbar">
           <div class="header-container">
             <div class="nav-logo" style="padding-top: 10px;">
-              <a href="index.html">
+              <a href="#">
                 <b><img src="/resources/assets/img/logo.png" alt=""></b>
                 <span class="logo">
                   <img src="/resources/assets/img/logo-text.png" alt="">
