@@ -284,8 +284,8 @@
 												<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${order.deliverydate }"/></td>
 												<td>
 													<c:choose>
-														<c:when test="${order.ware_date==null}">-</c:when>
-														<c:when test="${order.ware_date!=null}"><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${order.ware_date}"/></c:when>
+														<c:when test="${order.closing_date==null}">-</c:when>
+														<c:when test="${order.closing_date!=null}"><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${order.closing_date}"/></c:when>
 													</c:choose>
 												</td>
 												<td><c:out value="${order.partname}" /></td>
