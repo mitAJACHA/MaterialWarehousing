@@ -58,7 +58,7 @@
 			            NULL returnny,
                         NULL closing_date
 			        FROM tbl_support s, tbl_part p, tbl_company company, employee e, tbl_contract c, purchase_order o
-			        WHERE o.support_num = s.supportno AND o.empl_num = e.empl_num AND o.contract_num = c.contractno AND c.code = company.code AND c.partcode = p.partcode AND s.partcode = p.partcode
+			        WHERE o.support_num = s.supportno AND o.empl_num = e.empl_num AND o.contract_num = c.contractno AND c.code = company.code AND c.partcode = p.partcode AND s.partcode = p.partcode and o.order_num NOT IN(select order_num from warehousing)
 			        
 			        UNION
 			        
@@ -105,8 +105,13 @@
 	</select>
 	
 	<select id="description" resultType="com.mit.domain.StatusVO">
-		select count(*) cn, status from(<include refid="tbl_orderStatus"></include>
-		ORDER BY order_num DESC)))
+		select count(*) cn, status from(
+		<include refid="tbl_orderStatus"></include>
+		<where>
+	    	<include refid="criteria"></include>
+    	</where>
+		ORDER BY order_num DESC))
+		)
 		group by status
 	</select>
 	
