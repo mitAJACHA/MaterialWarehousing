@@ -62,6 +62,7 @@ public class transactionCloseController {
 		model.addAttribute("state", service.get(order_num));
 	}
 	
+	//거래명세서 이메일 발송 버전
 	@GetMapping("statement2")
 	public void statement2(Model model,Long order_num) {
 		log.info("statement 요청");
