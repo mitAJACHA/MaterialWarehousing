@@ -199,7 +199,7 @@
                 </div>
                 <div class="col-12 col-lg-9 col-md-6">
                   <ol class="breadcrumb float-right">
-                    <li><a href="index.html">조달관리 시스템</a></li>
+                    <li><a href="#">조달관리 시스템</a></li>
                     <li class="active">/ 입고처리</li>
                   </ol>
                 </div>
