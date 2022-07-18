@@ -212,7 +212,7 @@
                       <h4 class="card-title">Status Chart</h4>
                     </div>
                     <div class="card-body" align="center">
-                      <div id="columnchart_material" style="height: 500px; width: 1500px"></div>
+                      <div id="columnchart_material" style="height: 500px; width: 1200px"></div>
                     </div>
                   </div>
                 </div> 
