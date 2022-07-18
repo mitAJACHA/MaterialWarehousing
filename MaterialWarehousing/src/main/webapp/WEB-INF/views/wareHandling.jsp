@@ -334,15 +334,17 @@
           <!-- Content Wrapper END -->
 
           <!-- Footer START -->
-         <footer class="content-footer">
-            <div class="footer">
-              <div class="copyright">
-                <span class="go-right text-gray">
-                  AJACHA!
-                </span>
-              </div>
-            </div>
-          </footer>
+		<footer class="content-footer">
+			<div class="footer">
+				<div class="copyright">
+					<span><b class="text-dark">AJACHA</b>
+					</span> 
+					<span class="go-right"> 
+					<a href="http://m-it.or.kr/" class="text-gray">MIT능력개발원 </a>
+					</span>
+				</div>
+			</div>
+		</footer>
           <!-- Footer END -->
 
         </div>
@@ -442,7 +444,7 @@
 		        var order_num = td.eq(0).text();
 		        var partname = td.eq(2).text();
 		        var subject = "MIT 능력개발원에서 거래 반품을 안내드립니다"
-		        var message = "귀사의" + td.eq(2).text() + " 품목이 오늘자로 반품처리되었음을 알려드립니다"
+		        var message = "귀사의 " + td.eq(2).text() + " 품목이 오늘자로 반품처리되었음을 알려드립니다"
 		        var receiveMail = td.eq(4).text();
 		     
 		        td.each(function(i){    

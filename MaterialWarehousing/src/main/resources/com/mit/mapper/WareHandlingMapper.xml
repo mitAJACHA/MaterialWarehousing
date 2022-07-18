@@ -82,17 +82,17 @@
 				        RIGHT JOIN tbl_result re ON re.order_num = po.order_num
                         INNER JOIN tbl_irc irc ON irc.order_num = i.order_num
 				 ]]>
-			<where>
+ 	</sql>
+ 	
+ 	<select id="getList"  resultType="com.mit.domain.WareHandlingVO">
+ 		<include refid="List"></include>
+ 		<where>
 	    	<include refid="criteria"></include>
     	</where>
 		<![CDATA[
  ORDER BY order_num DESC) WHERE ROWNUM <= (#{pageNum} * #{amount}))
 		WHERE rn > ((#{pageNum}-1) * #{amount})
 		]]>
- 	</sql>
- 	
- 	<select id="getList"  resultType="com.mit.domain.WareHandlingVO">
- 		<include refid="List"></include>
  	</select>
  	
  	
@@ -105,7 +105,11 @@
  	</insert>
  	
     <select id="count" resultType="long">
-		select count(*) from(<include refid="List"></include>)
+		select count(*) from(<include refid="List"></include>
+		<where>
+	    	<include refid="criteria"></include>
+    	</where>
+		)))
 	</select>
  	
 
