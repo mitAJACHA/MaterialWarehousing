@@ -314,7 +314,7 @@
                        		
                        		<c:if test="${pageMaker.cri.pageNum == num }" >
                        		<%--현재 페이지를 ${param.pageNum } or ${pageMaker.cri.pageNum } or {criteria.pageNum}> --%>
-                       		<b>${num }</b>
+                       		<b style="color: #e83e8c">${num }</b>
                        		</c:if>
                        		
                        		<c:if test="${pageMaker.cri.pageNum != num }" >
