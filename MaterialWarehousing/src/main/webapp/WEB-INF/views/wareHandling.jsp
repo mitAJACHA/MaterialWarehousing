@@ -30,8 +30,8 @@
         <!-- Header START -->
         <div class="header navbar">
           <div class="header-container">
-            <div class="nav-logo">
-              <a href="index.html">
+            <div class="nav-logo" style="padding-top: 10px;">
+              <a href="#">
                 <b><img src="/resources/assets/img/logo.png" alt=""></b>
                 <span class="logo">
                   <img src="/resources/assets/img/logo-text.png" alt="">
@@ -314,7 +314,7 @@
                        		
                        		<c:if test="${pageMaker.cri.pageNum == num }" >
                        		<%--현재 페이지를 ${param.pageNum } or ${pageMaker.cri.pageNum } or {criteria.pageNum}> --%>
-                       		<b>${num }</b>
+                       		<b style="color: #e83e8c">${num }</b>
                        		</c:if>
                        		
                        		<c:if test="${pageMaker.cri.pageNum != num }" >
