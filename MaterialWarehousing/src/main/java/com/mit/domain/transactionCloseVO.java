@@ -8,7 +8,7 @@ import lombok.Data;
 public class transactionCloseVO {
 	private Long order_num; //발주번호
 	private Date ware_date; //입고일
-	private int partcode; //품목코드
+	private String partcode; //품목코드
 	private String partname;	//품목명
 	private String name;//업체명
 	private Date deliverydate; //조기납기일
