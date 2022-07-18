@@ -53,7 +53,7 @@
                    
                    <div class="card-header border-bottom">
 					<h1>거래명세서</h1>
-                      <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                      <table width="100%" class="table table-striped table-bordered " >
 					
 					  <tr>
 				    <td rowspan="4">공<br>급<br>받<br>는<br>자</td>
