@@ -38,7 +38,7 @@
                 </span>
               </a>
             </div>
-             <ul class="nav-left">
+             <ul class="nav-left" style="padding-top: 20px;">
               <li>
                 <a class="sidenav-fold-toggler" href="javascript:void(0);">
                   <i class="lni-menu"></i>
