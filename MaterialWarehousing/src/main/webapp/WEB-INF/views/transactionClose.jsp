@@ -80,18 +80,12 @@
                   <li>
                     <a href="http://192.168.0.104:8888/part/partList">품목 정보 등록/조회</a>
                   </li>
-                </ul>
-                <ul class="dropdown-menu sub-down">
                 <li>
                     <a href="http://192.168.0.104:8888/support/supportList">조달 계획 등록/조회</a>
                   </li>
-                </ul>
-                <ul class="dropdown-menu sub-down">
                 <li>
                     <a href="http://192.168.0.104:8888/company/companyList">업체 정보 등록/조회</a>
                   </li>
-                </ul>
-                <ul class="dropdown-menu sub-down">
                 <li>
                     <a href="http://192.168.0.104:8888/contract/contractList">계약 정보 등록/조회</a>
                   </li>
@@ -112,18 +106,12 @@
                   <li>
                     <a href="http://192.168.0.120:8079/po/plan">발주 계획 입력</a>
                   </li>
-                </ul>
-                <ul class="dropdown-menu sub-down">
                   <li>
                     <a href="http://192.168.0.120:8079/po/order">발주서 출력</a>
                   </li>
-                </ul>
-                <ul class="dropdown-menu sub-down">
                   <li>
                     <a href="http://192.168.0.120:8079/po/inspection">진척 검수</a>
                   </li>
-                </ul>
-                <ul class="dropdown-menu sub-down">
                   <li>
                     <a href="http://192.168.0.120:8079/po/progress">납기 진도율</a>
                   </li>
@@ -143,7 +131,7 @@
                   <li>
                     <a href="orderStatus">현황관리</a>
                   </li>
-                  <li >
+                  <li>
                     <a href="wareHandling">입고처리</a>
                   </li>
                   <li class="active">
@@ -161,6 +149,23 @@
                     <i class="lni-chevron-right"></i>
                   </span>
                 </a>
+                 <ul class="dropdown-menu sub-down">
+                  <li>
+                    <a href="http://192.168.0.108:8081/export/stock">자재 현황</a>
+                  </li>
+                  <li>
+                    <a href="http://192.168.0.108:8081/export/request">출고 요청</a>
+                  </li>
+                  <li>
+                    <a href="http://192.168.0.108:8081/export/status">출고 현황</a>
+                  </li>
+                  <li>
+                    <a href="http://192.168.0.108:8081/export/export">출고 진행</a>
+                  </li>
+                  <li>
+                    <a href="http://192.168.0.108:8081/export/report">재고 리포트</a>
+                  </li>
+                </ul>
             </ul>
           </div>
         </div>
