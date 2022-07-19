@@ -163,8 +163,8 @@
 					</div>
 					<div class="col-12 col-lg-9 col-md-6">
 						<ol class="breadcrumb float-right">
-							<li><a href="index.html">Home</a></li>
-							<li class="active">/ Dashboard</li>
+							<li><a href="index.html">조달관리 시스템</a></li>
+							<li class="active">/ 발주현황</li>
 						</ol>
 					</div>
 				</div>
@@ -190,11 +190,10 @@
 		<footer class="content-footer">
 			<div class="footer">
 				<div class="copyright">
-					<span>Copyright Â© 2018 <b class="text-dark">UIdeck</b>. All
-						Right Reserved
-					</span> <span class="go-right"> <a href="" class="text-gray">Term
-							&amp; Conditions</a> <a href="" class="text-gray">Privacy &amp;
-							Policy</a>
+					<span><b class="text-dark">AJACHA</b>
+					</span> 
+					<span class="go-right"> 
+					<a href="http://m-it.or.kr/" class="text-gray">MIT능력개발원 </a>
 					</span>
 				</div>
 			</div>
