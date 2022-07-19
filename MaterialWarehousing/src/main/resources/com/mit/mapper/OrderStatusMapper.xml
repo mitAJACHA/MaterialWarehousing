@@ -41,7 +41,7 @@
 			    CASE WHEN ware_date IS NULL THEN '조달진행중'
 			        WHEN not ware_date IS NULL and returnny = 'Y' THEN '반품처리'
 			        WHEN not closing_date IS NULL THEN  '거래마감'
-			        WHEN not ware_date IS NULL and returnny = 'N' THEN '입고마감'
+			        WHEN not ware_date IS NULL and returnny = 'N' THEN '입고완료'
 			    END AS status,
 			    closing_date
 			    FROM(
