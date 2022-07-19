@@ -36,13 +36,14 @@
 	<sql id="tbl_orderStatus">
 		<![CDATA[
 		SELECT * FROM(
-			SELECT ROWNUM rn,order_num, order_date, deliverydate, ware_date, partname, order_quantity, unitprice, name, business_number, empl_name, returnny,status FROM(
+			SELECT ROWNUM rn,order_num, order_date, deliverydate, ware_date, partname, order_quantity, unitprice, name, business_number, empl_name, returnny,status,closing_date FROM(
 			    SELECT order_num, order_date, deliverydate, ware_date, partname, order_quantity, unitprice, name, business_number, empl_name, returnny,
 			    CASE WHEN ware_date IS NULL THEN '조달진행중'
 			        WHEN not ware_date IS NULL and returnny = 'Y' THEN '반품처리'
 			        WHEN not closing_date IS NULL THEN  '거래마감'
 			        WHEN not ware_date IS NULL and returnny = 'N' THEN '입고마감'
-			    END AS status
+			    END AS status,
+			    closing_date
 			    FROM(
 			    	SELECT 
 			            o.order_num, 

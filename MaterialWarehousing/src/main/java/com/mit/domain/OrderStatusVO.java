@@ -18,6 +18,7 @@ public class OrderStatusVO {
 	private int business_number;
 	private String empl_name;
 	private String returnny;
+	private Date closing_date;
 
 	private String status;
 }
