@@ -284,7 +284,7 @@
 													<c:choose>
 														<c:when test="${order.status=='반품처리'}"><a href="#" class="badge badge-primary">${order.status}</a></c:when>
 														<c:when test="${order.status=='조달진행중'}"><a href="#" class="badge badge-warning">${order.status}</a></c:when>
-														<c:when test="${order.status=='입고마감'}"><a href="#" class="badge badge-info">${order.status}</a></c:when>
+														<c:when test="${order.status=='입고완료'}"><a href="#" class="badge badge-info">${order.status}</a></c:when>
 														<c:when test="${order.status=='거래마감'}"><a href="#" class="badge badge-success">${order.status}</a></c:when>
 													</c:choose>
 												</td>
