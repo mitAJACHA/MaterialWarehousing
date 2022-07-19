@@ -58,16 +58,27 @@
                     <i class="lni-chevron-right"></i>
                   </span>
                 </a>
-                <ul class="dropdown-menu sub-down">
+                 <ul class="dropdown-menu sub-down">
                   <li>
-                    <a href="productList">품목조회/등록</a>
+                    <a href="http://192.168.0.104:8888/part/partList">품목 정보 등록/조회</a>
                   </li>
                 </ul>
                 <ul class="dropdown-menu sub-down">
-                  <li>
-                    <a href="companyList">업체조회/등록</a>
+                <li>
+                    <a href="http://192.168.0.104:8888/support/supportList">조달 계획 등록/조회</a>
                   </li>
                 </ul>
+                <ul class="dropdown-menu sub-down">
+                <li>
+                    <a href="http://192.168.0.104:8888/company/companyList">업체 정보 등록/조회</a>
+                  </li>
+                </ul>
+                <ul class="dropdown-menu sub-down">
+                <li>
+                    <a href="http://192.168.0.104:8888/contract/contractList">계약 정보 등록/조회</a>
+                  </li>
+                </ul>
+                
               </li>
               <li class="nav-item dropdown">
                 <a class="dropdown-toggle" href="#">
@@ -79,20 +90,25 @@
                       <i class="lni-chevron-right"></i>
                     </span>
                   </a>
+                   <ul class="dropdown-menu sub-down">
+                  <li>
+                    <a href="http://192.168.0.120:8079/po/plan">발주 계획 입력</a>
+                  </li>
+                </ul>
                 <ul class="dropdown-menu sub-down">
                   <li>
-                    <a href="email.html">Email</a>
+                    <a href="http://192.168.0.120:8079/po/order">발주서 출력</a>
                   </li>
-                  <li><span class="badge badge-primary badge-pro float-right">Pro</span>
-                    <a href=#"calendar.html">Calendar</a>
+                </ul>
+                <ul class="dropdown-menu sub-down">
+                  <li>
+                    <a href="http://192.168.0.120:8079/po/inspection">진척 검수</a>
                   </li>
-                  <li><span class="badge badge-primary badge-pro float-right">Pro</span>
-                    <a href=#"chat-app.html">Chat App</a>
+                </ul>
+                <ul class="dropdown-menu sub-down">
+                  <li>
+                    <a href="http://192.168.0.120:8079/po/progress">납기 진도율</a>
                   </li>
-                  <li><span class="badge badge-primary badge-pro float-right">Pro</span>
-                    <a href=#"contact.html">Contact</a>
-                  </li>
-                  
                 </ul>
               </li>
               <li class="nav-item dropdown open">
@@ -127,63 +143,13 @@
                     <i class="lni-chevron-right"></i>
                   </span>
                 </a>
-                <ul class="dropdown-menu sub-down">
-                  <li>
-                    <a href="accordion.html">Accordions</a>
-                  </li>
-                  <li>
-                    <a href="carousel.html">Carousel</a>
-                  </li>
-                  <li>
-                    <a href="dropdown.html">Dropdown</a>
-                  </li>
-                  <li><span class="badge badge-primary badge-pro float-right">Pro</span>
-                    <a href=#"modals.html">Modals</a>
-                  </li>
-                  <li><span class="badge badge-primary badge-pro float-right">Pro</span>
-                    <a href=#"notifications.html">Notifications</a>
-                  </li>
-                  <li><span class="badge badge-primary badge-pro float-right">Pro</span>
-                    <a href=#"popover.html">Popover</a>
-                  </li>
-                  <li><span class="badge badge-primary badge-pro float-right">Pro</span>
-                    <a href=#"slider-progress.html">Progress Bars</a>
-                  </li>
-                  <li><span class="badge badge-primary badge-pro float-right">Pro</span>
-                    <a href=#"tabs.html">Tabs</a>
-                  </li>
-                  <li><span class="badge badge-primary badge-pro float-right">Pro</span>
-                    <a href=#"tooltips.html">Tooltips</a>
-                  </li>
-                </ul>
-              </li>
-                <ul class="dropdown-menu sub-down">
-                  <li><span class="badge badge-primary badge-pro float-right">Pro</span>
-                    <a href=#"profile.html">Profile</a>
-                  </li>
-                  <li><span class="badge badge-primary badge-pro float-right">Pro</span>
-                    <a href=#"invoice.html">Invoice</a>
-                  </li>
-                  <li><span class="badge badge-primary badge-pro float-right">Pro</span>
-                    <a href=#"faq.html">FAQ</a>
-                  </li>
-                  
-                  <li><span class="badge badge-primary badge-pro float-right">Pro</span>
-                    <a href=#"login.html">Login</a>
-                  </li>
-                  <li><span class="badge badge-primary badge-pro float-right">Pro</span>
-                    <a href=#"sign-up.html">Sign Up</a>
-                  </li>
-                  <li><span class="badge badge-primary badge-pro float-right">Pro</span>
-                    <a href=#"404.html">404</a>
-                  </li>
-                </ul>
             </ul>
           </div>
         </div>
       </div>
      </div>
     <!-- Side Nav END -->
+    
 	<!-- Page Container START -->
 	<div class="page-container">
 		<!-- Content Wrapper START -->
