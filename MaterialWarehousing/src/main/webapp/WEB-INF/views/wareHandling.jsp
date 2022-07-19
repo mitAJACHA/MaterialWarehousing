@@ -4,6 +4,11 @@
     pageEncoding="UTF-8"%>
 <html>
 <head>
+	<style>	
+		.test {
+		    padding-left: 65px !important;
+		}
+	</style>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -25,7 +30,7 @@
     
 </head>
 <body>
-    <div class="app header-default side-nav-dark">
+    <div class="app header-default side-nav-dark side-nav-expand">
       <div class="layout">
         <!-- Header START -->
         <div class="header navbar">
@@ -321,6 +326,7 @@
 			</div>
 		</footer>
           <!-- Footer END -->
+          	<div class="side-nav-backdrop"></div>
 
         </div>
         <!-- Page Container END -->
@@ -347,6 +353,10 @@
 		
 		$("input[type=date]").on("change",function(){
 			$('[name=recentDate]').prop("disabled",true);
+		});
+		
+		$(".sidenav-fold-toggler").on("click", function(event) {
+		    $(".page-container").toggleClass("test");
 		});
 	</script>
 	
