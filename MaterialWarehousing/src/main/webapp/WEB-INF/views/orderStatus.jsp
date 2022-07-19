@@ -4,6 +4,11 @@
     pageEncoding="UTF-8"%>
 <html>
 <head>
+	<style>	
+		.test {
+		    padding-left: 65px !important;
+		}
+	</style>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,7 +27,7 @@
     <link rel="stylesheet" type="text/css" href="/resources/assets/css/responsive.css">
 </head>
 <body>
-    <div class="app header-default side-nav-dark">
+    <div class="app header-default side-nav-dark side-nav-expand">
       <div class="layout">
         <!-- Header START -->
         <div class="header navbar">
@@ -35,6 +40,16 @@
                 </span>
               </a>
             </div>
+            <ul class="nav-left" style="padding-top: 20px;">
+              <li>
+                <a class="sidenav-fold-toggler" href="javascript:void(0);">
+                  <i class="lni-menu"></i>
+                </a>
+                <a class="sidenav-expand-toggler" href="javascript:void(0);">
+                  <i class="lni-menu"></i>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
         <!-- Header END -->
@@ -351,8 +366,9 @@
 			</div>
 		</footer>
 		<!-- Footer END -->
-
+	<div class="side-nav-backdrop"></div>
 </div>
+    
 <!-- Page Container END -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="/resources/assets/js/jquery-min.js"></script>
@@ -373,6 +389,10 @@
 		
 		$("input[type=date]").on("change",function(){
 			$('[name=recentDate]').prop("disabled",true);
+		});
+		
+		$(".sidenav-fold-toggler").on("click", function(event) {
+		    $(".page-container").toggleClass("test");
 		});
 	</script>
     
