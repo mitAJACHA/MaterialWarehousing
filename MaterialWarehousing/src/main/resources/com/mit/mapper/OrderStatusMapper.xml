@@ -18,8 +18,8 @@
    					<![CDATA[ AND order_date <= TO_TIMESTAMP(#{endDate}, 'YYYY-MM-DD') ]]>
    				</if>
    				<if test='startDate!=null and endDate !=null'>
-   					AND order_date between TO_TIMESTAMP(#{startDate}, 'YYYY-MM-DD')-1 and TO_TIMESTAMP(#{endDate}, 'YYYY-MM-DD')+1 
-   					<!-- 날짜 검색 기능 개선 (between은 양쪽 날짜가 포함되지 않아 -1, +1 함)-->
+   					AND order_date between TO_TIMESTAMP(#{startDate}, 'YYYY-MM-DD') AND TO_TIMESTAMP(#{endDate}, 'YYYY-MM-DD')+0.99999 
+   					<!-- 날짜 검색 기능 개선 : 날짜 컬럼에 시간이 포함되어있어 종료일자에 0.99999를 더하여 마지막 시간으로 변환한 후 조회 -->
    				</if>
    				<if test='recentDate !=null and recentDate.equals("week")'>
    					<![CDATA[ AND order_date >= sysdate-7  ]]>

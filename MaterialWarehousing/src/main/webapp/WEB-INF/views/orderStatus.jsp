@@ -198,8 +198,8 @@
 										<tr>
 											<th>회사명&nbsp;<input type="text" class="form-control" name="companyName" value="${pageMaker.cri.companyName }"></th>
 											<th>품목명&nbsp;<input type="text" class="form-control" name="partName" value="${pageMaker.cri.partName }"></th>
-											<th>일자&nbsp;&nbsp;<input class="form-control" type="date" name="startDate" value="${pageMaker.cri.startDate }"></th>
-											<th> &nbsp;&nbsp;<input class="form-control" type="date" name="endDate" value="${pageMaker.cri.endDate }"></th>
+											<th>일자&nbsp;&nbsp;<input class="form-control" type="date" id="startdate" name="startDate" value="${pageMaker.cri.startDate }"></th>
+											<th> &nbsp;&nbsp;<input class="form-control" type="date" id="enddate" name="endDate" value="${pageMaker.cri.endDate }"></th>
 											<th>
 												<div
 													class="custom-control custom-radio radio custom-control-inline">
@@ -221,7 +221,7 @@
 												</div>
 												<input type="hidden" name='pageNum' value='${pageMaker.cri.pageNum }'/>
 	                            				<input type="hidden" name='amount' value='${pageMaker.cri.amount }'/>
-												<button type="submit"
+												<button type="submit" id="btn"
 													class="btn btn-outline-success btn-rounded">Search</button>
 											</th>
 										</tr>
@@ -356,6 +356,8 @@
 	<script>
 		$('[name=recentDate]').on("change",function(){
 			$("input[type=date]").prop("disabled",true);
+			document.getElementById("startdate").value = '';
+			document.getElementById("enddate").value = '';
 		});
 		
 		$("input[type=date]").on("change",function(){
