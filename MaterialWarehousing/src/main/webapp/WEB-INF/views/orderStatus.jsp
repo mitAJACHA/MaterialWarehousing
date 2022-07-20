@@ -264,14 +264,14 @@
 												<td>
 													<c:choose>
 														<c:when test="${order.order_date==null}">-</c:when>
-														<c:when test="${order.order_date!=null}"><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${order.order_date}"/></c:when>
+														<c:when test="${order.order_date!=null}"><fmt:formatDate pattern="yyyy-MM-dd" value="${order.order_date}"/></c:when>
 													</c:choose>
 												</td>
-												<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${order.deliverydate }"/></td>
+												<td><fmt:formatDate pattern="yyyy-MM-dd" value="${order.deliverydate }"/></td>
 												<td>
 													<c:choose>
 														<c:when test="${order.closing_date==null}">-</c:when>
-														<c:when test="${order.closing_date!=null}"><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${order.closing_date}"/></c:when>
+														<c:when test="${order.closing_date!=null}"><fmt:formatDate pattern="yyyy-MM-dd" value="${order.closing_date}"/></c:when>
 													</c:choose>
 												</td>
 												<td><c:out value="${order.partname}" /></td>
