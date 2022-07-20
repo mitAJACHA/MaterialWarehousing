@@ -14,7 +14,7 @@
    					AND partname like'%'||#{partName}||'%'
    				</if>
    				<if test='startDate!=null and endDate ==null'>
-   					<![CDATA[ AND order_date => TO_TIMESTAMP(#{startDate}, 'YYYY-MM-DD')  ]]>
+   					<![CDATA[ AND order_date >= TO_TIMESTAMP(#{startDate}, 'YYYY-MM-DD')  ]]>
    				</if>
    				<if test='startDate==null and endDate !=null'>
    					<![CDATA[ AND order_date <= TO_TIMESTAMP(#{endDate}, 'YYYY-MM-DD') ]]>
