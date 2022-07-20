@@ -20,7 +20,7 @@
    					<![CDATA[ AND order_date <= TO_TIMESTAMP(#{endDate}, 'YYYY-MM-DD') ]]>
    				</if>
    				<if test='startDate!=null and endDate !=null'>
-   					AND order_date between TO_TIMESTAMP(#{startDate}, 'YYYY-MM-DD')-1 and TO_TIMESTAMP(#{endDate}, 'YYYY-MM-DD')+1 
+   					AND order_date between TO_TIMESTAMP(#{startDate}, 'YYYY-MM-DD') and TO_TIMESTAMP(#{endDate}, 'YYYY-MM-DD')+0.99999 
    					<!-- 날짜 검색 기능 개선 (between은 양쪽 날짜가 포함되지 않아 -1, +1 함)-->
    				</if>
    				<if test='recentDate !=null and recentDate.equals("week")'>
