@@ -58,27 +58,27 @@
 					  <tr>
 				    <td rowspan="4">공<br>급<br>받<br>는<br>자</td>
 				    <td>상호명</td>
-				    <td>AJACHA</td>
+				    <td>mit</td>
 				    <td rowspan="4">공<br>급<br>자</td>
 				    <td>상호명</td>
 				    <td><c:out value="${state.name}" /></td>
 				    </tr>
 				   <tr>
 				    <td>사업자번호</td>
-				    <td>112-567-342</td>
+				    <td>124-86-50611</td>
 				    <td>사업자번호</td>
 				    <td><c:out value="${state.business_number}" /></td>
 				    </tr>
 				    
 				    <tr>
 				    <td>담당자</td>
-				    <td>김ㅇㅇ</td>
+				    <td>조한학</td>
 				    <td>담당자</td>
 				    <td><c:out value="${state.comemployee}" /></td>
 				    </tr>
 				    <tr>
 				     <td>이메일</td>
-				    <td>ajacha_mit@gmail.com</td>
+				    <td>mit@mit.or.kr</td>
 				    <td>이메일</td>
 				    <td><c:out value="${state.comemail}" /></td>
 				    </tr>
