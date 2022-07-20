@@ -12,7 +12,7 @@
    					AND partname like'%'||#{partName}||'%'
    				</if>
    				<if test='startDate!=null and endDate ==null'>
-   					<![CDATA[ AND closing_date => TO_TIMESTAMP(#{startDate}, 'YYYY-MM-DD')  ]]>
+   					<![CDATA[ AND closing_date >= TO_TIMESTAMP(#{startDate}, 'YYYY-MM-DD')  ]]>
    				</if>
    				<if test='startDate==null and endDate !=null'>
    					<![CDATA[ AND closing_date <= TO_TIMESTAMP(#{endDate}, 'YYYY-MM-DD') ]]>
@@ -100,7 +100,7 @@
 	<update id="date_update">
 	update  warehousing set closing_date=sysdate where  order_num=${order_num}
 	</update>
-	
+
 	
 	
 </mapper>

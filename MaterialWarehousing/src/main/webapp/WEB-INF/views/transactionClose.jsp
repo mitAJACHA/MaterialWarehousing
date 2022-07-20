@@ -28,6 +28,7 @@
      <!-- toastr css 라이브러리 -->  
     <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
     
+   
 
 </head>
 <body>
@@ -201,10 +202,10 @@
 								<form action="transactionClose" method="get" style="margin-bottom: 0px">
 									<table class="table table-lg">
 										<tr>
-											<th>회사명&nbsp;<input type="text" class="form-control" name="companyName" value="${pageMaker.cri.companyName }"></th>
+											<th>회사명&nbsp;<input type="text" class="form-control"  name="companyName" value="${pageMaker.cri.companyName }"></th>
 											<th>품목명&nbsp;<input type="text" class="form-control" name="partName" value="${pageMaker.cri.partName }"></th>
-											<th>일자&nbsp;&nbsp;<input class="form-control" type="date" name="startDate" value="${pageMaker.cri.startDate }"></th>
-											<th> &nbsp;&nbsp;<input class="form-control" type="date" name="endDate" value="${pageMaker.cri.endDate }"></th>
+											<th>일자&nbsp;&nbsp;<input class="form-control" type="date" id="startdate" name="startDate" value="${pageMaker.cri.startDate }"></th>
+											<th> &nbsp;&nbsp;<input class="form-control" type="date" name="endDate" id="enddate" value="${pageMaker.cri.endDate }"></th>
 											<th>
 												<div
 													class="custom-control custom-radio radio custom-control-inline">
@@ -226,7 +227,7 @@
 												</div>
 												<input type="hidden" name='pageNum' value='${pageMaker.cri.pageNum }'/>
 	                            				<input type="hidden" name='amount' value='${pageMaker.cri.amount }'/>
-												<button type="submit"
+												<button type="submit" id="btn"
 													class="btn btn-outline-success btn-rounded">Search</button>
 											</th>
 										</tr>
@@ -389,6 +390,10 @@
 		<script>
 		$('[name=recentDate]').on("change",function(){
 			$("input[type=date]").prop("disabled",true);
+			document.getElementById("startdate").value = '';
+			document.getElementById("enddate").value = '';
+			
+			
 		});
 		
 		$("input[type=date]").on("change",function(){
@@ -399,6 +404,8 @@
 		    $(".page-container").toggleClass("test");
 		});
 	</script>
+	
+	
 	
 		<script>
 		/*거래마감*/
@@ -425,6 +432,7 @@
 		})
 		
 	</script>
+
 	
 	<!-- Modal1 마감처리 클릭시 등장 -->
 	<div class="modal fade" id="closingmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
