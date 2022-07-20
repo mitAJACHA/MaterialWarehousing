@@ -12,7 +12,7 @@
    					AND partname like'%'||#{partName}||'%'
    				</if>
    				<if test='startDate!=null and endDate ==null'>
-   					<![CDATA[ AND order_date => TO_TIMESTAMP(#{startDate}, 'YYYY-MM-DD')  ]]>
+   					<![CDATA[ AND order_date >= TO_TIMESTAMP(#{startDate}, 'YYYY-MM-DD')  ]]>
    				</if>
    				<if test='startDate==null and endDate !=null'>
    					<![CDATA[ AND order_date <= TO_TIMESTAMP(#{endDate}, 'YYYY-MM-DD') ]]>
@@ -24,7 +24,7 @@
    				<if test='recentDate !=null and recentDate.equals("week")'>
    					<![CDATA[ AND order_date >= sysdate-7  ]]>
    					<!-- 최근 일주일  -->
-   				</if>
+   				</if>                                  
    				<if test='recentDate !=null and recentDate.equals("month")'>
    					<![CDATA[ AND order_date >= sysdate-30 ]]>
    					<!-- 최근 한달  -->
