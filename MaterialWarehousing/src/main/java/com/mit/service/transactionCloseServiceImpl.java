@@ -2,6 +2,7 @@ package com.mit.service;
 
 import java.util.List;
 
+
 import org.springframework.stereotype.Service;
 
 import com.mit.domain.Criteria;
@@ -15,6 +16,7 @@ import lombok.AllArgsConstructor;
 public class transactionCloseServiceImpl implements transactionCloseService {
 
 	private transactionCloseMapper mapper;
+	
 	
 	@Override
 	public List<transactionCloseVO> getList(Criteria cri) {
@@ -45,8 +47,6 @@ public class transactionCloseServiceImpl implements transactionCloseService {
 	
 	
 	
-	
-
 	
 
 

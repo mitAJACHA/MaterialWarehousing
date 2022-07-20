@@ -2,6 +2,7 @@ package com.mit.service;
 
 import java.util.List;
 
+
 import com.mit.domain.Criteria;
 import com.mit.domain.transactionCloseVO;
 
@@ -14,6 +15,8 @@ public interface transactionCloseService {
 
 	public boolean modify(Long order_num);
 	public void date_update(transactionCloseVO vo);
+	
+	
 
 	
 
