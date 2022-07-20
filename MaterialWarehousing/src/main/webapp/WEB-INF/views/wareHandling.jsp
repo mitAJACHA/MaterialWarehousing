@@ -201,8 +201,8 @@
 									<tr>
 										<th>회사명&nbsp;<input type="text" class="form-control" name="companyName" value="${pageMaker.cri.companyName }"></th>
 										<th>품목명&nbsp;<input type="text" class="form-control" name="partName" value="${pageMaker.cri.partName }"></th>
-										<th>일자&nbsp;&nbsp;<input class="form-control" type="date" name="startDate" value="${pageMaker.cri.startDate }"></th>
-										<th> &nbsp;&nbsp;<input class="form-control" type="date" name="endDate" value="${pageMaker.cri.endDate }"></th>
+										<th>일자&nbsp;&nbsp;<input class="form-control" type="date" name="startDate" id="startdate" value="${pageMaker.cri.startDate }"></th>
+										<th> &nbsp;&nbsp;<input class="form-control" type="date" name="endDate" id="enddate" value="${pageMaker.cri.endDate }"></th>
 										<th>
 										<div class="custom-control custom-radio radio custom-control-inline">
 											<input type="radio" class="custom-control-input" name="recentDate"  id="male" value="week"> <label
@@ -354,6 +354,8 @@
     <script>
 		$('[name=recentDate]').on("change",function(){
 			$("input[type=date]").prop("disabled",true);
+			document.getElementById("startdate").value = '';
+			document.getElementById("enddate").value = '';
 		});
 		
 		$("input[type=date]").on("change",function(){
