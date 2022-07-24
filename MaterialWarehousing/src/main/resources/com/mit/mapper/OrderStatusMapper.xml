@@ -55,7 +55,7 @@
 			            c.unitprice unitprice, 
 			            company.name name, 
 			            company.business_number, 
-			            NULL empl_name, 
+			            e.empl_name, 
 			            NULL returnny,
                         NULL closing_date
 			        FROM tbl_support s, tbl_part p, tbl_company company, employee e, tbl_contract c, purchase_order o
