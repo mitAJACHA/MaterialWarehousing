@@ -13,7 +13,7 @@
 	<!-- 스프링에서 관리되는 hikariConfig 객체 -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
-		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@192.168.0.30:1521:XE"></property>
+		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@192.168.0.9:1521:XE"></property>
 		<property name="username" value="k2"></property>
 		<property name="password" value="mit"></property>
 	</bean>
