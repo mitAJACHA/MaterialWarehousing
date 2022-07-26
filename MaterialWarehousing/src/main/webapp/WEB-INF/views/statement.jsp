@@ -180,7 +180,7 @@
 			 	 <input type="hidden" name="order_num" class="form-control" id="exampleInputName1" value="${state.order_num}">
                  <input type="hidden" name="receiveMail" class="form-control" id="exampleInputName1" value="${state.comemail}" >
                  <input type="hidden" name="subject" class="form-control" id="exampleInputName1" value="거래명세서  발송" >
-                 <input type="hidden" name="message" class="form-control" id="exampleInputName1" value="http://192.168.0.115:8081/statement2?order_num=${state.order_num}" >
+                 <input type="hidden" name="message" class="form-control" id="exampleInputName1" value="http://m-it.iptime.org:8088/statement2?order_num=${state.order_num}" >
                  <input type="hidden" name="senderName" class="form-control" id="exampleInputName1" "AJACHA" >
                  <input type="hidden" name="senderMail" class="form-control" id="exampleInputName1" value="youwjd51@gmail.com">
                  </table></table>
